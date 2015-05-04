@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Flipulator</string>
+    
+    <string name="what_is_it">What Is A Flipulator?</string>
+    <string name="property">Property</string>
+    <string name="credits">Credits</string>
+    
+    <string name="flipulator">A Flipulator is a mobile home evaluation app designed to determine the viability of rehabbing a house to determine profitability.
+                              Profitability is determined by using three rehab models:  flat fee, rehab type and detailed rehab.</string>
+    <string name="mobile">Mobile Developer:  Daniel Burgner</string>
+    <string name="original_design">Originally Created By:  William Grenier and Dan Benson</string>
+    
+    <string name="location">Location</string>
+    <string name="salesmort">Sales/Mortgage Info</string>
+    <string name="sales">Sale Info</string>
+    <string name="mortgage">Mortgage Info</string>
+    <string name="rehab">Rehab</string>
+    <string name="reserves">Reserves</string>
+    <string name="closexppmi">Closing Exp/Prop Mkt Info</string>
+    <string name="finalresult">Final Result</string>
+    
+    <string name="address">Address:</string>
+    <string name="city">City:</string>
+    <string name="state">State:</string>
+    <string name="zip_code">ZIP Code:</string>
+    <string name="sq_footage">Square Footage:</string>
+    <string name="bedrooms">Bedrooms:</string>
+    <string name="bathrooms">Bathrooms:</string>
+    
+    <string name="salePrice">Sale Price:</string>
+    <string name="percentDown">Percent Down %:</string>
+    <string name="downPayment">Down Payment:</string>
+    <string name="loanAmount">Loan Amount:</string>
+    <string name="offerBid">Offer/Bid Price:</string>
+    <string name="interestRate">Interest Rate %:</string>
+    <string name="term">Term (months):</string>
+    <string name="monthlyPmt">Monthly Pmt:</string>
+    
+    <string name="monthlyRes">Monthly</string>
+    <string name="semiAnnRes">Semi-Annual</string>
+    <string name="annualRes">Annual</string>
+    <string name="mortPmt">Mortgage:</string>
+    <string name="insurance">Insurance:</string>
+    <string name="taxes">Property Taxes:</string>
+    <string name="electric">Electric:</string>
+    <string name="gas">Gas:</string>
+    <string name="water">Water:</string>
+    <string name="totres">Total Reserves:</string>
+    
+    <string name="closingExp">Closing Expenses</string>
+    <string name="realestcomm">Real Estate Comm:</string>
+    <string name="commission">Commission %:</string>
+    <string name="buyerClosCost">Buyer Clos Cost:</string>
+    <string name="bccPercentage">Closing Cost %:</string>
+    <string name="sellClosCost">Sell Clos Cost:</string>
+    <string name="sccPercentage">Closing Cost %:</string>
+    <string name="totalCosts">Total Costs:</string>
+    <string name="outOfPocketExp">Out of Pocket Exp:</string>
+    
+    <string name="propMktInfo">Property Market Information</string>
+    <string name="FMVARV">FMV/ARV:</string>
+    <string name="comparables">Comparables:</string>
+    <string name="sellingPrice">Selling Price:</string>
+    <string name="buyerCosts">Buy + Costs:</string>
+    <string name="grossProfit">Gross Profit:</string>
+    <string name="capGains">Capital Gains:</string>
+    <string name="netProfit">Net Profit:</string>
+    
+    <string name="returnInvestment">Return On Investment</string>
+    <string name="moneyOut">Money Out:</string>
+    <string name="moneyIn">Money In:</string>
+    <string name="percReturn">% Return:</string>
+    <string name="cashCashRet">Cash on Cash Return:</string>
+
+    <string name="rehab_number">Budget Flat Rate</string>
+    <string name="rehab_budget">Rehab Budget:</string>
+    <string name="rehab_type">Rehab Type</string>
+    <string name="rehab_class">Enter Rehab Type:</string>
+    <string name="rehab_detail">Rehab Detail</string>
+    
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="next">Next</string>
+    <string name="help">Help</string>
+    
+    <string-array name="rehab_type">
+		<item>Low</item>
+		<item>Medium</item>
+		<item>High</item>
+		<item>Super-High</item>
+		<item>Bulldozer</item>
+	</string-array>
+    
+    <string name="action_settings">Settings</string>
+
+</resources>

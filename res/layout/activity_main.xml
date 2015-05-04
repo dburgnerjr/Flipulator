@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.danielburgnerjr.flipulator.MainActivity"
+    android:background="#f5f5dc" >
+
+    <TextView
+        android:id="@+id/textAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:text="@string/app_name" />
+
+    <Button
+        android:id="@+id/btnWhatIsFlip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textAppName"
+        android:layout_marginTop="23dp"
+        android:text="@string/what_is_it" />
+
+    <Button
+        android:id="@+id/btnLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnWhatIsFlip"
+        android:layout_centerHorizontal="true"
+        android:text="@string/location" />
+    
+    <Button
+        android:id="@+id/btnSalesMortgage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnLocation"
+        android:layout_centerHorizontal="true"
+        android:text="@string/salesmort" />
+
+    <Button
+        android:id="@+id/btnRehab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSalesMortgage"
+        android:layout_centerHorizontal="true"
+        android:text="@string/rehab" />
+    
+    <Button
+        android:id="@+id/btnReserves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnRehab"
+        android:layout_centerHorizontal="true"
+        android:text="@string/reserves" />
+
+    <Button
+        android:id="@+id/btnClosExpPMI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnReserves"
+        android:layout_centerHorizontal="true"
+        android:text="@string/closexppmi" />
+
+    <Button
+        android:id="@+id/btnFinalResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/finalresult" />
+
+   
+</RelativeLayout>

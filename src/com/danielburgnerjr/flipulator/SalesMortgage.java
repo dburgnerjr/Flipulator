@@ -76,7 +76,7 @@ public class SalesMortgage implements Serializable {
 	}
 
 	public void setMonthlyPmt() {
-		this.dMonthlyPmt = (dPercentDown == 100) ? 0 : (this.dLoanAmount*((this.dInterestRate/12)/100)) / (1-Math.pow(1+((this.dInterestRate/12)/100), -(this.nTerm)));;
+		this.dMonthlyPmt = (dPercentDown == 100) ? 0 : (this.dLoanAmount*((this.dInterestRate/12)/100));
 	}
 	
     @Override

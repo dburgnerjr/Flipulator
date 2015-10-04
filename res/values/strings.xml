@@ -99,11 +99,14 @@
     <string name="percReturn">% Return:</string>
     <string name="cashCashRet">Cash on Cash Return:</string>
 
+    <string name="rehab_class">Select Rehab Class</string>
+    <string name="finance_class">Select Finance Class</string>
     <string name="rehab_number">Budget Flat Rate</string>
-    <string name="rehab_budget">Rehab Budget:</string>
     <string name="rehab_type">Rehab Type</string>
-    <string name="rehab_class">Enter Rehab Type:</string>
-    <string name="rehab_detail">Rehab Detail</string>
+    <string name="rehab_budget">Rehab Budget:</string>
+    <string name="original">Original</string>
+    <string name="owner_carry">Owner Carry</string>
+    <string name="finance_rehab">Finance Rehab</string>
     
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>

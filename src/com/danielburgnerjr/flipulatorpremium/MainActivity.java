@@ -13,6 +13,7 @@ import android.content.Intent;
 
 public class MainActivity extends Activity {
 	String strPackName;
+	private Settings setS;
 /*
 	final Context cntC = this;
 	
@@ -27,11 +28,34 @@ public class MainActivity extends Activity {
 		strPackName = getApplicationContext().getPackageName();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		Intent intI = getIntent();
+		setS = (Settings) intI.getSerializableExtra("Settings");
         
 		final Button btnAbout = (Button) findViewById(R.id.btnAbout);
 		btnAbout.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
 			    Intent intI = new Intent(MainActivity.this, AboutFlipulatorPremium.class);
+			    startActivity(intI);
+			}
+		});
+
+		final Button btnCalculate = (Button) findViewById(R.id.btnCalculate);
+		btnCalculate.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+				if (setS == null) {
+					setS = new Settings(0, 0);	// default is flat rate rehab class and original finance class
+				}
+				Toast.makeText(getApplicationContext(), setS.toString(), Toast.LENGTH_SHORT).show();
+			    //intI = new Intent(MainActivity.this, SettingsActivity.class);
+			    //startActivity(intI);
+			}
+		});
+
+		final Button btnSettings = (Button) findViewById(R.id.btnSettings);
+		btnSettings.setOnClickListener(new OnClickListener() {
+			public void onClick(View view) {
+			    Intent intI = new Intent(MainActivity.this, SettingsActivity.class);
 			    startActivity(intI);
 			}
 		});

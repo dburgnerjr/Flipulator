@@ -154,19 +154,7 @@ public class RehabActivity extends Activity {
 										rR = new RehabType(locL.getSquareFootage(), strRTSel);
 										intI.putExtra("Rehab", rR);
 										startActivity(intI);
-										break;
-										
-			case R.id.rdoRehabDetailed:
-/*
-										intI = new Intent(this, RehabDetail.class);
-										intI.putExtra("Location", locL);
-										intI.putExtra("SalesMortgage", smSM);
-										String strRTSel = spnRehabType.getSelectedItem().toString();
-										rR = new RehabType(locL.getSquareFootage(), strRTSel);
-										intI.putExtra("Rehab", rR);
-*/										
-										Toast.makeText(getApplicationContext(), "Coming soon.", Toast.LENGTH_LONG).show();
-										break;								
+										break;										
 		}
 	}
 	

@@ -2,15 +2,40 @@
 <resources>
 
     <string name="app_name">Flipulator</string>
+    <string name="flipulator_premium">Flipulator Premium Version</string>
+    <string name="aboutflippremium">About</string>
+    <string name="calculate">Calculate</string>
+    <string name="donate">Donate</string>
+    <string name="settings">Settings</string>
+    <string name="share">Share</string>
     
     <string name="what_is_it">What Is A Flipulator?</string>
     <string name="property">Property</string>
     <string name="credits">Credits</string>
     
     <string name="flipulator">A Flipulator is a mobile home evaluation app designed to determine the viability of rehabbing a house to determine profitability.
-                              Profitability is determined by using three rehab models:  flat fee, rehab type and detailed rehab.</string>
+                              Profitability is determined by using either a set rehab budget (a number) or the rehab type (set dollar amount per sf).</string>
     <string name="mobile">Mobile Developer:  Daniel Burgner</string>
     <string name="original_design">Originally Created By:  William Grenier and Dan Benson</string>
+
+    <string name="mission">I am a real estate investor whose mission is to provide easy to use tools for other real estate investors to
+                           effectively evaluate properties and maximize profitability.  My goals include the expansion of this app that will
+                           be available on the App Store and to provide a better user experience.  Your donation will help reach my goals and
+                           provide a better user experience for you.  Please make a donation today.</string>
+
+    <string name="donations__google_android_market">Google Play Store</string>
+    <string name="donations__google_android_market_not_supported_title">In-App Donations are not supported.</string>
+    <string name="donations__google_android_market_not_supported">In-App Donations are not supported. Is Google Play Store installed correctly?</string>
+    <string name="donations__google_android_market_description">Google takes 30 % off every donation!</string>
+    <string name="donations__paypal">PayPal</string>
+    <string name="donations__paypal_description">You can choose how much you want to donate after clicking the button!</string>
+    <string name="txtDonateNow">Donate!</string>
+    <string name="txtDonatePaypal">Donate with Paypal</string>
+    <string name="txtHowMuch">How much?</string>
+    <string name="donations__thanks_dialog_title">Thanks!</string>
+    <string name="donations__thanks_dialog">Thanks for donating!\nI really appreciate this!</string>
+    <string name="donations__alert_dialog_title">Error occurred</string>
+    <string name="donations__button_close">Close</string>
     
     <string name="location">Location</string>
     <string name="salesmort">Sales/Mortgage Info</string>
@@ -84,6 +109,15 @@
     <string name="cancel">Cancel</string>
     <string name="next">Next</string>
     <string name="help">Help</string>
+
+    <string-array name="donation_google_catalog_values">
+        <item>$1.00</item>
+        <item>$5.00</item>
+        <item>$10.00</item>
+        <item>$25.00</item>
+        <item>$50.00</item>
+        <item>$100.00</item>
+    </string-array>
     
     <string-array name="rehab_type">
 		<item>Low</item>

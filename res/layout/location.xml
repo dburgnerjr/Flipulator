@@ -1,186 +1,222 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/calculate" />
-
-        <Button
-            android:id="@+id/txtHelp"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="0.5"
-            android:ems="10"
-            android:text="@string/help" />
-    </LinearLayout>
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LocationActivity" >
     
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/llAddress"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:text="@string/address" />
 
         <EditText
             android:id="@+id/txtAddress"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:ems="10"
+            android:textSize="12sp"
             android:inputType="text" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llCity"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
+        android:layout_below="@+id/llAddress"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:text="@string/city" />
 
         <EditText
             android:id="@+id/txtCity"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:ems="10"
+            android:textSize="12sp"
             android:inputType="text" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llState"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
+        android:layout_below="@+id/llCity"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:text="@string/state" />
 
         <EditText
             android:id="@+id/txtState"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:ems="10"
+            android:textSize="12sp"
             android:inputType="text" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llZip"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
+        android:layout_below="@+id/llState"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:text="@string/zip_code" />
 
         <EditText
             android:id="@+id/txtZIP_Code"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:ems="10"
+            android:textSize="12sp"
             android:inputType="text" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llSquareFootage"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
+        android:layout_below="@+id/llZip"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:text="@string/sq_footage" />
 
         <EditText
             android:id="@+id/txtSq_Footage"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:ems="10"
+            android:textSize="12sp"
             android:inputType="numberDecimal" />
     </LinearLayout>
     
     <LinearLayout
+        android:id="@+id/llBedrooms"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
+        android:layout_below="@+id/llSquareFootage"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:text="@string/bedrooms" />
 
         <EditText
             android:id="@+id/txtBedrooms"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:ems="10"
+            android:textSize="12sp"
             android:inputType="numberDecimal" />
     </LinearLayout>
     
     <LinearLayout
+        android:id="@+id/llBathrooms"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
+        android:layout_below="@+id/llBedrooms"
         android:orientation="horizontal" >
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:text="@string/bathrooms" />
 
         <EditText
             android:id="@+id/txtBathrooms"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_weight="0.5"
             android:ems="10"
+            android:textSize="12sp"
             android:inputType="numberDecimal" />
     </LinearLayout>
-    
+
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/llHelp"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:layout_above="@+id/llPrevNext"
         android:orientation="horizontal" >
 
         <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
             android:layout_weight="0.5" />
 
         <Button
+            android:id="@+id/txtHelp"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
+            android:layout_weight="0.5"
+            android:ems="10"
+            android:text="@string/help"
+            android:background="#690"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/llPrevNext"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnPrev"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
+            android:layout_weight="0.5"
+            android:onClick="prevPage"
+            android:text="@string/prev"
+            android:background="#690"
+            android:textColor="#ffffff" />
+
+        <Button
             android:id="@+id/btnNext"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
             android:layout_weight="0.5"
             android:onClick="nextPage"
-            android:text="@string/next" />
+            android:text="@string/next"
+            android:background="#690"
+            android:textColor="#ffffff" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

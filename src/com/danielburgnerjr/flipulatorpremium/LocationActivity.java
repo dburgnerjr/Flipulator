@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 public class LocationActivity extends Activity {
 	
 	final Context cntC = this;
+	private Settings setS;
 	
 	private EditText etAddress;			// address
 	private EditText etCity;			// city
@@ -31,6 +33,10 @@ public class LocationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.location);
+
+		Intent intI = getIntent();
+		
+		setS = (Settings) intI.getSerializableExtra("Settings");
 
 		etAddress   = (EditText)findViewById(R.id.txtAddress);
 		etCity   = (EditText)findViewById(R.id.txtCity);
@@ -74,6 +80,13 @@ public class LocationActivity extends Activity {
 
 	}
 
+	public void prevPage(View view) {
+		Intent intI = new Intent(this, MainActivity.class);
+		intI.putExtra("Settings", setS);
+		startActivity(intI);
+		finish();
+	}
+
 	public void nextPage(View view) {
 		if (("").equals(etAddress.getText().toString())) {
 			Toast.makeText(getApplicationContext(), "Must Enter Address", Toast.LENGTH_SHORT).show();
@@ -102,27 +115,37 @@ public class LocationActivity extends Activity {
 			locL.setBathrooms(Integer.parseInt(etBathrooms.getText().toString()));
 	    
 			intI.putExtra("Location", locL);
-	    
+			intI.putExtra("Settings", setS);
 			startActivity(intI);
+			finish();
 		}
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+	 public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
+		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
+			exitByBackKey();
+		    return true;
 		}
-		return super.onOptionsItemSelected(item);
-	}
+		return super.onKeyDown(nKeyCode, keEvent);
+   }
+
+	 protected void exitByBackKey() {
+		AlertDialog adAlertBox = new AlertDialog.Builder(this)
+		    .setMessage("Do you want to go back to main menu?")
+		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        	Intent intB = new Intent(LocationActivity.this, MainActivity.class);
+		        	startActivity(intB);
+		        	finish();
+		            //close();
+		        }
+		    })
+		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        }
+		    })
+		    .show();
+	 }
 }

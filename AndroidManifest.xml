@@ -36,7 +36,7 @@
 			android:label="Settings"
 			android:theme="@style/AppTheme" >
 		</activity>
-        		<activity
+        <activity
 			android:name=".DonateActivity"
 			android:label="Donate"
 			android:theme="@style/AppTheme" >

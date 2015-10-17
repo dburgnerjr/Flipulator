@@ -36,8 +36,8 @@ public class MainActivity extends Activity {
 		final Button btnAbout = (Button) findViewById(R.id.btnAbout);
 		btnAbout.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
-			    Intent intI = new Intent(MainActivity.this, AboutFlipulatorPremium.class);
-			    startActivity(intI);
+			    Intent intA = new Intent(MainActivity.this, AboutFlipulatorPremium.class);
+			    startActivity(intA);
 			}
 		});
 
@@ -47,9 +47,11 @@ public class MainActivity extends Activity {
 				if (setS == null) {
 					setS = new Settings(0, 0);	// default is flat rate rehab class and original finance class
 				}
-				Toast.makeText(getApplicationContext(), setS.toString(), Toast.LENGTH_SHORT).show();
-			    //intI = new Intent(MainActivity.this, SettingsActivity.class);
-			    //startActivity(intI);
+				//Toast.makeText(getApplicationContext(), setS.toString(), Toast.LENGTH_SHORT).show();
+			    Intent intL = new Intent(MainActivity.this, LocationActivity.class);
+			    intL.putExtra("Settings", setS);
+			    startActivity(intL);
+			    finish();
 			}
 		});
 

@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.Toast;
@@ -19,6 +17,7 @@ public class LocationActivity extends Activity {
 	
 	final Context cntC = this;
 	private Settings setS;
+	private Location locL;
 	
 	private EditText etAddress;			// address
 	private EditText etCity;			// city
@@ -78,6 +77,26 @@ public class LocationActivity extends Activity {
 			}
 		});
 
+		locL = (Location) intI.getSerializableExtra("Location");
+		// if Location object is null, fields are blank
+		if (locL == null) {
+			etAddress.setText("");
+			etCity.setText("");
+			etState.setText("");
+			etZIPCode.setText("");
+			etSquareFootage.setText("");
+			etBedrooms.setText("");
+			etBathrooms.setText("");
+		} else {
+			// set fields to member variables of Location object
+			etAddress.setText(locL.getAddress());
+			etCity.setText(locL.getCity());
+			etState.setText(locL.getState());
+			etZIPCode.setText(locL.getZIPCode());
+			etSquareFootage.setText(locL.getSquareFootage() + "");
+			etBedrooms.setText(locL.getBedrooms() + "");
+			etBathrooms.setText(locL.getBathrooms() + "");
+		}
 	}
 
 	public void prevPage(View view) {
@@ -103,7 +122,7 @@ public class LocationActivity extends Activity {
 		} else if (("").equals(etBathrooms.getText().toString())) {
 			Toast.makeText(getApplicationContext(), "Must Enter Bathrooms", Toast.LENGTH_SHORT).show();
 		} else {
-			Intent intI = new Intent(this, MainActivity.class);
+			Intent intI = new Intent(this, SalesMortgageActivity.class);
 	    
 			Location locL = new Location();
 			locL.setAddress(etAddress.getText().toString());

@@ -1,33 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#f5f5dc" >
+    tools:context=".SalesMortgageActivity" >
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="@string/salesmort" />
-
-        <Button
-            android:id="@+id/txtHelp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:ems="10"
-            android:text="@string/help" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/llSalePrice"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal" >
 
         <TextView
@@ -42,12 +25,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:ems="10"
+            android:textSize="12sp"
             android:inputType="numberDecimal" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llPercentDown"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
+        android:layout_below="@+id/llSalePrice"
         android:orientation="horizontal" >
 
         <TextView
@@ -62,12 +48,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:ems="10"
+            android:textSize="12sp"
             android:inputType="numberDecimal" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llOfferBid"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
+        android:layout_below="@+id/llPercentDown"
         android:orientation="horizontal" >
 
         <TextView
@@ -82,12 +71,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:ems="10"
+            android:textSize="12sp"
             android:inputType="numberDecimal" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llInterestRate"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
+        android:layout_below="@+id/llOfferBid"
         android:orientation="horizontal" >
 
         <TextView
@@ -102,12 +94,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:ems="10"
+            android:textSize="12sp"
             android:inputType="numberDecimal" />
     </LinearLayout>
     
     <LinearLayout
+        android:id="@+id/llTerm"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35sp"
+        android:layout_below="@+id/llInterestRate"
         android:orientation="horizontal" >
 
         <TextView
@@ -122,26 +117,60 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:ems="10"
+            android:textSize="12sp"
             android:inputType="numberDecimal" />
     </LinearLayout>
-    
+
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/llHelp"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:layout_above="@+id/llPrevNext"
         android:orientation="horizontal" >
 
         <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
             android:layout_weight="0.5" />
 
         <Button
+            android:id="@+id/txtHelp"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
+            android:layout_weight="0.5"
+            android:ems="10"
+            android:text="@string/help"
+            android:background="#690"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/llPrevNext"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnPrev"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
+            android:layout_weight="0.5"
+            android:onClick="prevPage"
+            android:text="@string/prev"
+            android:background="#690"
+            android:textColor="#ffffff" />
+
+        <Button
             android:id="@+id/btnNext"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100sp"
+            android:layout_height="40sp"
             android:layout_weight="0.5"
             android:onClick="nextPage"
-            android:text="@string/next" />
+            android:text="@string/next"
+            android:background="#690"
+            android:textColor="#ffffff" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

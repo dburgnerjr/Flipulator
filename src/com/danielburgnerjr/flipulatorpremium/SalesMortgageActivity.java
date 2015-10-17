@@ -18,7 +18,10 @@ public class SalesMortgageActivity extends Activity {
 	
 	final Context cntC = this;
 	
+	private Settings setS;
 	private Location locL;
+	private SalesMortgage smSM;
+
 	private EditText etSalesPrice;		// sales price
 	private EditText etPercentDown;		// percent down
 	private EditText etOfferBid;		// offer/bid price
@@ -33,6 +36,7 @@ public class SalesMortgageActivity extends Activity {
 		
 		Intent intI = getIntent();
 		
+		setS = (Settings) intI.getSerializableExtra("Settings");
 		locL = (Location) intI.getSerializableExtra("Location");
 		
 		etSalesPrice   = (EditText)findViewById(R.id.txtSalePrice);
@@ -73,6 +77,31 @@ public class SalesMortgageActivity extends Activity {
 			}
 		});
 
+		smSM = (SalesMortgage) intI.getSerializableExtra("SalesMortgage");
+		// if SalesMortgage object is null, fields are blank
+		if (smSM == null) {
+			etSalesPrice.setText("");
+			etPercentDown.setText("");
+			etOfferBid.setText("");
+			etInterestRate.setText("");
+			etTerm.setText("");
+		} else {
+			// set fields to member variables of SalesMortgage object
+			etSalesPrice.setText((int)smSM.getSalesPrice() + "");
+			etPercentDown.setText((int)smSM.getPercentDown() + "");
+			etOfferBid.setText((int)smSM.getOfferBid() + "");
+			etInterestRate.setText((int)smSM.getInterestRate() + "");
+			etTerm.setText(smSM.getTerm() + "");
+		}
+
+	}
+
+	public void prevPage(View view) {
+		Intent intI = new Intent(this, LocationActivity.class);
+		intI.putExtra("Settings", setS);
+		intI.putExtra("Location", locL);
+		startActivity(intI);
+		finish();
 	}
 
 	public void nextPage(View view) {
@@ -87,9 +116,10 @@ public class SalesMortgageActivity extends Activity {
 		} else if (("").equals(etTerm.getText().toString())) {
 			Toast.makeText(getApplicationContext(), "Must Enter Term", Toast.LENGTH_SHORT).show();
 		} else {
-			Intent intI = new Intent(this, MainActivity.class);
+			Intent intI = new Intent(this, RehabActivity.class);
 			intI.putExtra("Location", locL);
-	    
+			intI.putExtra("Settings", setS);
+			
 			SalesMortgage smSM = new SalesMortgage();
 			smSM.setSalesPrice(Double.parseDouble(etSalesPrice.getText().toString()));
 			smSM.setPercentDown(Double.parseDouble(etPercentDown.getText().toString()));
@@ -103,6 +133,7 @@ public class SalesMortgageActivity extends Activity {
 	    	intI.putExtra("SalesMortgage", smSM);
 
 	    	startActivity(intI);
+	    	finish();
 		}
 	}
 	

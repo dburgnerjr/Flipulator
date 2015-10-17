@@ -144,6 +144,7 @@ public class RehabActivity extends Activity {
 											rR = new RehabFlatRate(dB);
 											intI.putExtra("Rehab", rR);
 											startActivity(intI);
+											finish();
 										}
 										break;
 										
@@ -154,6 +155,7 @@ public class RehabActivity extends Activity {
 										rR = new RehabType(locL.getSquareFootage(), strRTSel);
 										intI.putExtra("Rehab", rR);
 										startActivity(intI);
+										finish();
 										break;										
 		}
 	}

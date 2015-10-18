@@ -60,6 +60,7 @@ public class MainActivity extends Activity {
 			public void onClick(View view) {
 			    Intent intI = new Intent(MainActivity.this, SettingsActivity.class);
 			    startActivity(intI);
+			    finish();
 			}
 		});
 

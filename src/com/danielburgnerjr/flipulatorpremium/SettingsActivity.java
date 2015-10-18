@@ -117,13 +117,11 @@ public class SettingsActivity extends Activity {
 
 	}
 
-	public void nextPage(View view) {
-		
+	public void nextPage(View view) {		
 		Intent intI = new Intent(this, MainActivity.class);
 		Settings setS = new Settings(nRehab, nFinance);
 		intI.putExtra("Settings", setS);	    
 		startActivity(intI);
-
-		
+		finish();
 	}	
 }

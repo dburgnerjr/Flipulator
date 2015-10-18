@@ -8,10 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.KeyEvent;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SalesMortgageActivity extends Activity {
@@ -21,12 +23,17 @@ public class SalesMortgageActivity extends Activity {
 	private Settings setS;
 	private Location locL;
 	private SalesMortgage smSM;
+	private Rehab rR;
 
 	private EditText etSalesPrice;		// sales price
 	private EditText etPercentDown;		// percent down
 	private EditText etOfferBid;		// offer/bid price
 	private EditText etInterestRate;	// interest rate
 	private EditText etTerm;			// term
+	private TextView tvRehabFlatRate;
+	private EditText etRehabBudget;
+	private TextView tvRehabType;
+	private Spinner spnRehabType;
 	private Button btnHelp;				// help
 
 	@Override
@@ -44,7 +51,17 @@ public class SalesMortgageActivity extends Activity {
 		etOfferBid   = (EditText)findViewById(R.id.txtOfferBid);
 		etInterestRate   = (EditText)findViewById(R.id.txtInterestRate);
 		etTerm   = (EditText)findViewById(R.id.txtTerm);
+		
+		ArrayAdapter<CharSequence> aradAdapter = ArrayAdapter.createFromResource(
+				  this, R.array.rehab_type, android.R.layout.simple_spinner_item );
+		aradAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+		
+		tvRehabFlatRate   = (TextView)findViewById(R.id.tvRehabBudget);
+		etRehabBudget   = (EditText)findViewById(R.id.txtRehabBudget);
+		tvRehabType   = (TextView)findViewById(R.id.tvRehabType);
+		spnRehabType   = (Spinner)findViewById(R.id.spnRehabType);
 		btnHelp = (Button)findViewById(R.id.txtHelp);
+		spnRehabType.setAdapter(aradAdapter);
 		
 		// add button listener
 		btnHelp.setOnClickListener(new OnClickListener() {
@@ -58,8 +75,12 @@ public class SalesMortgageActivity extends Activity {
 				alertDialogBuilder.setTitle("Sales/Mortgage Help");
  
 				// set dialog message
-				alertDialogBuilder.setMessage("Enter the sales price, percentage down, offer or bid, interest rate " +
-											  "and term of mortgage.")
+				alertDialogBuilder.setMessage("Enter the sales price, percentage down, offer or bid, interest rate, " +
+											  "term of mortgage and rehab budget.  Rehab budget can be a flat rate or " + 
+											  "a rehab type. Rehab types are classified as:  Low ($15/sf, yard work and " + 
+											  "painting), Medium ($20/sf > 1500 sf or $25/sf < 1500 sf, Low + kitchen and " + 
+											  "bathrooms, High ($30/sf, Medium + new roof), Super-High ($40/sf, complete " + 
+											  "gut job), Bulldozer ($125/sf, demolition and rebuild).")
 								  .setCancelable(false)
 								  .setNeutralButton("OK", new DialogInterface.OnClickListener() {
 									  public void onClick(DialogInterface dialog, int id) {
@@ -94,6 +115,54 @@ public class SalesMortgageActivity extends Activity {
 			etTerm.setText(smSM.getTerm() + "");
 		}
 
+		setS = (Settings) intI.getSerializableExtra("Settings");
+		// if Settings rehab flag is 0, show rehab budget flat rate
+		if (setS.getRehab() == 0) {
+      	    tvRehabFlatRate.setVisibility(View.VISIBLE);
+      	    etRehabBudget.setVisibility(View.VISIBLE);
+      	    tvRehabType.setVisibility(View.INVISIBLE);
+      	    spnRehabType.setVisibility(View.INVISIBLE);
+		} else {
+			// show rehab class
+      	    tvRehabFlatRate.setVisibility(View.INVISIBLE);
+      	    etRehabBudget.setVisibility(View.INVISIBLE);
+      	    tvRehabType.setVisibility(View.VISIBLE);
+      	    spnRehabType.setVisibility(View.VISIBLE);
+		}
+		
+		rR = (Rehab) intI.getSerializableExtra("Rehab");
+		// if Rehab object is null, fields are blank
+		if (rR == null) {
+			if (setS.getRehab() == 0) {
+				etRehabBudget.setText("");
+			} else {
+				spnRehabType.setSelection(0);
+			}
+		} else {
+			if (setS.getRehab() == 0) {
+				etRehabBudget.setText((int)rR.getBudget() + "");
+			} else {
+				int nCostSF = (int)(rR.getBudget()/locL.getSquareFootage());
+	      	  	switch (nCostSF) {
+	      	  		case 15:
+	      	  					spnRehabType.setSelection(0);
+	      	  					break;
+	      	  		case 20:
+	      	  		case 25:
+		    	  			    spnRehabType.setSelection(1);
+		    	  				break;
+	      	  		case 30:
+		    	  				spnRehabType.setSelection(2);
+		    	  				break;
+	      	  		case 40:
+		    	  				spnRehabType.setSelection(3);
+		    	  				break;
+	      	  		case 125:
+		    	  				spnRehabType.setSelection(4);
+		    	  				break;
+	      	    }
+			}
+		}
 	}
 
 	public void prevPage(View view) {
@@ -116,7 +185,7 @@ public class SalesMortgageActivity extends Activity {
 		} else if (("").equals(etTerm.getText().toString())) {
 			Toast.makeText(getApplicationContext(), "Must Enter Term", Toast.LENGTH_SHORT).show();
 		} else {
-			Intent intI = new Intent(this, RehabActivity.class);
+			Intent intI = new Intent(this, ReservesActivity.class);
 			intI.putExtra("Location", locL);
 			intI.putExtra("Settings", setS);
 			
@@ -131,28 +200,53 @@ public class SalesMortgageActivity extends Activity {
 	    	smSM.setMonthlyPmt();
 	    
 	    	intI.putExtra("SalesMortgage", smSM);
-
-	    	startActivity(intI);
-	    	finish();
+	    	
+	    	Rehab rR;
+	    	if (setS.getRehab() == 0) {
+				if (("").equals(etRehabBudget.getText().toString())) {
+					Toast.makeText(getApplicationContext(), "Must Enter Rehab Budget", Toast.LENGTH_SHORT).show();
+				} else {
+					double dB = Double.parseDouble(etRehabBudget.getText().toString());
+					rR = new RehabFlatRate(dB);
+					intI.putExtra("Rehab", rR);
+			    	startActivity(intI);
+			    	finish();
+				}	    		
+	    	} else {
+				String strRTSel = spnRehabType.getSelectedItem().toString();
+				rR = new RehabType(locL.getSquareFootage(), strRTSel);
+				intI.putExtra("Rehab", rR);
+		    	startActivity(intI);
+		    	finish();
+	    	}
 		}
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+	 public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
+		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
+			exitByBackKey();
+		    return true;
 		}
-		return super.onOptionsItemSelected(item);
-	}
+		return super.onKeyDown(nKeyCode, keEvent);
+    }
+
+	 protected void exitByBackKey() {
+		AlertDialog adAlertBox = new AlertDialog.Builder(this)
+		    .setMessage("Do you want to go back to main menu?")
+		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        	Intent intB = new Intent(SalesMortgageActivity.this, MainActivity.class);
+		        	startActivity(intB);
+		        	finish();
+		            //close();
+		        }
+		    })
+		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        }
+		    })
+		    .show();
+	 }
 }

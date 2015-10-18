@@ -146,7 +146,7 @@ public class LocationActivity extends Activity {
 		    return true;
 		}
 		return super.onKeyDown(nKeyCode, keEvent);
-   }
+     }
 
 	 protected void exitByBackKey() {
 		AlertDialog adAlertBox = new AlertDialog.Builder(this)

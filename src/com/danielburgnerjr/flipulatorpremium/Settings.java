@@ -46,7 +46,25 @@ public class Settings implements Serializable {
 		nFinance = nF;	// sets finance class
 	}
 
-   //**********************************************************************	
+    //**********************************************************************	
+	// getRehab - gets the rehab flag
+	//	Inputs:	none
+	//	Output:	int (rehab flag)
+	//**********************************************************************	
+	public int getRehab() {
+		return nRehab;
+	}
+
+    //**********************************************************************	
+	// getFinance - gets the finance flag
+	//	Inputs:	none
+	//	Output:	int (finance flag)
+	//**********************************************************************	
+	public int getFinance() {
+		return nFinance;
+	}
+
+    //**********************************************************************	
 	// toString - displays the object's attributes
 	//	Inputs:	none
 	//	Output:	String (object representation)

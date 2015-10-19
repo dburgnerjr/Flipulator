@@ -19,9 +19,11 @@ public class ReservesActivity extends Activity {
 	
 	final Context cntC = this;
 	
+	private Settings setS;
 	private Location locL;
 	private SalesMortgage smSM;
 	private Rehab rR;
+	private Reserves resR;
 	
 	private EditText etInsurance;		// sales price
 	private EditText etTaxes;			// property taxes
@@ -36,7 +38,8 @@ public class ReservesActivity extends Activity {
 		setContentView(R.layout.reserves);
 		
 		Intent intI = getIntent();
-		
+
+		setS = (Settings) intI.getSerializableExtra("Settings");
 		locL = (Location) intI.getSerializableExtra("Location");
 		smSM = (SalesMortgage) intI.getSerializableExtra("SalesMortgage");
 		rR = (Rehab) intI.getSerializableExtra("Rehab");
@@ -80,6 +83,33 @@ public class ReservesActivity extends Activity {
 			}
 		});
 
+		resR = (Reserves) intI.getSerializableExtra("Reserves");
+		// if Reserves object is null, fields are blank
+		if (resR == null) {
+			etInsurance.setText("");
+			etTaxes.setText("");
+			etElectric.setText("");
+			etGas.setText("");
+			etWater.setText("");
+		} else {
+			// set fields to member variables of Reserves object
+			etInsurance.setText((int)resR.getInsurance() + "");
+			etTaxes.setText((int)resR.getTaxes() + "");
+			etElectric.setText((int)resR.getElectric() + "");
+			etGas.setText((int)resR.getGas() + "");
+			etWater.setText((int)resR.getWater() + "");
+		}
+
+	}
+
+	public void prevPage(View view) {
+		Intent intI = new Intent(this, SalesMortgageActivity.class);
+		intI.putExtra("Settings", setS);
+		intI.putExtra("Location", locL);
+		intI.putExtra("SalesMortgage", smSM);
+		intI.putExtra("Rehab", rR);
+		startActivity(intI);
+		finish();
 	}
 
 	public void nextPage(View view) {
@@ -94,7 +124,8 @@ public class ReservesActivity extends Activity {
 		} else if (("").equals(etElectric.getText().toString())) {
 			Toast.makeText(getApplicationContext(), "Must Enter Electric Bill For 6 Mos", Toast.LENGTH_SHORT).show();
 		} else {
-			Intent intI = new Intent(this, MainActivity.class);
+			Intent intI = new Intent(this, ClosExpPropMktInfoActivity.class);
+			intI.putExtra("Settings", setS);
 			intI.putExtra("Location", locL);
 			intI.putExtra("SalesMortgage", smSM);
 			intI.putExtra("Rehab", rR);

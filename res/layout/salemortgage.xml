@@ -148,7 +148,7 @@
     <LinearLayout
         android:id="@+id/llRehabType"
         android:layout_width="fill_parent"
-        android:layout_height="35sp"
+        android:layout_height="40sp"
         android:layout_below="@+id/llTerm"
         android:orientation="horizontal" >
 
@@ -162,7 +162,7 @@
         <Spinner
             android:id="@+id/spnRehabType"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40sp"
             android:layout_weight="0.5"
             android:ems="10" />
     </LinearLayout>

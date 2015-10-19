@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ public class ClosExpPropMktInfoActivity extends Activity {
 	
 	final Context cntC = this;
 	
+	private Settings setS;
 	private Location locL;
 	private SalesMortgage smSM;
 	private Rehab rR;
@@ -37,7 +39,8 @@ public class ClosExpPropMktInfoActivity extends Activity {
 		setContentView(R.layout.closexppropmktinfo);
 		
 		Intent intI = getIntent();
-		
+
+		setS = (Settings) intI.getSerializableExtra("Settings");
 		locL = (Location) intI.getSerializableExtra("Location");
 		smSM = (SalesMortgage) intI.getSerializableExtra("SalesMortgage");
 		rR = (Rehab) intI.getSerializableExtra("Rehab");
@@ -86,6 +89,17 @@ public class ClosExpPropMktInfoActivity extends Activity {
 
 	}
 
+	public void prevPage(View view) {
+		Intent intI = new Intent(this, ReservesActivity.class);
+		intI.putExtra("Settings", setS);
+		intI.putExtra("Location", locL);
+		intI.putExtra("SalesMortgage", smSM);
+		intI.putExtra("Rehab", rR);
+		intI.putExtra("Reserves", rsR);
+		startActivity(intI);
+		finish();
+	}
+
 	public void nextPage(View view) {
 		if (("").equals(etRealEstComm.getText().toString())) {
 			Toast.makeText(getApplicationContext(), "Must Enter Real Estate Commission", Toast.LENGTH_SHORT).show();
@@ -117,25 +131,35 @@ public class ClosExpPropMktInfoActivity extends Activity {
 			intI.putExtra("ClosExpPropMktInfo", cemC);
 
 			startActivity(intI);
+			finish();
 		}
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+	 public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
+		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
+			exitByBackKey();
+		    return true;
 		}
-		return super.onOptionsItemSelected(item);
-	}
+		return super.onKeyDown(nKeyCode, keEvent);
+  }
+
+	 protected void exitByBackKey() {
+		AlertDialog adAlertBox = new AlertDialog.Builder(this)
+		    .setMessage("Do you want to go back to main menu?")
+		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        	Intent intB = new Intent(ClosExpPropMktInfoActivity.this, MainActivity.class);
+		        	startActivity(intB);
+		        	finish();
+		            //close();
+		        }
+		    })
+		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        }
+		    })
+		    .show();
+	 }
 }

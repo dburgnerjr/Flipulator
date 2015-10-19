@@ -114,7 +114,7 @@ public class ClosExpPropMktInfoActivity extends Activity {
 		} else if (("").equals(etSellingPrice.getText().toString())) {
 			Toast.makeText(getApplicationContext(), "Must Enter Selling Price", Toast.LENGTH_SHORT).show();
 		} else {
-			Intent intI = new Intent(this, MainActivity.class);
+			Intent intI = new Intent(this, FinalResultActivity.class);
 			intI.putExtra("Location", locL);
 			intI.putExtra("SalesMortgage", smSM);
 			intI.putExtra("Rehab", rR);
@@ -129,7 +129,6 @@ public class ClosExpPropMktInfoActivity extends Activity {
 			cemC.setSellingPrice(Double.parseDouble(etSellingPrice.getText().toString()));
 	    
 			intI.putExtra("ClosExpPropMktInfo", cemC);
-
 			startActivity(intI);
 			finish();
 		}

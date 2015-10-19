@@ -1,14 +1,22 @@
 package com.danielburgnerjr.flipulatorpremium;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 public class FinalResultActivity extends Activity {
+
+	private Settings setS;
+	private Location locL;
+	private SalesMortgage smSM;
+	private Rehab rR;
+	private Reserves rsR;
+	private ClosExpPropMktInfo cemC;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +72,11 @@ public class FinalResultActivity extends Activity {
 			
 		Intent intI = getIntent();
 		
-		Location locL = (Location) intI.getSerializableExtra("Location");
-		SalesMortgage smSM = (SalesMortgage) intI.getSerializableExtra("SalesMortgage");
-		Rehab rR = (Rehab) intI.getSerializableExtra("Rehab");
-		Reserves rsR = (Reserves) intI.getSerializableExtra("Reserves");
-		ClosExpPropMktInfo cemC = (ClosExpPropMktInfo) intI.getSerializableExtra("ClosExpPropMktInfo");
+		locL = (Location) intI.getSerializableExtra("Location");
+		smSM = (SalesMortgage) intI.getSerializableExtra("SalesMortgage");
+		rR = (Rehab) intI.getSerializableExtra("Rehab");
+		rsR = (Reserves) intI.getSerializableExtra("Reserves");
+		cemC = (ClosExpPropMktInfo) intI.getSerializableExtra("ClosExpPropMktInfo");
 		
 		FinalResult frF = new FinalResult();
 		frF.setRECost(cemC.getSellingPrice(), cemC.getRealEstComm());
@@ -129,23 +137,61 @@ public class FinalResultActivity extends Activity {
 		tvPercRet.setText(String.format("%.1f", frF.getROI()) + "%");
 		tvCashCashRet.setText(String.format("%.1f", frF.getCashOnCash()) + "%");
 	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
+	// returns to main menu
+	public void mainMenu(View view) {
+	    Intent intI = new Intent(FinalResultActivity.this, MainActivity.class);
+	    startActivity(intI);
+	    finish();
+	};
+
+	public void nextPage(View view) {
+		// email results of calculate to those parties concerned
+/*		String strMessage = "Address:                " + locL.getAddress() + "\n";
+		strMessage += "City, State ZIP:        " + calC.getCityStZip() + "\n";
+		strMessage += "Square Footage:         " + calC.getSquareFootage() + "\n";
+		strMessage += "Bedrooms/Bathrooms:     " + calC.getBedrooms() + " BR " + calC.getBathrooms() + " BA\n";
+		strMessage += "After Repair Value:    $" + String.format("%.0f", calC.getFMVARV()) + "\n";
+		strMessage += "Sales Price:           $" + String.format("%.0f", calC.getSalesPrice()) + "\n";
+		strMessage += "Estimated Budget:      $" + String.format("%.0f", calC.getBudget()) + "\n";
+		strMessage += "Closing/Holding Costs: $" + String.format("%.0f", resR.getClosHoldCosts()) + "\n";
+		strMessage += "Profit:                $" + String.format("%.0f", resR.getProfit()) + "\n";
+		strMessage += "ROI:                    " + String.format("%.1f", resR.getROI()) + "%\n";
+		strMessage += "Cash on Cash Return:    " + String.format("%.1f", resR.getCashOnCash()) + "%\n";
+		Intent intEmailActivity = new Intent(Intent.ACTION_SEND);
+		intEmailActivity.putExtra(Intent.EXTRA_EMAIL, new String[]{});
+		intEmailActivity.putExtra(Intent.EXTRA_SUBJECT, "Flipulator results for: " + calC.getAddress() + " " + calC.getCityStZip());
+		intEmailActivity.putExtra(Intent.EXTRA_TEXT, strMessage);
+		intEmailActivity.setType("plain/text");
+   		startActivity(intEmailActivity);
+*/	}
+	
+	 public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
+		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
+			exitByBackKey();
+		    return true;
 		}
-		return super.onOptionsItemSelected(item);
-	}
+		return super.onKeyDown(nKeyCode, keEvent);
+     }
+
+	 protected void exitByBackKey() {
+		AlertDialog adAlertBox = new AlertDialog.Builder(this)
+		    .setMessage("Do you want to go back to main menu?")
+		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        	Intent intB = new Intent(FinalResultActivity.this, MainActivity.class);
+		        	startActivity(intB);
+		        	finish();
+		            //close();
+		        }
+		    })
+		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        }
+		    })
+		    .show();
+	 }
+
 }

@@ -63,7 +63,8 @@
 		</activity>
         <activity
 			android:name=".FinalResultActivity"
-			android:label="Final Result" >
+			android:label="Final Result"
+			android:theme="@style/FinalActivityTheme" >
 		</activity>
         
     </application>

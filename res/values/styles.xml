@@ -4,7 +4,7 @@
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
@@ -17,11 +17,7 @@
     	<item name="android:background">#690</item>    
     </style>
 
-    <style name="FinalActivityTheme" parent="android:style/Theme.Holo.Light.DarkActionBar">
-        <item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
-    </style>
-
-    <style name="FlipPremiumOpenScreenTheme" parent="android:Theme.Light">
+    <style name="FlipPremiumOpenScreenTheme" parent="Theme.AppCompat.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to

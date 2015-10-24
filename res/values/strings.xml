@@ -50,9 +50,15 @@
     <string name="city">City:</string>
     <string name="state">State:</string>
     <string name="zip_code">ZIP Code:</string>
+    <string name="citystzip">City/State/ZIP Code:</string>
     <string name="sq_footage">Square Footage:</string>
     <string name="bedrooms">Bedrooms:</string>
     <string name="bathrooms">Bathrooms:</string>
+    
+    <string name="closholdcosts">Closing/Holding:</string>
+    <string name="profit">Profit:</string>
+    <string name="roi">ROI:</string>
+    <string name="cashoncash">Cash on Cash Return:</string>
     
     <string name="salePrice">Sale Price:</string>
     <string name="percentDown">Percent Down %:</string>
@@ -113,6 +119,9 @@
     <string name="prev">Previous</string>
     <string name="next">Next</string>
     <string name="help">Help</string>
+    <string name="email">Email Results</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="save">Save</string>
 
     <string-array name="donation_google_catalog_values">
         <item>$1.00</item>

@@ -21,7 +21,7 @@ public class FinalResultActivity extends ActionBarActivity implements
  
     private ViewPager tabsviewPager;
     private ActionBar mActionBar;
-    private TabsPagerAdapter mTabsAdapter;
+    private TabsAdapter mTabsAdapter;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class FinalResultActivity extends ActionBarActivity implements
  
         tabsviewPager = (ViewPager) findViewById(R.id.tabspager);
         
-        mTabsAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+        mTabsAdapter = new TabsAdapter(getSupportFragmentManager());
         
         tabsviewPager.setAdapter(mTabsAdapter);
         

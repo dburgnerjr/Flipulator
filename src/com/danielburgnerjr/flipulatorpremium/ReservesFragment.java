@@ -6,13 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 public class ReservesFragment extends Fragment {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.reservesfragment, container, false);
-         
+
+        View view = inflater.inflate(R.layout.reservesview, container, false);        
         return view;
     }
 }

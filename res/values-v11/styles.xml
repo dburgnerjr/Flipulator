@@ -10,13 +10,9 @@
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         -->
-        <item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
+        <item name="colorPrimary">#690</item>
     </style>
-    
-    <style name="WindowTitleBackground">     
-    	<item name="android:background">#690</item>    
-    </style>
-    
+        
     <style name="FlipPremiumOpenScreenTheme" parent="Theme.AppCompat.Light">
         <!--
             Theme customizations available in newer API levels can go in

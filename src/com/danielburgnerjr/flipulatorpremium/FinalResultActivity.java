@@ -6,7 +6,6 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,11 +21,26 @@ public class FinalResultActivity extends ActionBarActivity implements
     private ViewPager tabsviewPager;
     private ActionBar mActionBar;
     private TabsAdapter mTabsAdapter;
+	private Settings setS;
+	private Location locL;
+	private SalesMortgage smSM;
+	private Rehab rR;
+	private Reserves rsR;
+	private ClosExpPropMktInfo cemC; 
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.finalresult);
+        
+		Intent intI = getIntent();
+
+		setS = (Settings) intI.getSerializableExtra("Settings");
+		locL = (Location) intI.getSerializableExtra("Location");
+		smSM = (SalesMortgage) intI.getSerializableExtra("SalesMortgage");
+		rR = (Rehab) intI.getSerializableExtra("Rehab");
+		rsR = (Reserves) intI.getSerializableExtra("Reserves");
+		cemC = (ClosExpPropMktInfo) intI.getSerializableExtra("ClosExpPropMktInfo");
  
         tabsviewPager = (ViewPager) findViewById(R.id.tabspager);
         
@@ -102,53 +116,36 @@ public class FinalResultActivity extends ActionBarActivity implements
 	    finish();
 	};
 
+	public void prevPage(View view) {
+		Intent intI = new Intent(this, ClosExpPropMktInfoActivity.class);
+		intI.putExtra("Settings", setS);
+		intI.putExtra("Location", locL);
+		intI.putExtra("SalesMortgage", smSM);
+		intI.putExtra("Rehab", rR);
+		intI.putExtra("Reserves", rsR);
+		intI.putExtra("ClosExpPropMktInfo", cemC);
+		startActivity(intI);
+		finish();
+	}
+
 	public void nextPage(View view) {
 		// email results of calculate to those parties concerned
-/*		String strMessage = "Address:                " + locL.getAddress() + "\n";
-		strMessage += "City, State ZIP:        " + calC.getCityStZip() + "\n";
-		strMessage += "Square Footage:         " + calC.getSquareFootage() + "\n";
-		strMessage += "Bedrooms/Bathrooms:     " + calC.getBedrooms() + " BR " + calC.getBathrooms() + " BA\n";
-		strMessage += "After Repair Value:    $" + String.format("%.0f", calC.getFMVARV()) + "\n";
+		String strMessage = "Address:                " + locL.getAddress() + "\n";
+		strMessage += "City, State ZIP:        " + locL.getCity() + ", " + locL.getState() + " " + locL.getZIPCode() +"\n";
+		strMessage += "Square Footage:         " + locL.getSquareFootage() + "\n";
+		strMessage += "Bedrooms/Bathrooms:     " + locL.getBedrooms() + " BR " + locL.getBathrooms() + " BA\n";
+/*		strMessage += "After Repair Value:    $" + String.format("%.0f", calC.getFMVARV()) + "\n";
 		strMessage += "Sales Price:           $" + String.format("%.0f", calC.getSalesPrice()) + "\n";
 		strMessage += "Estimated Budget:      $" + String.format("%.0f", calC.getBudget()) + "\n";
 		strMessage += "Closing/Holding Costs: $" + String.format("%.0f", resR.getClosHoldCosts()) + "\n";
 		strMessage += "Profit:                $" + String.format("%.0f", resR.getProfit()) + "\n";
 		strMessage += "ROI:                    " + String.format("%.1f", resR.getROI()) + "%\n";
 		strMessage += "Cash on Cash Return:    " + String.format("%.1f", resR.getCashOnCash()) + "%\n";
-		Intent intEmailActivity = new Intent(Intent.ACTION_SEND);
+*/		Intent intEmailActivity = new Intent(Intent.ACTION_SEND);
 		intEmailActivity.putExtra(Intent.EXTRA_EMAIL, new String[]{});
-		intEmailActivity.putExtra(Intent.EXTRA_SUBJECT, "Flipulator results for: " + calC.getAddress() + " " + calC.getCityStZip());
+		intEmailActivity.putExtra(Intent.EXTRA_SUBJECT, "Flipulator results for: " + locL.getAddress() + " " + locL.getCity() + ", " + locL.getState() + " " + locL.getZIPCode());
 		intEmailActivity.putExtra(Intent.EXTRA_TEXT, strMessage);
 		intEmailActivity.setType("plain/text");
    		startActivity(intEmailActivity);
-*/	}
-	
-	 public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
-		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
-			exitByBackKey();
-		    return true;
-		}
-		return super.onKeyDown(nKeyCode, keEvent);
-     }
-
-	 protected void exitByBackKey() {
-		AlertDialog adAlertBox = new AlertDialog.Builder(this)
-		    .setMessage("Do you want to go back to main menu?")
-		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-		        // do something when the button is clicked
-		        public void onClick(DialogInterface arg0, int arg1) {
-		        	Intent intB = new Intent(FinalResultActivity.this, MainActivity.class);
-		        	startActivity(intB);
-		        	finish();
-		            //close();
-		        }
-		    })
-		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-		        // do something when the button is clicked
-		        public void onClick(DialogInterface arg0, int arg1) {
-		        }
-		    })
-		    .show();
-	 }
-
+	}
 }

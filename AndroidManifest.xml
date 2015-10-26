@@ -43,27 +43,33 @@
 		</activity>
         <activity
 			android:name=".LocationActivity"
-			android:label="Location" >
+			android:label="Location"
+			android:theme="@style/AppTheme" >
 		</activity>
         <activity
 			android:name=".SalesMortgageActivity"
-			android:label="Sales/Mortgage Info" >
+			android:label="Sales/Mortgage Info"
+			android:theme="@style/AppTheme" >
 		</activity>
         <activity
 			android:name=".RehabActivity"
-			android:label="Rehab" >
+			android:label="Rehab"
+			android:theme="@style/AppTheme" >
 		</activity>
         <activity
 			android:name=".ReservesActivity"
-			android:label="Reserves" >
+			android:label="Reserves"
+			android:theme="@style/AppTheme" >
 		</activity>
         <activity
 			android:name=".ClosExpPropMktInfoActivity"
-			android:label="Closing Expenses/Prop Mkt Info" >
+			android:label="Closing Expenses/Prop Mkt Info"
+			android:theme="@style/AppTheme" >
 		</activity>
         <activity
 			android:name=".FinalResultActivity"
-			android:label="Final Result" >
+			android:label="Final Result"
+			android:theme="@style/FinalResultTheme" >
 		</activity>
         
     </application>

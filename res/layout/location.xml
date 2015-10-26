@@ -205,6 +205,7 @@
             android:layout_weight="0.5"
             android:onClick="prevPage"
             android:text="@string/prev"
+            android:textSize="18sp"
             android:background="#690"
             android:textColor="#ffffff" />
 
@@ -215,6 +216,7 @@
             android:layout_weight="0.5"
             android:onClick="nextPage"
             android:text="@string/next"
+            android:textSize="18sp"
             android:background="#690"
             android:textColor="#ffffff" />
     </LinearLayout>

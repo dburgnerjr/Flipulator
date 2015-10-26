@@ -24,6 +24,7 @@ public class ClosExpPropMktInfoActivity extends Activity {
 	private SalesMortgage smSM;
 	private Rehab rR;
 	private Reserves rsR;
+	private ClosExpPropMktInfo cemC;
 	
 	private EditText etRealEstComm;		// real estate commission
 	private EditText etBuyClosCost;		// buyer's closing costs
@@ -86,6 +87,24 @@ public class ClosExpPropMktInfoActivity extends Activity {
 			}
 		});
 
+		cemC = (ClosExpPropMktInfo) intI.getSerializableExtra("ClosExpPropMktInfo");
+		// if ClosExpPropMktInfo object is null, fields are blank
+		if (cemC == null) {
+			etRealEstComm.setText("");
+			etBuyClosCost.setText("");
+			etSellClosCost.setText("");
+			etFMVARV.setText("");
+			etComparables.setText("");
+			etSellingPrice.setText("");
+		} else {
+			// set fields to member variables of ClosExpPropMktInfo object
+			etRealEstComm.setText((int)cemC.getRealEstComm() + "");
+			etBuyClosCost.setText((int)cemC.getBuyClosCost() + "");
+			etSellClosCost.setText((int)cemC.getSellClosCost() + "");
+			etFMVARV.setText((int)cemC.getFMVARV() + "");
+			etComparables.setText((int)cemC.getComparables() + "");
+			etSellingPrice.setText((int)cemC.getSellingPrice() + "");
+		}
 
 	}
 

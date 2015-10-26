@@ -34,6 +34,7 @@ public class MainActivity extends Activity {
 		setS = (Settings) intI.getSerializableExtra("Settings");
         
 		final Button btnAbout = (Button) findViewById(R.id.btnAbout);
+		btnAbout.setTextSize(18);
 		btnAbout.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
 			    Intent intA = new Intent(MainActivity.this, AboutFlipulatorPremium.class);
@@ -42,6 +43,9 @@ public class MainActivity extends Activity {
 		});
 
 		final Button btnCalculate = (Button) findViewById(R.id.btnCalculate);
+		btnCalculate.setTextSize(18);
+		String strTextSize = btnCalculate.getTextSize() + "";
+		Toast.makeText(getApplicationContext(), strTextSize, Toast.LENGTH_SHORT).show();
 		btnCalculate.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
 				if (setS == null) {
@@ -56,15 +60,16 @@ public class MainActivity extends Activity {
 		});
 
 		final Button btnSettings = (Button) findViewById(R.id.btnSettings);
+		btnSettings.setTextSize(18);
 		btnSettings.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
 			    Intent intI = new Intent(MainActivity.this, SettingsActivity.class);
 			    startActivity(intI);
-			    finish();
 			}
 		});
 
 		final Button btnDonate = (Button) findViewById(R.id.btnDonate);
+		btnDonate.setTextSize(18);
 		btnDonate.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
 			    Intent intI = new Intent(MainActivity.this, DonateActivity.class);
@@ -73,6 +78,7 @@ public class MainActivity extends Activity {
 		});
 
 		final Button btnShare = (Button) findViewById(R.id.btnShare);
+		btnShare.setTextSize(18);
 		btnShare.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
 	   			Intent intI = new Intent(Intent.ACTION_SEND);  

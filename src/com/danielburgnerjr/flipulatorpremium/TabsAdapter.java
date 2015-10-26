@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class TabsAdapter extends FragmentStatePagerAdapter {
 
-     private int TOTAL_TABS = 4;
+     private int TOTAL_TABS = 7;
     
     public TabsAdapter(FragmentManager fm) {
         super(fm);
@@ -28,6 +28,15 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
 	            case 3:
 	                return new ReservesFragment();
+
+	            case 4:
+	                return new ClosingExpensesFragment();
+
+	            case 5:
+	                return new MarketInfoFragment();
+
+	            case 6:
+	                return new ROIFragment();
          }
      
          return null;

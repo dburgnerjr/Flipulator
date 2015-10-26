@@ -1,6 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tabspager"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-</android.support.v4.view.ViewPager>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+	<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/tabspager"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent">
+	</android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:id="@+id/llPrevSave"
+        android:layout_width="fill_parent"
+        android:layout_height="35sp"
+        android:layout_above="@+id/llResEmail"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnPrevious"
+            android:layout_width="100sp"
+            android:layout_height="35sp"
+            android:layout_weight="0.5"
+            android:text="@string/prev"
+            android:onClick="prevPage"
+            android:background="#690"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="100sp"
+            android:layout_height="35sp"
+            android:layout_weight="0.5"
+            android:text="@string/save"
+            android:background="#690"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+	
+	<LinearLayout
+        android:id="@+id/llResEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="35sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnMainMenu"
+            android:layout_width="100sp"
+            android:layout_height="35sp"
+            android:layout_weight="0.5"
+            android:onClick="mainMenu"
+            android:text="@string/main_menu"
+            android:background="#690"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/btnEmail"
+            android:layout_width="100sp"
+            android:layout_height="35sp"
+            android:layout_weight="0.5"
+            android:onClick="nextPage"
+            android:text="@string/email"
+            android:background="#690"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+	
+</RelativeLayout>

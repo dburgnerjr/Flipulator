@@ -54,6 +54,7 @@
     <string name="sq_footage">Square Footage:</string>
     <string name="bedrooms">Bedrooms:</string>
     <string name="bathrooms">Bathrooms:</string>
+    <string name="bed_bath">BR/BA:</string>
     
     <string name="closholdcosts">Closing/Holding:</string>
     <string name="profit">Profit:</string>

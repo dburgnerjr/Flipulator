@@ -2,14 +2,84 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical" >
+    
+    <LinearLayout
+        android:id="@+id/llLocationFR"
+        android:layout_width="fill_parent"
+        android:layout_height="35sp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
 
-	<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-	    android:id="@+id/tabspager"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent">
-	</android.support.v4.view.ViewPager>
+        <TextView 
+	        android:id="@+id/txtLocation"
+	        android:layout_width="0dp"
+	        android:layout_height="35sp"        
+	        android:layout_weight="1"
+	        android:text="@string/location" />        
+    </LinearLayout>
+ 
+    <LinearLayout
+        android:id="@+id/llLocAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="20sp"
+        android:layout_below="@+id/llLocationFR"
+        android:orientation="horizontal" >
 
+        <TextView 
+	        android:id="@+id/txtLocationAddress"
+	        android:layout_width="0dp"
+	        android:layout_height="20sp"
+	        android:layout_weight="1"
+	        android:text="@string/address" />      	               
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llLocCityStZip"
+        android:layout_width="fill_parent"
+        android:layout_height="20sp"
+        android:layout_below="@+id/llLocAddress"
+        android:orientation="horizontal" >
+
+        <TextView 
+	        android:id="@+id/txtLocationCityStZip"
+	        android:layout_width="0dp"
+	        android:layout_height="20sp"
+	        android:layout_weight="1"
+	        android:text="@string/citystzip" />	               
+    </LinearLayout>
+    
+    
+    <LinearLayout
+        android:id="@+id/llLocSquareFootage"
+        android:layout_width="fill_parent"
+        android:layout_height="20sp"
+        android:layout_below="@+id/llLocCityStZip"
+        android:orientation="horizontal" >
+
+        <TextView 
+	        android:id="@+id/txtLocationSqFootage"
+	        android:layout_width="0dp"
+	        android:layout_height="20sp"
+	        android:layout_weight="1"
+	        android:text="@string/sq_footage" />	               
+    </LinearLayout>
+        
+    <LinearLayout
+        android:id="@+id/llLocBedBath"
+        android:layout_width="fill_parent"
+        android:layout_height="20sp"
+        android:layout_below="@+id/llLocSquareFootage"
+        android:orientation="horizontal" >
+
+        <TextView 
+	        android:id="@+id/txtLocationBedBath"
+	        android:layout_width="0dp"
+	        android:layout_height="20sp"
+	        android:layout_weight="1"
+	        android:text="@string/bed_bath" />	               
+    </LinearLayout>
+        
     <LinearLayout
         android:id="@+id/llPrevSave"
         android:layout_width="fill_parent"

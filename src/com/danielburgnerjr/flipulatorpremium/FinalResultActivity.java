@@ -1,11 +1,14 @@
 package com.danielburgnerjr.flipulatorpremium;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.content.DialogInterface;
 import android.content.Intent;
  
 public class FinalResultActivity extends Activity {
@@ -40,6 +43,45 @@ public class FinalResultActivity extends Activity {
 		tvFRCityStZip.setText("City/State/ZIP Code:  " + locL.getCity() + ", " + locL.getState() + " " + locL.getZIPCode());
 		tvSF.setText("Square Footage:\t\t\t " + locL.getSquareFootage() + "");
 		tvBedBath.setText("BR/BA:\t\t\t\t\t\t\t " + locL.getBedrooms() + " BR/" + locL.getBathrooms() + " BA");
+
+
+		TextView tvSalePrice = (TextView) findViewById(R.id.txtSalePrice);
+		TextView tvPercentDown = (TextView) findViewById(R.id.txtPercentDown);
+		TextView tvOfferBid = (TextView) findViewById(R.id.txtOfferBid);
+		TextView tvRehabBudget = (TextView) findViewById(R.id.txtRehabBudget);
+		
+		tvSalePrice.setText("Sale Price:\t\t\t\t\t\t $" + String.format("%.0f", smSM.getSalesPrice()));
+		tvPercentDown.setText("Percent Down %:\t\t\t " + String.format("%.0f", smSM.getPercentDown()));
+		tvOfferBid.setText("Offer/Bid Price:\t\t\t $" + String.format("%.0f", smSM.getOfferBid()));
+		tvRehabBudget.setText("Rehab Budget:\t\t\t\t $" + String.format("%.0f", rR.getBudget()));
+
+		TextView tvDownPayment = (TextView) findViewById(R.id.txtDownPayment);
+		TextView tvLoanAmount = (TextView) findViewById(R.id.txtLoanAmount);
+		TextView tvInterestRate = (TextView) findViewById(R.id.txtInterestRate);
+		TextView tvTerm = (TextView) findViewById(R.id.txtTerm);
+		TextView tvMonthlyPmt = (TextView) findViewById(R.id.txtMonthlyPmt);
+		
+		tvDownPayment.setText("Down Payment:\t\t\t $" + String.format("%.0f", smSM.getDownPayment()));
+		tvLoanAmount.setText("Loan Amount:\t\t\t\t $" + String.format("%.0f", smSM.getLoanAmount()));
+		tvInterestRate.setText("Interest Rate %:\t\t\t " + String.format("%.0f", smSM.getInterestRate()));
+		tvTerm.setText("Term (months):\t\t\t " + smSM.getTerm());
+		tvMonthlyPmt.setText("Monthly Pmt:\t\t\t\t $" + String.format("%.0f", smSM.getMonthlyPmt()));
+
+		TextView tvResMort = (TextView) findViewById(R.id.txtMortPmt);
+		TextView tvResTaxes = (TextView) findViewById(R.id.txtPropertyTaxes);
+		TextView tvResIns = (TextView) findViewById(R.id.txtInsurance);
+		TextView tvResElect = (TextView) findViewById(R.id.txtElectric);
+		TextView tvResWater = (TextView) findViewById(R.id.txtWater);
+		TextView tvResGas = (TextView) findViewById(R.id.txtGas);
+		TextView tvTotRes = (TextView) findViewById(R.id.txtTotalReserves);
+
+		tvResMort.setText("Mortgage:\t\t\t\t\t\t $" + String.format("%.0f", rsR.getMortgage()));
+		tvResTaxes.setText("Property Taxes:\t\t\t $" + String.format("%.0f", rsR.getTaxes()));
+		tvResIns.setText("Insurance:\t\t\t\t\t\t $" + String.format("%.0f", rsR.getInsurance()));
+		tvResElect.setText("Electric:\t\t\t\t\t\t\t $" +String.format("%.0f", rsR.getElectric()));
+		tvResWater.setText("Water:\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getWater()));
+		tvResGas.setText("Gas:\t\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getGas()));
+		tvTotRes.setText("Total Reserves:\t\t\t $" + String.format("%.0f", rsR.getTotalExpenses()));
 
    }
  
@@ -82,4 +124,33 @@ public class FinalResultActivity extends Activity {
 		intEmailActivity.setType("plain/text");
    		startActivity(intEmailActivity);
 	}
+	
+	 public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
+		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
+			exitByBackKey();
+		    return true;
+		}
+		return super.onKeyDown(nKeyCode, keEvent);
+   }
+
+	 protected void exitByBackKey() {
+		AlertDialog adAlertBox = new AlertDialog.Builder(this)
+		    .setMessage("Do you want to go back to main menu?")
+		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        	Intent intB = new Intent(FinalResultActivity.this, MainActivity.class);
+		        	startActivity(intB);
+		        	finish();
+		            //close();
+		        }
+		    })
+		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+		        // do something when the button is clicked
+		        public void onClick(DialogInterface arg0, int arg1) {
+		        }
+		    })
+		    .show();
+	 }
+
 }

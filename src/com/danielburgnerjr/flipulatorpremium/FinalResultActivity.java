@@ -33,7 +33,19 @@ public class FinalResultActivity extends Activity {
 		rR = (Rehab) intI.getSerializableExtra("Rehab");
 		rsR = (Reserves) intI.getSerializableExtra("Reserves");
 		cemC = (ClosExpPropMktInfo) intI.getSerializableExtra("ClosExpPropMktInfo");
- 
+
+		FinalResult frF = new FinalResult();
+		frF.setRECost(cemC.getSellingPrice(), cemC.getRealEstComm());
+		frF.setBCCost(smSM.getSalesPrice(), cemC.getBuyClosCost());
+		frF.setSCCost(smSM.getSalesPrice(), cemC.getSellClosCost());
+		frF.setTotalCost(smSM.getOfferBid(), rR.getBudget(), rsR.getTotalExpenses());
+		frF.setOOPExp(smSM.getDownPayment(), rsR.getTotalExpenses(), rR.getBudget());
+		frF.setGrossProfit(cemC.getSellingPrice());
+		frF.setCapGains();
+		frF.setNetProfit();
+		frF.setROI(cemC.getSellingPrice());
+		frF.setCashOnCash();
+
 		TextView tvFRAddress = (TextView) findViewById(R.id.txtLocationAddress);
 		TextView tvFRCityStZip = (TextView) findViewById(R.id.txtLocationCityStZip);
 		TextView tvSF = (TextView) findViewById(R.id.txtLocationSqFootage);
@@ -82,6 +94,24 @@ public class FinalResultActivity extends Activity {
 		tvResWater.setText("Water:\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getWater()));
 		tvResGas.setText("Gas:\t\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getGas()));
 		tvTotRes.setText("Total Reserves:\t\t\t $" + String.format("%.0f", rsR.getTotalExpenses()));
+
+		TextView tvRealEstComm = (TextView) findViewById(R.id.txtRealEstComm);
+		TextView tvRealEstCommPer = (TextView) findViewById(R.id.txtRealEstCommPer);
+		TextView tvBuyerClosCost = (TextView) findViewById(R.id.txtBuyerClosCost);
+		TextView tvBuyerClosCostPer = (TextView) findViewById(R.id.txtBuyerClosCostPer);
+		TextView tvSellerClosCost = (TextView) findViewById(R.id.txtSellerClosCost);
+		TextView tvSellerClosCostPer = (TextView) findViewById(R.id.txtSellerClosCost);
+		TextView tvTotalCosts = (TextView) findViewById(R.id.txtTotalCosts);
+		TextView tvOutOfPocket = (TextView) findViewById(R.id.txtOutOfPocketExpenses);
+
+		tvRealEstComm.setText("Real Estate Comm:\t\t\t $" + String.format("%.0f", frF.getRECost()));
+		tvRealEstCommPer.setText("Commission %:\t\t\t " + String.format("%.0f", cemC.getRealEstComm()));
+		tvBuyerClosCost.setText("Buyer Clos Cost:\t\t\t $" + String.format("%.0f", frF.getBCCost()));
+		tvBuyerClosCostPer.setText("Closing Cost %:\t\t\t " +String.format("%.0f", cemC.getBuyClosCost()));
+	    tvSellerClosCost.setText("Sell Clos Cost:\t\t\t $" + String.format("%.0f", frF.getSCCost()));
+		tvSellerClosCostPer.setText("Closing Cost %:\t\t\t " + String.format("%.0f",  cemC.getSellClosCost()));
+		tvTotalCosts.setText("Total Costs:\t\t\t $" + String.format("%.0f", frF.getTotalCost()));
+		tvOutOfPocket.setText("Out of Pocket Exp:\t\t\t $" + String.format("%.0f", frF.getOOPExp()));
 
    }
  

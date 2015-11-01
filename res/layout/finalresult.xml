@@ -341,7 +341,7 @@
 		    <LinearLayout
 		        android:id="@+id/llTotalReserves"
 		        android:layout_width="fill_parent"
-		        android:layout_height="100sp"
+		        android:layout_height="35sp"
 		        android:orientation="horizontal" >
 		
 		        <TextView 
@@ -352,6 +352,132 @@
 			        android:text="@string/totres" />	               
 		    </LinearLayout>
 		    		    
+		    <LinearLayout
+		        android:id="@+id/llClosingExpensesFR"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtClosingExpenses"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"        
+			        android:layout_weight="1"
+			        android:text="@string/closingExp" />        
+		    </LinearLayout>
+		
+		    <LinearLayout
+		        android:id="@+id/llRealEstComm"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtRealEstComm"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/realestcomm" />	               
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llRealEstCommPer"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtRealEstCommPer"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/commission" />	               
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llBuyerClosCost"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtBuyerClosCost"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"        
+			        android:layout_weight="1"
+			        android:text="@string/buyerClosCost" />        
+		    </LinearLayout>
+		
+		    <LinearLayout
+		        android:id="@+id/llBuyerClosCostPer"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtBuyerClosCostPer"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/bccPercentage" />	               
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llSellerClosCost"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtSellerClosCost"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/sellClosCost" />	               
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llSellerClosCostPer"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtSellerClosCostPer"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/sccPercentage" />	               
+		    </LinearLayout>
+
+		    <LinearLayout
+		        android:id="@+id/llTotalCosts"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtTotalCosts"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/totalCosts" />	               
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llOutOfPocketExpenses"
+		        android:layout_width="fill_parent"
+		        android:layout_height="100sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtOutOfPocketExpenses"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/outOfPocketExp" />	               
+		    </LinearLayout>
+		    
 		</LinearLayout>
     
 	</ScrollView>

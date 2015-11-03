@@ -48,7 +48,7 @@ public class DonateActivity extends Activity {
     /**
      * Google
      */
-    private static final String GOOGLE_PUBKEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhUoMs4c4RcEIRckCir+wNCDZk8Zy3I4w7UjrPvKWIh8tl71HrEE+6BQiBCxseGfpuVEZntaHhzyQj5gMLSI5JBRboOlpItj7SyvupoHszsSh28VdJQiD3AWXB1LNeS9Z6W9RffSKYfEKs8v+dMwqzi+C2M+fPg9o7IcAXsCnJrVqS+vIhYrfyVX4oG3DQ28wfcWVPgGnNLP82y5VaP+xlJYdBZBQJrDBlQq1QaecSiR+wRG8ZBMv5V1x6w/QM4yKhoolz2Pc6Zt8YVkCVpQhf8usGcAy0d6ysW5YlkhFz2PbVoi553OkH3T5lZ5LO3cFXYG0g1ttsfE/8WiPYRlGxwIDAQAB";
+    private static final String GOOGLE_PUBKEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA19wA1oXA/zWvA2MCJM8DVvGXHlCxG1JDPGaz0hOTHxVrXvZ3prpFcrM1GFC0lw69tHtLTj4BmQBTwwAP7EhWPMndQ9gzq0WtxSJqQuVCbNKAixB90vtCsRM8XGUJ2Ew/wKCmeb4sEnl/WK0dZAXnjgO9fUY4X28qU33V51hTgemJ1ATqApiY8XwmrALca8+1tkqPhXckXW26LnmbKylq6pIHCT+tWIRf8hNv70omz10AahC/oeWHhMhwLGsUEZDStakkhSJxg7wPFnpzWRqHuyzkS9OBEV5zu8c3/BE8g4QQOytP9QL/j0EaKCG0cixwQ2PXnbmYfnRimmsCaW2P9wIDAQAB";
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

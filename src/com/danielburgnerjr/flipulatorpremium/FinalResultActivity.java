@@ -18,7 +18,8 @@ public class FinalResultActivity extends Activity {
 	private SalesMortgage smSM;
 	private Rehab rR;
 	private Reserves rsR;
-	private ClosExpPropMktInfo cemC; 
+	private ClosExpPropMktInfo cemC;
+	private FinalResult frF;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class FinalResultActivity extends Activity {
 		rsR = (Reserves) intI.getSerializableExtra("Reserves");
 		cemC = (ClosExpPropMktInfo) intI.getSerializableExtra("ClosExpPropMktInfo");
 
-		FinalResult frF = new FinalResult();
+		frF = new FinalResult();
 		frF.setRECost(cemC.getSellingPrice(), cemC.getRealEstComm());
 		frF.setBCCost(smSM.getSalesPrice(), cemC.getBuyClosCost());
 		frF.setSCCost(smSM.getSalesPrice(), cemC.getSellClosCost());
@@ -51,10 +52,10 @@ public class FinalResultActivity extends Activity {
 		TextView tvSF = (TextView) findViewById(R.id.txtLocationSqFootage);
 		TextView tvBedBath = (TextView) findViewById(R.id.txtLocationBedBath);
 		
-		tvFRAddress.setText("Address:\t\t\t\t\t\t " + locL.getAddress());
-		tvFRCityStZip.setText("City/State/ZIP Code:  " + locL.getCity() + ", " + locL.getState() + " " + locL.getZIPCode());
-		tvSF.setText("Square Footage:\t\t\t " + locL.getSquareFootage() + "");
-		tvBedBath.setText("BR/BA:\t\t\t\t\t\t\t " + locL.getBedrooms() + " BR/" + locL.getBathrooms() + " BA");
+		tvFRAddress.setText("Address:\t\t\t\t\t\t\t " + locL.getAddress());
+		tvFRCityStZip.setText("City/State/ZIP Code:\t\t " + locL.getCity() + ", " + locL.getState() + " " + locL.getZIPCode());
+		tvSF.setText("Square Footage:\t\t\t\t " + locL.getSquareFootage() + "");
+		tvBedBath.setText("BR/BA:\t\t\t\t\t\t\t\t " + locL.getBedrooms() + " BR/" + locL.getBathrooms() + " BA");
 
 
 		TextView tvSalePrice = (TextView) findViewById(R.id.txtSalePrice);
@@ -62,10 +63,10 @@ public class FinalResultActivity extends Activity {
 		TextView tvOfferBid = (TextView) findViewById(R.id.txtOfferBid);
 		TextView tvRehabBudget = (TextView) findViewById(R.id.txtRehabBudget);
 		
-		tvSalePrice.setText("Sale Price:\t\t\t\t\t\t $" + String.format("%.0f", smSM.getSalesPrice()));
-		tvPercentDown.setText("Percent Down %:\t\t\t " + String.format("%.0f", smSM.getPercentDown()));
-		tvOfferBid.setText("Offer/Bid Price:\t\t\t $" + String.format("%.0f", smSM.getOfferBid()));
-		tvRehabBudget.setText("Rehab Budget:\t\t\t\t $" + String.format("%.0f", rR.getBudget()));
+		tvSalePrice.setText("Sale Price:\t\t\t\t\t\t\t $" + String.format("%.0f", smSM.getSalesPrice()));
+		tvPercentDown.setText("Percent Down %:\t\t\t\t " + String.format("%.0f", smSM.getPercentDown()) + "%");
+		tvOfferBid.setText("Offer/Bid Price:\t\t\t\t $" + String.format("%.0f", smSM.getOfferBid()));
+		tvRehabBudget.setText("Rehab Budget:\t\t\t\t\t $" + String.format("%.0f", rR.getBudget()));
 
 		TextView tvDownPayment = (TextView) findViewById(R.id.txtDownPayment);
 		TextView tvLoanAmount = (TextView) findViewById(R.id.txtLoanAmount);
@@ -73,11 +74,11 @@ public class FinalResultActivity extends Activity {
 		TextView tvTerm = (TextView) findViewById(R.id.txtTerm);
 		TextView tvMonthlyPmt = (TextView) findViewById(R.id.txtMonthlyPmt);
 		
-		tvDownPayment.setText("Down Payment:\t\t\t $" + String.format("%.0f", smSM.getDownPayment()));
-		tvLoanAmount.setText("Loan Amount:\t\t\t\t $" + String.format("%.0f", smSM.getLoanAmount()));
-		tvInterestRate.setText("Interest Rate %:\t\t\t " + String.format("%.0f", smSM.getInterestRate()));
-		tvTerm.setText("Term (months):\t\t\t " + smSM.getTerm());
-		tvMonthlyPmt.setText("Monthly Pmt:\t\t\t\t $" + String.format("%.0f", smSM.getMonthlyPmt()));
+		tvDownPayment.setText("Down Payment:\t\t\t\t $" + String.format("%.0f", smSM.getDownPayment()));
+		tvLoanAmount.setText("Loan Amount:\t\t\t\t\t $" + String.format("%.0f", smSM.getLoanAmount()));
+		tvInterestRate.setText("Interest Rate %:\t\t\t\t " + String.format("%.0f", smSM.getInterestRate()) + "%");
+		tvTerm.setText("Term (months):\t\t\t\t " + smSM.getTerm());
+		tvMonthlyPmt.setText("Monthly Pmt:\t\t\t\t\t $" + String.format("%.0f", smSM.getMonthlyPmt()));
 
 		TextView tvResMort = (TextView) findViewById(R.id.txtMortPmt);
 		TextView tvResTaxes = (TextView) findViewById(R.id.txtPropertyTaxes);
@@ -87,31 +88,55 @@ public class FinalResultActivity extends Activity {
 		TextView tvResGas = (TextView) findViewById(R.id.txtGas);
 		TextView tvTotRes = (TextView) findViewById(R.id.txtTotalReserves);
 
-		tvResMort.setText("Mortgage:\t\t\t\t\t\t $" + String.format("%.0f", rsR.getMortgage()));
-		tvResTaxes.setText("Property Taxes:\t\t\t $" + String.format("%.0f", rsR.getTaxes()));
-		tvResIns.setText("Insurance:\t\t\t\t\t\t $" + String.format("%.0f", rsR.getInsurance()));
-		tvResElect.setText("Electric:\t\t\t\t\t\t\t $" +String.format("%.0f", rsR.getElectric()));
-		tvResWater.setText("Water:\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getWater()));
-		tvResGas.setText("Gas:\t\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getGas()));
-		tvTotRes.setText("Total Reserves:\t\t\t $" + String.format("%.0f", rsR.getTotalExpenses()));
+		tvResMort.setText("Mortgage:\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getMortgage()));
+		tvResTaxes.setText("Property Taxes:\t\t\t\t $" + String.format("%.0f", rsR.getTaxes()));
+		tvResIns.setText("Insurance:\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getInsurance()));
+		tvResElect.setText("Electric:\t\t\t\t\t\t\t\t $" +String.format("%.0f", rsR.getElectric()));
+		tvResWater.setText("Water:\t\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getWater()));
+		tvResGas.setText("Gas:\t\t\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getGas()));
+		tvTotRes.setText("Total Reserves:\t\t\t\t $" + String.format("%.0f", rsR.getTotalExpenses()));
 
 		TextView tvRealEstComm = (TextView) findViewById(R.id.txtRealEstComm);
 		TextView tvRealEstCommPer = (TextView) findViewById(R.id.txtRealEstCommPer);
 		TextView tvBuyerClosCost = (TextView) findViewById(R.id.txtBuyerClosCost);
 		TextView tvBuyerClosCostPer = (TextView) findViewById(R.id.txtBuyerClosCostPer);
 		TextView tvSellerClosCost = (TextView) findViewById(R.id.txtSellerClosCost);
-		TextView tvSellerClosCostPer = (TextView) findViewById(R.id.txtSellerClosCost);
+		TextView tvSellerClosCostPer = (TextView) findViewById(R.id.txtSellerClosCostPer);
 		TextView tvTotalCosts = (TextView) findViewById(R.id.txtTotalCosts);
 		TextView tvOutOfPocket = (TextView) findViewById(R.id.txtOutOfPocketExpenses);
 
 		tvRealEstComm.setText("Real Estate Comm:\t\t\t $" + String.format("%.0f", frF.getRECost()));
-		tvRealEstCommPer.setText("Commission %:\t\t\t " + String.format("%.0f", cemC.getRealEstComm()));
-		tvBuyerClosCost.setText("Buyer Clos Cost:\t\t\t $" + String.format("%.0f", frF.getBCCost()));
-		tvBuyerClosCostPer.setText("Closing Cost %:\t\t\t " +String.format("%.0f", cemC.getBuyClosCost()));
-	    tvSellerClosCost.setText("Sell Clos Cost:\t\t\t $" + String.format("%.0f", frF.getSCCost()));
-		tvSellerClosCostPer.setText("Closing Cost %:\t\t\t " + String.format("%.0f",  cemC.getSellClosCost()));
-		tvTotalCosts.setText("Total Costs:\t\t\t $" + String.format("%.0f", frF.getTotalCost()));
+		tvRealEstCommPer.setText("Commission %:\t\t\t\t " + String.format("%.0f", cemC.getRealEstComm()) + "%");
+		tvBuyerClosCost.setText("Buyer Clos Cost:\t\t\t\t $" + String.format("%.0f", frF.getBCCost()));
+		tvBuyerClosCostPer.setText("Closing Cost %:\t\t\t\t " +String.format("%.0f", cemC.getBuyClosCost()) + "%");
+	    tvSellerClosCost.setText("Sell Clos Cost:\t\t\t\t\t $" + String.format("%.0f", frF.getSCCost()));
+		tvSellerClosCostPer.setText("Closing Cost %:\t\t\t\t " + String.format("%.0f",  cemC.getSellClosCost()) + "%");
+		tvTotalCosts.setText("Total Costs:\t\t\t\t\t\t $" + String.format("%.0f", frF.getTotalCost()));
 		tvOutOfPocket.setText("Out of Pocket Exp:\t\t\t $" + String.format("%.0f", frF.getOOPExp()));
+
+		TextView tvFMVARV = (TextView) findViewById(R.id.txtFMVARV);
+		TextView tvComparables = (TextView) findViewById(R.id.txtComparables);
+		TextView tvSellingPrice = (TextView) findViewById(R.id.txtSellingPrice);
+		TextView tvBuyerCosts = (TextView) findViewById(R.id.txtBuyerCosts);
+		TextView tvGrossProfit = (TextView) findViewById(R.id.txtGrossProfit);
+		TextView tvCapGains = (TextView) findViewById(R.id.txtCapGains);
+		TextView tvNetProfit = (TextView) findViewById(R.id.txtNetProfit);
+		TextView tvMoneyOut = (TextView) findViewById(R.id.txtMoneyOut);
+		TextView tvMoneyIn = (TextView) findViewById(R.id.txtMoneyIn);
+		TextView tvPercReturn = (TextView) findViewById(R.id.txtPercReturn);
+		TextView tvCashCashRet = (TextView) findViewById(R.id.txtCashCashRet);
+
+		tvFMVARV.setText("FMV/ARV:\t\t\t\t\t\t\t $" + String.format("%.0f", cemC.getFMVARV()));
+		tvComparables.setText("Comparables:\t\t\t\t\t $" + String.format("%.0f", cemC.getComparables()));
+		tvSellingPrice.setText("Selling Price:\t\t\t\t\t $" + String.format("%.0f", cemC.getSellingPrice()));
+		tvBuyerCosts.setText("Buy + Costs:\t\t\t\t\t\t $" + String.format("%.0f", frF.getTotalCost()));
+	    tvGrossProfit.setText("Gross Profit:\t\t\t\t\t\t $" + String.format("%.0f", frF.getGrossProfit()));
+		tvCapGains.setText("Capital Gains:\t\t\t\t\t $" + String.format("%.0f",  frF.getCapGains()));
+		tvNetProfit.setText("Net Profit:\t\t\t\t\t\t\t $" + String.format("%.0f", frF.getNetProfit()));
+		tvMoneyOut.setText("Money Out:\t\t\t\t\t\t $" + String.format("%.0f", frF.getOOPExp()));
+		tvMoneyIn.setText("Money In:\t\t\t\t\t\t\t $" + String.format("%.0f", frF.getNetProfit()));
+		tvPercReturn.setText("% Return:\t\t\t\t\t\t\t " + String.format("%.1f", frF.getROI()) + "%");
+		tvCashCashRet.setText("Cash on Cash Return:\t " + String.format("%.1f", frF.getCashOnCash()) + "%");
 
    }
  
@@ -136,18 +161,46 @@ public class FinalResultActivity extends Activity {
 
 	public void nextPage(View view) {
 		// email results of calculate to those parties concerned
-		String strMessage = "Address:                " + locL.getAddress() + "\n";
-		strMessage += "City, State ZIP:        " + locL.getCity() + ", " + locL.getState() + " " + locL.getZIPCode() +"\n";
-		strMessage += "Square Footage:         " + locL.getSquareFootage() + "\n";
-		strMessage += "Bedrooms/Bathrooms:     " + locL.getBedrooms() + " BR " + locL.getBathrooms() + " BA\n";
-/*		strMessage += "After Repair Value:    $" + String.format("%.0f", calC.getFMVARV()) + "\n";
-		strMessage += "Sales Price:           $" + String.format("%.0f", calC.getSalesPrice()) + "\n";
-		strMessage += "Estimated Budget:      $" + String.format("%.0f", calC.getBudget()) + "\n";
-		strMessage += "Closing/Holding Costs: $" + String.format("%.0f", resR.getClosHoldCosts()) + "\n";
-		strMessage += "Profit:                $" + String.format("%.0f", resR.getProfit()) + "\n";
-		strMessage += "ROI:                    " + String.format("%.1f", resR.getROI()) + "%\n";
-		strMessage += "Cash on Cash Return:    " + String.format("%.1f", resR.getCashOnCash()) + "%\n";
-*/		Intent intEmailActivity = new Intent(Intent.ACTION_SEND);
+		String strMessage = "Address:\t\t\t\t\t\t\t   " + locL.getAddress() + "\n";
+		strMessage += "City/State/ZIP Code:\t\t " + locL.getCity() + ", " + locL.getState() + " " + locL.getZIPCode() +"\n";
+		strMessage += "Square Footage:\t\t\t\t  " + locL.getSquareFootage() + "\n";
+		strMessage += "Bedrooms/Bathrooms:\t\t  " + locL.getBedrooms() + " BR " + locL.getBathrooms() + " BA\n";
+		strMessage += "Sale Price:\t\t\t\t\t\t $" + String.format("%.0f", smSM.getSalesPrice()) + "\n";
+		strMessage += "Percent Down %:\t\t\t\t  " + String.format("%.0f", smSM.getPercentDown()) + "%\n";
+		strMessage += "Offer/Bid Price:\t\t\t\t$" + String.format("%.0f", smSM.getOfferBid()) + "\n";
+		strMessage += "Rehab Budget:\t\t\t\t\t $" + String.format("%.0f", rR.getBudget()) + "\n";
+		strMessage += "Down Payment:\t\t\t\t   $" + String.format("%.0f", smSM.getDownPayment()) + "\n";
+		strMessage += "Loan Amount:\t\t\t\t\t  $" + String.format("%.0f", smSM.getLoanAmount()) + "\n";
+		strMessage += "Interest Rate %:\t\t\t\t " + String.format("%.0f", smSM.getInterestRate()) + "%\n";
+		strMessage += "Term (months):\t\t\t\t   " + smSM.getTerm() + "\n";
+		strMessage += "Monthly Pmt:\t\t\t\t\t  $" + String.format("%.0f", smSM.getMonthlyPmt()) + "\n";
+		strMessage += "Mortgage:\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getMortgage()) + "\n";
+		strMessage += "Property Taxes:\t\t\t\t $" + String.format("%.0f", rsR.getTaxes()) + "\n";
+		strMessage += "Insurance:\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getInsurance()) + "\n";
+		strMessage += "Electric:\t\t\t\t\t\t\t\t $" +String.format("%.0f", rsR.getElectric()) + "\n";
+		strMessage += "Water:\t\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getWater()) + "\n";
+		strMessage += "Gas:\t\t\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getGas()) + "\n";
+		strMessage += "Total Reserves:\t\t\t\t $" + String.format("%.0f", rsR.getTotalExpenses()) + "\n";
+		strMessage += "Real Estate Comm:\t\t\t $" + String.format("%.0f", frF.getRECost()) + "\n";
+		strMessage += "Commission %:\t\t\t\t " + String.format("%.0f", cemC.getRealEstComm()) + "%\n";
+		strMessage += "Buyer Clos Cost:\t\t\t\t $" + String.format("%.0f", frF.getBCCost()) + "\n";
+		strMessage += "Closing Cost %:\t\t\t\t " +String.format("%.0f", cemC.getBuyClosCost()) + "%\n";
+		strMessage += "Sell Clos Cost:\t\t\t\t\t $" + String.format("%.0f", frF.getSCCost()) + "\n";
+		strMessage += "Closing Cost %:\t\t\t\t " + String.format("%.0f",  cemC.getSellClosCost()) + "%\n";
+		strMessage += "Total Costs:\t\t\t\t\t\t $" + String.format("%.0f", frF.getTotalCost()) + "\n";
+		strMessage += "Out of Pocket Exp:\t\t\t $" + String.format("%.0f", frF.getOOPExp()) + "\n";
+		strMessage += "FMV/ARV:\t\t\t\t\t\t\t $" + String.format("%.0f", cemC.getFMVARV()) + "\n";
+		strMessage += "Comparables:\t\t\t\t\t $" + String.format("%.0f", cemC.getComparables()) + "\n";
+		strMessage += "Selling Price:\t\t\t\t\t $" + String.format("%.0f", cemC.getSellingPrice()) + "\n";
+		strMessage += "Buy + Costs:\t\t\t\t\t\t $" + String.format("%.0f", frF.getTotalCost()) + "\n";
+		strMessage += "Gross Profit:\t\t\t\t\t\t $" + String.format("%.0f", frF.getGrossProfit()) + "\n";
+		strMessage += "Capital Gains:\t\t\t\t\t $" + String.format("%.0f",  frF.getCapGains()) + "\n";
+		strMessage += "Net Profit:\t\t\t\t\t\t\t $" + String.format("%.0f", frF.getNetProfit()) + "\n";
+		strMessage += "Money Out:\t\t\t\t\t\t $" + String.format("%.0f", frF.getOOPExp()) + "\n";
+		strMessage += "Money In:\t\t\t\t\t\t\t $" + String.format("%.0f", frF.getNetProfit()) + "\n";
+		strMessage += "% Return:\t\t\t\t\t\t\t " + String.format("%.1f", frF.getROI()) + "%\n";
+		strMessage += "Cash on Cash Return:\t " + String.format("%.1f", frF.getCashOnCash()) + "%\n";
+		Intent intEmailActivity = new Intent(Intent.ACTION_SEND);
 		intEmailActivity.putExtra(Intent.EXTRA_EMAIL, new String[]{});
 		intEmailActivity.putExtra(Intent.EXTRA_SUBJECT, "Flipulator results for: " + locL.getAddress() + " " + locL.getCity() + ", " + locL.getState() + " " + locL.getZIPCode());
 		intEmailActivity.putExtra(Intent.EXTRA_TEXT, strMessage);

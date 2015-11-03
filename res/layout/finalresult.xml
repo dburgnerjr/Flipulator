@@ -467,7 +467,7 @@
 		    <LinearLayout
 		        android:id="@+id/llOutOfPocketExpenses"
 		        android:layout_width="fill_parent"
-		        android:layout_height="100sp"
+		        android:layout_height="35sp"
 		        android:orientation="horizontal" >
 		
 		        <TextView 
@@ -478,6 +478,188 @@
 			        android:text="@string/outOfPocketExp" />	               
 		    </LinearLayout>
 		    
+		    <LinearLayout
+		        android:id="@+id/llPropMarketInfoFR"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtPropMarketInfo"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"        
+			        android:layout_weight="1"
+			        android:text="@string/propMktInfo" />        
+		    </LinearLayout>
+		
+		    <LinearLayout
+		        android:id="@+id/llFMVARV"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtFMVARV"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/FMVARV" />	               
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llComparables"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtComparables"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/comparables" />	               
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llSellingPrice"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtSellingPrice"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"        
+			        android:layout_weight="1"
+			        android:text="@string/sellingPrice" />        
+		    </LinearLayout>
+		
+		    <LinearLayout
+		        android:id="@+id/llBuyerCosts"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtBuyerCosts"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/buyerCosts" />	               
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llGrossProfit"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtGrossProfit"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/grossProfit" />	               
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llCapGains"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtCapGains"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/capGains" />	               
+		    </LinearLayout>
+
+		    <LinearLayout
+		        android:id="@+id/llNetProfit"
+		        android:layout_width="fill_parent"
+		        android:layout_height="35sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtNetProfit"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/netProfit" />	               
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llReturnOnInvestment"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtReturnOnInvestment"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/returnInvestment" />	               
+		    </LinearLayout>
+		    		    
+		    <LinearLayout
+		        android:id="@+id/llMoneyOut"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtMoneyOut"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/moneyOut" />	               
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llMoneyIn"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtMoneyIn"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/moneyIn" />	               
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llPercReturn"
+		        android:layout_width="fill_parent"
+		        android:layout_height="20sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtPercReturn"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/percReturn" />	               
+		    </LinearLayout>
+		    
+		    <LinearLayout
+		        android:id="@+id/llCashCashRet"
+		        android:layout_width="fill_parent"
+		        android:layout_height="100sp"
+		        android:orientation="horizontal" >
+		
+		        <TextView 
+			        android:id="@+id/txtCashCashRet"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/cashCashRet" />	               
+		    </LinearLayout>
+		    		    		    		    
 		</LinearLayout>
     
 	</ScrollView>

@@ -141,6 +141,12 @@
 		<item>Bulldozer</item>
 	</string-array>
     
+    <string-array name="time_frame">
+		<item>6 Months</item>
+		<item>9 Months</item>
+		<item>12 Months</item>
+	</string-array>
+    
     <string name="action_settings">Settings</string>
 
 </resources>

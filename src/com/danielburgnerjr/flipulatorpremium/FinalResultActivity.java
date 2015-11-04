@@ -5,9 +5,12 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.content.DialogInterface;
 import android.content.Intent;
  
@@ -20,12 +23,32 @@ public class FinalResultActivity extends Activity {
 	private Reserves rsR;
 	private ClosExpPropMktInfo cemC;
 	private FinalResult frF;
+	private Spinner spnTimeFrame;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.finalresult);
-        
+
+		ArrayAdapter<CharSequence> aradAdapter = ArrayAdapter.createFromResource(
+				  this, R.array.time_frame, android.R.layout.simple_spinner_item );
+		aradAdapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+
+		spnTimeFrame   = (Spinner)findViewById(R.id.spnTimeFrame);
+		spnTimeFrame.setAdapter(aradAdapter);
+
+		spnTimeFrame.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+	        @Override
+	        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+	        	spnTimeFrame.setSelection(i, true);
+	        }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+               // sometimes you need nothing here
+            }
+ });
+		
 		Intent intI = getIntent();
 
 		setS = (Settings) intI.getSerializableExtra("Settings");
@@ -34,18 +57,6 @@ public class FinalResultActivity extends Activity {
 		rR = (Rehab) intI.getSerializableExtra("Rehab");
 		rsR = (Reserves) intI.getSerializableExtra("Reserves");
 		cemC = (ClosExpPropMktInfo) intI.getSerializableExtra("ClosExpPropMktInfo");
-
-		frF = new FinalResult();
-		frF.setRECost(cemC.getSellingPrice(), cemC.getRealEstComm());
-		frF.setBCCost(smSM.getSalesPrice(), cemC.getBuyClosCost());
-		frF.setSCCost(smSM.getSalesPrice(), cemC.getSellClosCost());
-		frF.setTotalCost(smSM.getOfferBid(), rR.getBudget(), rsR.getTotalExpenses());
-		frF.setOOPExp(smSM.getDownPayment(), rsR.getTotalExpenses(), rR.getBudget());
-		frF.setGrossProfit(cemC.getSellingPrice());
-		frF.setCapGains();
-		frF.setNetProfit();
-		frF.setROI(cemC.getSellingPrice());
-		frF.setCashOnCash();
 
 		TextView tvFRAddress = (TextView) findViewById(R.id.txtLocationAddress);
 		TextView tvFRCityStZip = (TextView) findViewById(R.id.txtLocationCityStZip);
@@ -56,7 +67,6 @@ public class FinalResultActivity extends Activity {
 		tvFRCityStZip.setText("City/State/ZIP Code:\t\t " + locL.getCity() + ", " + locL.getState() + " " + locL.getZIPCode());
 		tvSF.setText("Square Footage:\t\t\t\t " + locL.getSquareFootage() + "");
 		tvBedBath.setText("BR/BA:\t\t\t\t\t\t\t\t " + locL.getBedrooms() + " BR/" + locL.getBathrooms() + " BA");
-
 
 		TextView tvSalePrice = (TextView) findViewById(R.id.txtSalePrice);
 		TextView tvPercentDown = (TextView) findViewById(R.id.txtPercentDown);
@@ -88,13 +98,41 @@ public class FinalResultActivity extends Activity {
 		TextView tvResGas = (TextView) findViewById(R.id.txtGas);
 		TextView tvTotRes = (TextView) findViewById(R.id.txtTotalReserves);
 
-		tvResMort.setText("Mortgage:\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getMortgage()));
-		tvResTaxes.setText("Property Taxes:\t\t\t\t $" + String.format("%.0f", rsR.getTaxes()));
-		tvResIns.setText("Insurance:\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getInsurance()));
-		tvResElect.setText("Electric:\t\t\t\t\t\t\t\t $" +String.format("%.0f", rsR.getElectric()));
-		tvResWater.setText("Water:\t\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getWater()));
-		tvResGas.setText("Gas:\t\t\t\t\t\t\t\t\t $" + String.format("%.0f", rsR.getGas()));
-		tvTotRes.setText("Total Reserves:\t\t\t\t $" + String.format("%.0f", rsR.getTotalExpenses()));
+		// gets value of time frame (6 mos, 9 mos, 12 mos)
+		String strTimeFrame = spnTimeFrame.getSelectedItem().toString();
+		Toast.makeText(getApplicationContext(), strTimeFrame, Toast.LENGTH_SHORT).show();
+		double dTimeFrameFactor = 1.0;
+		// set time frame factor based on time frame value
+		if (strTimeFrame == "6 Months") {
+			dTimeFrameFactor = 1.0;
+		}
+		if (strTimeFrame == "9 Months") {
+			dTimeFrameFactor = 1.5;
+		}
+		if (strTimeFrame == "12 Months") {
+			dTimeFrameFactor = 2.0;
+		}
+
+		// calculates reserves based on time frame factor
+		tvResMort.setText("Mortgage:\t\t\t\t\t\t\t $" + String.format("%.0f", (rsR.getMortgage() * dTimeFrameFactor)));
+		tvResTaxes.setText("Property Taxes:\t\t\t\t $" + String.format("%.0f", (rsR.getTaxes() * dTimeFrameFactor)));
+		tvResIns.setText("Insurance:\t\t\t\t\t\t\t $" + String.format("%.0f", (rsR.getInsurance() * dTimeFrameFactor)));
+		tvResElect.setText("Electric:\t\t\t\t\t\t\t\t $" +String.format("%.0f", (rsR.getElectric() * dTimeFrameFactor)));
+		tvResWater.setText("Water:\t\t\t\t\t\t\t\t $" + String.format("%.0f", (rsR.getWater() * dTimeFrameFactor)));
+		tvResGas.setText("Gas:\t\t\t\t\t\t\t\t\t $" + String.format("%.0f", (rsR.getGas() * dTimeFrameFactor)));
+		tvTotRes.setText("Total Reserves:\t\t\t\t $" + String.format("%.0f", (rsR.getTotalExpenses() * dTimeFrameFactor)));
+
+		frF = new FinalResult();
+		frF.setRECost(cemC.getSellingPrice(), cemC.getRealEstComm());
+		frF.setBCCost(smSM.getSalesPrice(), cemC.getBuyClosCost());
+		frF.setSCCost(smSM.getSalesPrice(), cemC.getSellClosCost());
+		frF.setTotalCost(smSM.getOfferBid(), rR.getBudget(), (rsR.getTotalExpenses() * dTimeFrameFactor));
+		frF.setOOPExp(smSM.getDownPayment(), (rsR.getTotalExpenses() * dTimeFrameFactor), rR.getBudget());
+		frF.setGrossProfit(cemC.getSellingPrice());
+		frF.setCapGains();
+		frF.setNetProfit();
+		frF.setROI(cemC.getSellingPrice());
+		frF.setCashOnCash();
 
 		TextView tvRealEstComm = (TextView) findViewById(R.id.txtRealEstComm);
 		TextView tvRealEstCommPer = (TextView) findViewById(R.id.txtRealEstCommPer);

@@ -243,15 +243,22 @@
 		    <LinearLayout
 		        android:id="@+id/llReservesFR"
 		        android:layout_width="fill_parent"
-		        android:layout_height="20sp"
+		        android:layout_height="40sp"
 		        android:orientation="horizontal" >
 		
 		        <TextView 
 			        android:id="@+id/txtReserves"
 			        android:layout_width="0dp"
 			        android:layout_height="20sp"        
-			        android:layout_weight="1"
+			        android:layout_weight="0.5"
 			        android:text="@string/reserves" />        
+
+		        <Spinner
+		            android:id="@+id/spnTimeFrame"
+		            android:layout_width="0sp"
+		            android:layout_height="40sp"
+		            android:layout_weight="0.5"
+		            android:ems="10" />
 		    </LinearLayout>
 		
 		    <LinearLayout

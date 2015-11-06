@@ -36,18 +36,6 @@ public class FinalResultActivity extends Activity {
 
 		spnTimeFrame   = (Spinner)findViewById(R.id.spnTimeFrame);
 		spnTimeFrame.setAdapter(aradAdapter);
-
-		spnTimeFrame.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-	        @Override
-	        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-	        	spnTimeFrame.setSelection(i, true);
-	        }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-               // sometimes you need nothing here
-            }
- });
 		
 		Intent intI = getIntent();
 
@@ -90,49 +78,10 @@ public class FinalResultActivity extends Activity {
 		tvTerm.setText("Term (months):\t\t\t\t " + smSM.getTerm());
 		tvMonthlyPmt.setText("Monthly Pmt:\t\t\t\t\t $" + String.format("%.0f", smSM.getMonthlyPmt()));
 
-		TextView tvResMort = (TextView) findViewById(R.id.txtMortPmt);
-		TextView tvResTaxes = (TextView) findViewById(R.id.txtPropertyTaxes);
-		TextView tvResIns = (TextView) findViewById(R.id.txtInsurance);
-		TextView tvResElect = (TextView) findViewById(R.id.txtElectric);
-		TextView tvResWater = (TextView) findViewById(R.id.txtWater);
-		TextView tvResGas = (TextView) findViewById(R.id.txtGas);
-		TextView tvTotRes = (TextView) findViewById(R.id.txtTotalReserves);
-
-		// gets value of time frame (6 mos, 9 mos, 12 mos)
-		String strTimeFrame = spnTimeFrame.getSelectedItem().toString();
-		Toast.makeText(getApplicationContext(), strTimeFrame, Toast.LENGTH_SHORT).show();
-		double dTimeFrameFactor = 1.0;
-		// set time frame factor based on time frame value
-		if (strTimeFrame == "6 Months") {
-			dTimeFrameFactor = 1.0;
-		}
-		if (strTimeFrame == "9 Months") {
-			dTimeFrameFactor = 1.5;
-		}
-		if (strTimeFrame == "12 Months") {
-			dTimeFrameFactor = 2.0;
-		}
-
-		// calculates reserves based on time frame factor
-		tvResMort.setText("Mortgage:\t\t\t\t\t\t\t $" + String.format("%.0f", (rsR.getMortgage() * dTimeFrameFactor)));
-		tvResTaxes.setText("Property Taxes:\t\t\t\t $" + String.format("%.0f", (rsR.getTaxes() * dTimeFrameFactor)));
-		tvResIns.setText("Insurance:\t\t\t\t\t\t\t $" + String.format("%.0f", (rsR.getInsurance() * dTimeFrameFactor)));
-		tvResElect.setText("Electric:\t\t\t\t\t\t\t\t $" +String.format("%.0f", (rsR.getElectric() * dTimeFrameFactor)));
-		tvResWater.setText("Water:\t\t\t\t\t\t\t\t $" + String.format("%.0f", (rsR.getWater() * dTimeFrameFactor)));
-		tvResGas.setText("Gas:\t\t\t\t\t\t\t\t\t $" + String.format("%.0f", (rsR.getGas() * dTimeFrameFactor)));
-		tvTotRes.setText("Total Reserves:\t\t\t\t $" + String.format("%.0f", (rsR.getTotalExpenses() * dTimeFrameFactor)));
-
 		frF = new FinalResult();
 		frF.setRECost(cemC.getSellingPrice(), cemC.getRealEstComm());
 		frF.setBCCost(smSM.getSalesPrice(), cemC.getBuyClosCost());
 		frF.setSCCost(smSM.getSalesPrice(), cemC.getSellClosCost());
-		frF.setTotalCost(smSM.getOfferBid(), rR.getBudget(), (rsR.getTotalExpenses() * dTimeFrameFactor));
-		frF.setOOPExp(smSM.getDownPayment(), (rsR.getTotalExpenses() * dTimeFrameFactor), rR.getBudget());
-		frF.setGrossProfit(cemC.getSellingPrice());
-		frF.setCapGains();
-		frF.setNetProfit();
-		frF.setROI(cemC.getSellingPrice());
-		frF.setCashOnCash();
 
 		TextView tvRealEstComm = (TextView) findViewById(R.id.txtRealEstComm);
 		TextView tvRealEstCommPer = (TextView) findViewById(R.id.txtRealEstCommPer);
@@ -140,8 +89,6 @@ public class FinalResultActivity extends Activity {
 		TextView tvBuyerClosCostPer = (TextView) findViewById(R.id.txtBuyerClosCostPer);
 		TextView tvSellerClosCost = (TextView) findViewById(R.id.txtSellerClosCost);
 		TextView tvSellerClosCostPer = (TextView) findViewById(R.id.txtSellerClosCostPer);
-		TextView tvTotalCosts = (TextView) findViewById(R.id.txtTotalCosts);
-		TextView tvOutOfPocket = (TextView) findViewById(R.id.txtOutOfPocketExpenses);
 
 		tvRealEstComm.setText("Real Estate Comm:\t\t\t $" + String.format("%.0f", frF.getRECost()));
 		tvRealEstCommPer.setText("Commission %:\t\t\t\t " + String.format("%.0f", cemC.getRealEstComm()) + "%");
@@ -149,33 +96,90 @@ public class FinalResultActivity extends Activity {
 		tvBuyerClosCostPer.setText("Closing Cost %:\t\t\t\t " +String.format("%.0f", cemC.getBuyClosCost()) + "%");
 	    tvSellerClosCost.setText("Sell Clos Cost:\t\t\t\t\t $" + String.format("%.0f", frF.getSCCost()));
 		tvSellerClosCostPer.setText("Closing Cost %:\t\t\t\t " + String.format("%.0f",  cemC.getSellClosCost()) + "%");
-		tvTotalCosts.setText("Total Costs:\t\t\t\t\t\t $" + String.format("%.0f", frF.getTotalCost()));
-		tvOutOfPocket.setText("Out of Pocket Exp:\t\t\t $" + String.format("%.0f", frF.getOOPExp()));
 
 		TextView tvFMVARV = (TextView) findViewById(R.id.txtFMVARV);
 		TextView tvComparables = (TextView) findViewById(R.id.txtComparables);
 		TextView tvSellingPrice = (TextView) findViewById(R.id.txtSellingPrice);
-		TextView tvBuyerCosts = (TextView) findViewById(R.id.txtBuyerCosts);
-		TextView tvGrossProfit = (TextView) findViewById(R.id.txtGrossProfit);
-		TextView tvCapGains = (TextView) findViewById(R.id.txtCapGains);
-		TextView tvNetProfit = (TextView) findViewById(R.id.txtNetProfit);
-		TextView tvMoneyOut = (TextView) findViewById(R.id.txtMoneyOut);
-		TextView tvMoneyIn = (TextView) findViewById(R.id.txtMoneyIn);
-		TextView tvPercReturn = (TextView) findViewById(R.id.txtPercReturn);
-		TextView tvCashCashRet = (TextView) findViewById(R.id.txtCashCashRet);
 
 		tvFMVARV.setText("FMV/ARV:\t\t\t\t\t\t\t $" + String.format("%.0f", cemC.getFMVARV()));
 		tvComparables.setText("Comparables:\t\t\t\t\t $" + String.format("%.0f", cemC.getComparables()));
 		tvSellingPrice.setText("Selling Price:\t\t\t\t\t $" + String.format("%.0f", cemC.getSellingPrice()));
-		tvBuyerCosts.setText("Buy + Costs:\t\t\t\t\t\t $" + String.format("%.0f", frF.getTotalCost()));
-	    tvGrossProfit.setText("Gross Profit:\t\t\t\t\t\t $" + String.format("%.0f", frF.getGrossProfit()));
-		tvCapGains.setText("Capital Gains:\t\t\t\t\t $" + String.format("%.0f",  frF.getCapGains()));
-		tvNetProfit.setText("Net Profit:\t\t\t\t\t\t\t $" + String.format("%.0f", frF.getNetProfit()));
-		tvMoneyOut.setText("Money Out:\t\t\t\t\t\t $" + String.format("%.0f", frF.getOOPExp()));
-		tvMoneyIn.setText("Money In:\t\t\t\t\t\t\t $" + String.format("%.0f", frF.getNetProfit()));
-		tvPercReturn.setText("% Return:\t\t\t\t\t\t\t " + String.format("%.1f", frF.getROI()) + "%");
-		tvCashCashRet.setText("Cash on Cash Return:\t " + String.format("%.1f", frF.getCashOnCash()) + "%");
 
+		spnTimeFrame.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+	        @Override
+	        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+	        	spnTimeFrame.setSelection(i, true);
+	            Object item = adapterView.getItemAtPosition(i);
+	            double dTimeFrameFactor = 1.0;
+	    		// set time frame factor based on time frame value
+	    		if (i == 0) {
+	    			dTimeFrameFactor = 1.0;
+	    			Toast.makeText(getApplicationContext(), "6 Months", Toast.LENGTH_SHORT).show();
+	    		}
+	    		if (i == 1) {
+	    			dTimeFrameFactor = 1.5;
+	    			Toast.makeText(getApplicationContext(), "9 Months", Toast.LENGTH_SHORT).show();
+	    		}
+	    		if (i == 2) {
+	    			dTimeFrameFactor = 2.0;
+	    			Toast.makeText(getApplicationContext(), "12 Months", Toast.LENGTH_SHORT).show();
+	    		}
+
+	    		TextView tvResMort = (TextView) findViewById(R.id.txtMortPmt);
+	    		TextView tvResTaxes = (TextView) findViewById(R.id.txtPropertyTaxes);
+	    		TextView tvResIns = (TextView) findViewById(R.id.txtInsurance);
+	    		TextView tvResElect = (TextView) findViewById(R.id.txtElectric);
+	    		TextView tvResWater = (TextView) findViewById(R.id.txtWater);
+	    		TextView tvResGas = (TextView) findViewById(R.id.txtGas);
+	    		TextView tvTotRes = (TextView) findViewById(R.id.txtTotalReserves);
+
+	    		// calculates reserves based on time frame factor
+	    		tvResMort.setText("Mortgage:\t\t\t\t\t\t\t $" + String.format("%.0f", (rsR.getMortgage() * dTimeFrameFactor)));
+	    		tvResTaxes.setText("Property Taxes:\t\t\t\t $" + String.format("%.0f", (rsR.getTaxes() * dTimeFrameFactor)));
+	    		tvResIns.setText("Insurance:\t\t\t\t\t\t\t $" + String.format("%.0f", (rsR.getInsurance() * dTimeFrameFactor)));
+	    		tvResElect.setText("Electric:\t\t\t\t\t\t\t\t $" +String.format("%.0f", (rsR.getElectric() * dTimeFrameFactor)));
+	    		tvResWater.setText("Water:\t\t\t\t\t\t\t\t $" + String.format("%.0f", (rsR.getWater() * dTimeFrameFactor)));
+	    		tvResGas.setText("Gas:\t\t\t\t\t\t\t\t\t $" + String.format("%.0f", (rsR.getGas() * dTimeFrameFactor)));
+	    		tvTotRes.setText("Total Reserves:\t\t\t\t $" + String.format("%.0f", (rsR.getTotalExpenses() * dTimeFrameFactor)));
+
+	    		frF.setTotalCost(smSM.getOfferBid(), rR.getBudget(), (rsR.getTotalExpenses() * dTimeFrameFactor));
+	    		frF.setOOPExp(smSM.getDownPayment(), (rsR.getTotalExpenses() * dTimeFrameFactor), rR.getBudget());
+	    		frF.setGrossProfit(cemC.getSellingPrice());
+	    		frF.setCapGains();
+	    		frF.setNetProfit();
+	    		frF.setROI(cemC.getSellingPrice());
+	    		frF.setCashOnCash();
+
+	    		TextView tvTotalCosts = (TextView) findViewById(R.id.txtTotalCosts);
+	    		TextView tvOutOfPocket = (TextView) findViewById(R.id.txtOutOfPocketExpenses);
+
+	    		tvTotalCosts.setText("Total Costs:\t\t\t\t\t\t $" + String.format("%.0f", frF.getTotalCost()));
+	    		tvOutOfPocket.setText("Out of Pocket Exp:\t\t\t $" + String.format("%.0f", frF.getOOPExp()));
+
+	    		TextView tvBuyerCosts = (TextView) findViewById(R.id.txtBuyerCosts);
+	    		TextView tvGrossProfit = (TextView) findViewById(R.id.txtGrossProfit);
+	    		TextView tvCapGains = (TextView) findViewById(R.id.txtCapGains);
+	    		TextView tvNetProfit = (TextView) findViewById(R.id.txtNetProfit);
+	    		TextView tvMoneyOut = (TextView) findViewById(R.id.txtMoneyOut);
+	    		TextView tvMoneyIn = (TextView) findViewById(R.id.txtMoneyIn);
+	    		TextView tvPercReturn = (TextView) findViewById(R.id.txtPercReturn);
+	    		TextView tvCashCashRet = (TextView) findViewById(R.id.txtCashCashRet);
+
+	    		tvBuyerCosts.setText("Buy + Costs:\t\t\t\t\t\t $" + String.format("%.0f", frF.getTotalCost()));
+	    	    tvGrossProfit.setText("Gross Profit:\t\t\t\t\t\t $" + String.format("%.0f", frF.getGrossProfit()));
+	    		tvCapGains.setText("Capital Gains:\t\t\t\t\t $" + String.format("%.0f",  frF.getCapGains()));
+	    		tvNetProfit.setText("Net Profit:\t\t\t\t\t\t\t $" + String.format("%.0f", frF.getNetProfit()));
+	    		tvMoneyOut.setText("Money Out:\t\t\t\t\t\t $" + String.format("%.0f", frF.getOOPExp()));
+	    		tvMoneyIn.setText("Money In:\t\t\t\t\t\t\t $" + String.format("%.0f", frF.getNetProfit()));
+	    		tvPercReturn.setText("% Return:\t\t\t\t\t\t\t " + String.format("%.1f", frF.getROI()) + "%");
+	    		tvCashCashRet.setText("Cash on Cash Return:\t " + String.format("%.1f", frF.getCashOnCash()) + "%");
+	        }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+               // sometimes you need nothing here
+            }
+		});
    }
  
 	// returns to main menu

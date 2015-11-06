@@ -42,22 +42,22 @@
 	        android:orientation="horizontal"
 	        android:paddingTop="5dp" >
 	
-        <Spinner
-            android:id="@+id/spnDonate"
-            android:layout_width="match_parent"
-            android:layout_height="40sp"
-            android:layout_weight="1"
-            android:prompt="@string/txtHowMuch" />
-
-	        
-	        <Button
-	            android:id="@+id/btnDonateNow"
+	        <Spinner
+	            android:id="@+id/spnDonate"
 	            android:layout_width="match_parent"
 	            android:layout_height="40sp"
 	            android:layout_weight="1"
-	            android:text="@string/txtDonateNow"
-	            android:background="#690"
-                android:textColor="#ffffff" />
+	            android:prompt="@string/txtHowMuch" />
+	
+		        
+		        <Button
+		            android:id="@+id/btnDonateNow"
+		            android:layout_width="match_parent"
+		            android:layout_height="40sp"
+		            android:layout_weight="1"
+		            android:text="@string/txtDonateNow"
+		            android:background="#690"
+	                android:textColor="#ffffff" />
 	    </LinearLayout>
 	    
 

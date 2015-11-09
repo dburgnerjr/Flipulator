@@ -79,7 +79,11 @@ public class SalesMortgage implements Serializable {
 		this.dMonthlyPmt = (dPercentDown == 100) ? 0 : (this.dLoanAmount*((this.dInterestRate/12)/100));
 	}
 	
-    @Override
+	public void setMonthlyPmt(double dRehab) {
+		this.dMonthlyPmt = (dPercentDown == 100) ? 0 : ((this.dLoanAmount+dRehab)*((this.dInterestRate/12)/100));
+	}
+
+	@Override
     public String toString() {
         return "Sales/Mortgage Info\nSales Price: $" + String.format("%.2f", dSalesPrice) + "\nPercent Down: " + String.format("%.2f", dPercentDown) + 
         		"%\nOffer Bid: $" + String.format("%.2f", dOfferBid) + "\nDown Payment: $" + String.format("%.2f", dDownPayment) + "\nLoan Amount: $" + 

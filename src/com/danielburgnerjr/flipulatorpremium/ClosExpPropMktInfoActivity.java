@@ -134,6 +134,7 @@ public class ClosExpPropMktInfoActivity extends Activity {
 			Toast.makeText(getApplicationContext(), "Must Enter Selling Price", Toast.LENGTH_SHORT).show();
 		} else {
 			Intent intI = new Intent(this, FinalResultActivity.class);
+			intI.putExtra("Settings", setS);
 			intI.putExtra("Location", locL);
 			intI.putExtra("SalesMortgage", smSM);
 			intI.putExtra("Rehab", rR);

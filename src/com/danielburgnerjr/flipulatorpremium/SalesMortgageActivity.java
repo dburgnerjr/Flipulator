@@ -197,9 +197,11 @@ public class SalesMortgageActivity extends Activity {
 	    	smSM.setLoanAmount();
 	    	smSM.setInterestRate(Double.parseDouble(etInterestRate.getText().toString()));
 	    	smSM.setTerm(Integer.parseInt(etTerm.getText().toString()));
-	    	smSM.setMonthlyPmt();
-	    
-	    	intI.putExtra("SalesMortgage", smSM);
+	    	// if finance rehab flag is not selected, set monthly payment as follows
+	    	if (setS.getFinance() != 2) {
+		    	smSM.setMonthlyPmt();
+		    	intI.putExtra("SalesMortgage", smSM);	    		
+	    	}
 	    	
 	    	Rehab rR;
 	    	if (setS.getRehab() == 0) {
@@ -208,6 +210,11 @@ public class SalesMortgageActivity extends Activity {
 				} else {
 					double dB = Double.parseDouble(etRehabBudget.getText().toString());
 					rR = new RehabFlatRate(dB);
+					// if finance rehab flag is selected, set monthly payment as follows
+					if (setS.getFinance() == 2) {
+				    	smSM.setMonthlyPmt(rR.getBudget());
+				    	intI.putExtra("SalesMortgage", smSM);						
+					}
 					intI.putExtra("Rehab", rR);
 			    	startActivity(intI);
 			    	finish();
@@ -215,6 +222,11 @@ public class SalesMortgageActivity extends Activity {
 	    	} else {
 				String strRTSel = spnRehabType.getSelectedItem().toString();
 				rR = new RehabType(locL.getSquareFootage(), strRTSel);
+				// if finance rehab flag is selected, set monthly payment as follows
+				if (setS.getFinance() == 2) {
+			    	smSM.setMonthlyPmt(rR.getBudget());
+			    	intI.putExtra("SalesMortgage", smSM);						
+				}
 				intI.putExtra("Rehab", rR);
 		    	startActivity(intI);
 		    	finish();

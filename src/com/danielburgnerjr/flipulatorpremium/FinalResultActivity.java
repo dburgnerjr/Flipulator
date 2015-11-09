@@ -143,7 +143,14 @@ public class FinalResultActivity extends Activity {
 	    		tvTotRes.setText("Total Reserves:\t\t\t\t $" + String.format("%.0f", (rsR.getTotalExpenses() * dTimeFrameFactor)));
 
 	    		frF.setTotalCost(smSM.getOfferBid(), rR.getBudget(), (rsR.getTotalExpenses() * dTimeFrameFactor));
-	    		frF.setOOPExp(smSM.getDownPayment(), (rsR.getTotalExpenses() * dTimeFrameFactor), rR.getBudget());
+	    		// if finance rehab flag is not selected, set out of pocket expenses as follows
+	    		if (setS.getFinance() != 2) {
+	    			frF.setOOPExp(smSM.getDownPayment(), (rsR.getTotalExpenses() * dTimeFrameFactor), rR.getBudget());
+	    		}
+	    		// if finance rehab flag is selected, set out of pocket expenses as follows
+	    		if (setS.getFinance() == 2) {
+	    			frF.setOOPExp(smSM.getDownPayment(), (rsR.getTotalExpenses() * dTimeFrameFactor), 0.0);
+	    		}	    		
 	    		frF.setGrossProfit(cemC.getSellingPrice());
 	    		frF.setCapGains();
 	    		frF.setNetProfit();

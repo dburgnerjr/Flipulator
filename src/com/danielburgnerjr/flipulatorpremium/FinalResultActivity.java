@@ -258,7 +258,7 @@ public class FinalResultActivity extends Activity {
 
 	public void saveFile(View view) throws FileNotFoundException, IOException {
 		// saves results to text file
-		File myDir = new File(getFilesDir() + "/FlipulatorPremium");
+		File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorPremium");
 	    myDir.mkdirs();
 	    Toast.makeText(getApplicationContext(), myDir.getPath(), Toast.LENGTH_SHORT).show();
 		String strFilename = locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode() + ".txt";
@@ -270,14 +270,14 @@ public class FinalResultActivity extends Activity {
 		strMessage += "ZIP Code:" + locL.getZIPCode() + "\n";
 		strMessage += "Square Footage:" + locL.getSquareFootage() + "\n";
 		strMessage += "Bedrooms:" + locL.getBedrooms() + "\n";
-		strMessage += "Bathrooms:" + locL.getBathrooms() + " BA\n";
+		strMessage += "Bathrooms:" + locL.getBathrooms() + "\n";
 		strMessage += "Sale Price:" + String.format("%.0f", smSM.getSalesPrice()) + "\n";
-		strMessage += "Percent Down %:" + String.format("%.0f", smSM.getPercentDown()) + "%\n";
+		strMessage += "Percent Down %:" + String.format("%.0f", smSM.getPercentDown()) + "\n";
 		strMessage += "Offer/Bid Price:" + String.format("%.0f", smSM.getOfferBid()) + "\n";
 		strMessage += "Rehab Budget:" + String.format("%.0f", rR.getBudget()) + "\n";
 		strMessage += "Down Payment:" + String.format("%.0f", smSM.getDownPayment()) + "\n";
 		strMessage += "Loan Amount:" + String.format("%.0f", smSM.getLoanAmount()) + "\n";
-		strMessage += "Interest Rate %:" + String.format("%.0f", smSM.getInterestRate()) + "%\n";
+		strMessage += "Interest Rate %:" + String.format("%.0f", smSM.getInterestRate()) + "\n";
 		strMessage += "Term (months):" + smSM.getTerm() + "\n";
 		strMessage += "Monthly Pmt:" + String.format("%.0f", smSM.getMonthlyPmt()) + "\n";
 		strMessage += "Mortgage:" + String.format("%.0f", rsR.getMortgage()) + "\n";
@@ -288,11 +288,11 @@ public class FinalResultActivity extends Activity {
 		strMessage += "Gas:" + String.format("%.0f", rsR.getGas()) + "\n";
 		strMessage += "Total Reserves:" + String.format("%.0f", rsR.getTotalExpenses()) + "\n";
 		strMessage += "Real Estate Comm:" + String.format("%.0f", frF.getRECost()) + "\n";
-		strMessage += "Commission %:" + String.format("%.0f", cemC.getRealEstComm()) + "%\n";
+		strMessage += "Commission %:" + String.format("%.0f", cemC.getRealEstComm()) + "\n";
 		strMessage += "Buyer Clos Cost:" + String.format("%.0f", frF.getBCCost()) + "\n";
-		strMessage += "Closing Cost %:" +String.format("%.0f", cemC.getBuyClosCost()) + "%\n";
+		strMessage += "Closing Cost %:" +String.format("%.0f", cemC.getBuyClosCost()) + "\n";
 		strMessage += "Sell Clos Cost:" + String.format("%.0f", frF.getSCCost()) + "\n";
-		strMessage += "Closing Cost %:" + String.format("%.0f",  cemC.getSellClosCost()) + "%\n";
+		strMessage += "Closing Cost %:" + String.format("%.0f",  cemC.getSellClosCost()) + "\n";
 		strMessage += "Total Costs:" + String.format("%.0f", frF.getTotalCost()) + "\n";
 		strMessage += "Out of Pocket Exp:" + String.format("%.0f", frF.getOOPExp()) + "\n";
 		strMessage += "FMV/ARV:" + String.format("%.0f", cemC.getFMVARV()) + "\n";
@@ -304,8 +304,8 @@ public class FinalResultActivity extends Activity {
 		strMessage += "Net Profit:" + String.format("%.0f", frF.getNetProfit()) + "\n";
 		strMessage += "Money Out:" + String.format("%.0f", frF.getOOPExp()) + "\n";
 		strMessage += "Money In:" + String.format("%.0f", frF.getNetProfit()) + "\n";
-		strMessage += "% Return:" + String.format("%.1f", frF.getROI()) + "%\n";
-		strMessage += "Cash on Cash Return:" + String.format("%.1f", frF.getCashOnCash()) + "%\n";
+		strMessage += "% Return:" + String.format("%.1f", frF.getROI()) + "\n";
+		strMessage += "Cash on Cash Return:" + String.format("%.1f", frF.getCashOnCash()) + "\n";
 		
 		FileOutputStream stream = new FileOutputStream(file);
 		try {

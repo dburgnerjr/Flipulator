@@ -264,48 +264,50 @@ public class FinalResultActivity extends Activity {
 		String strFilename = locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode() + ".txt";
 		File file = new File(myDir, strFilename);
 
-		String strMessage = "Address:" + locL.getAddress() + "\n";
-		strMessage += "City:" + locL.getCity() + "\n";
-		strMessage += "State:" + locL.getState() + "\n";
-		strMessage += "ZIP Code:" + locL.getZIPCode() + "\n";
-		strMessage += "Square Footage:" + locL.getSquareFootage() + "\n";
-		strMessage += "Bedrooms:" + locL.getBedrooms() + "\n";
-		strMessage += "Bathrooms:" + locL.getBathrooms() + "\n";
-		strMessage += "Sale Price:" + String.format("%.0f", smSM.getSalesPrice()) + "\n";
-		strMessage += "Percent Down %:" + String.format("%.0f", smSM.getPercentDown()) + "\n";
-		strMessage += "Offer/Bid Price:" + String.format("%.0f", smSM.getOfferBid()) + "\n";
-		strMessage += "Rehab Budget:" + String.format("%.0f", rR.getBudget()) + "\n";
-		strMessage += "Down Payment:" + String.format("%.0f", smSM.getDownPayment()) + "\n";
-		strMessage += "Loan Amount:" + String.format("%.0f", smSM.getLoanAmount()) + "\n";
-		strMessage += "Interest Rate %:" + String.format("%.0f", smSM.getInterestRate()) + "\n";
-		strMessage += "Term (months):" + smSM.getTerm() + "\n";
-		strMessage += "Monthly Pmt:" + String.format("%.0f", smSM.getMonthlyPmt()) + "\n";
-		strMessage += "Mortgage:" + String.format("%.0f", rsR.getMortgage()) + "\n";
-		strMessage += "Property Taxes:" + String.format("%.0f", rsR.getTaxes()) + "\n";
-		strMessage += "Insurance:" + String.format("%.0f", rsR.getInsurance()) + "\n";
-		strMessage += "Electric:" +String.format("%.0f", rsR.getElectric()) + "\n";
-		strMessage += "Water:" + String.format("%.0f", rsR.getWater()) + "\n";
-		strMessage += "Gas:" + String.format("%.0f", rsR.getGas()) + "\n";
-		strMessage += "Total Reserves:" + String.format("%.0f", rsR.getTotalExpenses()) + "\n";
-		strMessage += "Real Estate Comm:" + String.format("%.0f", frF.getRECost()) + "\n";
-		strMessage += "Commission %:" + String.format("%.0f", cemC.getRealEstComm()) + "\n";
-		strMessage += "Buyer Clos Cost:" + String.format("%.0f", frF.getBCCost()) + "\n";
-		strMessage += "Closing Cost %:" +String.format("%.0f", cemC.getBuyClosCost()) + "\n";
-		strMessage += "Sell Clos Cost:" + String.format("%.0f", frF.getSCCost()) + "\n";
-		strMessage += "Closing Cost %:" + String.format("%.0f",  cemC.getSellClosCost()) + "\n";
-		strMessage += "Total Costs:" + String.format("%.0f", frF.getTotalCost()) + "\n";
-		strMessage += "Out of Pocket Exp:" + String.format("%.0f", frF.getOOPExp()) + "\n";
-		strMessage += "FMV/ARV:" + String.format("%.0f", cemC.getFMVARV()) + "\n";
-		strMessage += "Comparables:" + String.format("%.0f", cemC.getComparables()) + "\n";
-		strMessage += "Selling Price:" + String.format("%.0f", cemC.getSellingPrice()) + "\n";
-		strMessage += "Buy + Costs:" + String.format("%.0f", frF.getTotalCost()) + "\n";
-		strMessage += "Gross Profit:" + String.format("%.0f", frF.getGrossProfit()) + "\n";
-		strMessage += "Capital Gains:" + String.format("%.0f",  frF.getCapGains()) + "\n";
-		strMessage += "Net Profit:" + String.format("%.0f", frF.getNetProfit()) + "\n";
-		strMessage += "Money Out:" + String.format("%.0f", frF.getOOPExp()) + "\n";
-		strMessage += "Money In:" + String.format("%.0f", frF.getNetProfit()) + "\n";
-		strMessage += "% Return:" + String.format("%.1f", frF.getROI()) + "\n";
-		strMessage += "Cash on Cash Return:" + String.format("%.1f", frF.getCashOnCash()) + "\n";
+		String strMessage = "Rehab Type:" + setS.getRehab() + ":";
+		strMessage += "Finance Type:" + setS.getFinance() + ":";
+	    strMessage += "Address:" + locL.getAddress() + ":";
+		strMessage += "City:" + locL.getCity() + ":";
+		strMessage += "State:" + locL.getState() + ":";
+		strMessage += "ZIP Code:" + locL.getZIPCode() + ":";
+		strMessage += "Square Footage:" + locL.getSquareFootage() + ":";
+		strMessage += "Bedrooms:" + locL.getBedrooms() + ":";
+		strMessage += "Bathrooms:" + locL.getBathrooms() + ":";
+		strMessage += "Sale Price:" + String.format("%.0f", smSM.getSalesPrice()) + ":";
+		strMessage += "Percent Down %:" + String.format("%.0f", smSM.getPercentDown()) + ":";
+		strMessage += "Offer/Bid Price:" + String.format("%.0f", smSM.getOfferBid()) + ":";
+		strMessage += "Rehab Budget:" + String.format("%.0f", rR.getBudget()) + ":";
+		strMessage += "Down Payment:" + String.format("%.0f", smSM.getDownPayment()) + ":";
+		strMessage += "Loan Amount:" + String.format("%.0f", smSM.getLoanAmount()) + ":";
+		strMessage += "Interest Rate %:" + String.format("%.0f", smSM.getInterestRate()) + ":";
+		strMessage += "Term (months):" + smSM.getTerm() + ":";
+		strMessage += "Monthly Pmt:" + String.format("%.0f", smSM.getMonthlyPmt()) + ":";
+		strMessage += "Mortgage:" + String.format("%.0f", rsR.getMortgage()) + ":";
+		strMessage += "Property Taxes:" + String.format("%.0f", rsR.getTaxes()) + ":";
+		strMessage += "Insurance:" + String.format("%.0f", rsR.getInsurance()) + ":";
+		strMessage += "Electric:" +String.format("%.0f", rsR.getElectric()) + ":";
+		strMessage += "Water:" + String.format("%.0f", rsR.getWater()) + ":";
+		strMessage += "Gas:" + String.format("%.0f", rsR.getGas()) + ":";
+		strMessage += "Total Reserves:" + String.format("%.0f", rsR.getTotalExpenses()) + ":";
+		strMessage += "Real Estate Comm:" + String.format("%.0f", frF.getRECost()) + ":";
+		strMessage += "Commission %:" + String.format("%.0f", cemC.getRealEstComm()) + ":";
+		strMessage += "Buyer Clos Cost:" + String.format("%.0f", frF.getBCCost()) + ":";
+		strMessage += "Closing Cost %:" +String.format("%.0f", cemC.getBuyClosCost()) + ":";
+		strMessage += "Sell Clos Cost:" + String.format("%.0f", frF.getSCCost()) + ":";
+		strMessage += "Closing Cost %:" + String.format("%.0f",  cemC.getSellClosCost()) + ":";
+		strMessage += "Total Costs:" + String.format("%.0f", frF.getTotalCost()) + ":";
+		strMessage += "Out of Pocket Exp:" + String.format("%.0f", frF.getOOPExp()) + ":";
+		strMessage += "FMV/ARV:" + String.format("%.0f", cemC.getFMVARV()) + ":";
+		strMessage += "Comparables:" + String.format("%.0f", cemC.getComparables()) + ":";
+		strMessage += "Selling Price:" + String.format("%.0f", cemC.getSellingPrice()) + ":";
+		strMessage += "Buy + Costs:" + String.format("%.0f", frF.getTotalCost()) + ":";
+		strMessage += "Gross Profit:" + String.format("%.0f", frF.getGrossProfit()) + ":";
+		strMessage += "Capital Gains:" + String.format("%.0f",  frF.getCapGains()) + ":";
+		strMessage += "Net Profit:" + String.format("%.0f", frF.getNetProfit()) + ":";
+		strMessage += "Money Out:" + String.format("%.0f", frF.getOOPExp()) + ":";
+		strMessage += "Money In:" + String.format("%.0f", frF.getNetProfit()) + ":";
+		strMessage += "% Return:" + String.format("%.1f", frF.getROI()) + ":";
+		strMessage += "Cash on Cash Return:" + String.format("%.1f", frF.getCashOnCash()) + ":";
 		
 		FileOutputStream stream = new FileOutputStream(file);
 		try {
@@ -321,7 +323,7 @@ public class FinalResultActivity extends Activity {
 		    return true;
 		}
 		return super.onKeyDown(nKeyCode, keEvent);
-   }
+     }
 
 	 protected void exitByBackKey() {
 		AlertDialog adAlertBox = new AlertDialog.Builder(this)

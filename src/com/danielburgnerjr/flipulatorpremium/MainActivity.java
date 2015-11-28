@@ -1,5 +1,7 @@
 package com.danielburgnerjr.flipulatorpremium;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -15,23 +17,19 @@ import android.content.Intent;
 public class MainActivity extends Activity {
 	String strPackName;
 	private Settings setS;
-/*
-	final Context cntC = this;
-	
-	private Location locL;
-	private SalesMortgage smSM;
-	private Rehab rR;
-	private Reserves rsR;
-	private ClosExpPropMktInfo cemC;
-*/
+	private Button btnOpenFiles;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		strPackName = getApplicationContext().getPackageName();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorPremium");
+		String strPath = myDir.getPath();
+		//Toast.makeText(getApplicationContext(), strPath, Toast.LENGTH_SHORT).show();
 		
 		Intent intI = getIntent();
-		setS = (Settings) intI.getSerializableExtra("Settings");
+		setS = (Settings) intI.getSerializableExtra("Settings");		
         
 		final Button btnAbout = (Button) findViewById(R.id.btnAbout);
 		btnAbout.setOnClickListener(new OnClickListener() {
@@ -47,8 +45,8 @@ public class MainActivity extends Activity {
 				if (setS == null) {
 					setS = new Settings(0, 0);	// default is flat rate rehab class and original finance class
 				}
-				//Toast.makeText(getApplicationContext(), setS.toString(), Toast.LENGTH_SHORT).show();
-			    Intent intL = new Intent(MainActivity.this, LocationActivity.class);
+				
+				Intent intL = new Intent(MainActivity.this, LocationActivity.class);
 			    intL.putExtra("Settings", setS);
 			    startActivity(intL);
 			    finish();
@@ -83,250 +81,22 @@ public class MainActivity extends Activity {
 	   			startActivity(Intent.createChooser(intI, "choose one"));
 			}
 		});
-
-/*		
-		locL = (Location) intI.getSerializableExtra("Location");
-		smSM = (SalesMortgage) intI.getSerializableExtra("SalesMortgage");
-		rR = (Rehab) intI.getSerializableExtra("Rehab");
-		rsR = (Reserves) intI.getSerializableExtra("Reserves");
-		cemC = (ClosExpPropMktInfo) intI.getSerializableExtra("ClosExpPropMktInfo");
-
-		final Button btnLoc = (Button) findViewById(R.id.btnLocation);
-		btnLoc.setOnClickListener(new OnClickListener() {
-			public void onClick(View view) {
-				if (locL != null) {
-					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(cntC);
-					 
-					// set title
-					alertDialogBuilder.setTitle("Location Exists");
-			 
-					// set dialog message
-					alertDialogBuilder.setMessage("You already have Location info. Overwrite?")
-									  .setCancelable(false)
-									  .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-										  public void onClick(DialogInterface dialog, int id) {
-											  Intent intI = new Intent(MainActivity.this, LocationActivity.class);
-											  startActivity(intI);
-										  }
-									  })
-									  .setNegativeButton("No", new DialogInterface.OnClickListener() {
-										  public void onClick(DialogInterface dialog, int id) {
-											  dialog.cancel();
-										  }
-									  });
-			 
-					// create alert dialog
-					AlertDialog alertDialog = alertDialogBuilder.create();
-			 
-					// show it
-					alertDialog.show();
-				} else {
-					Intent intI = new Intent(MainActivity.this, LocationActivity.class);
-					startActivity(intI);
-				}
-			}
-		});
 		
-		final Button btnSM = (Button) findViewById(R.id.btnSalesMortgage);
-		btnSM.setOnClickListener(new OnClickListener() {
+		btnOpenFiles = (Button) findViewById(R.id.btnOpenFiles);
+		File fFileList = new File(strPath);
+		File fFileArray[] = fFileList.listFiles();
+		if (fFileArray == null) {
+			btnOpenFiles.setVisibility(View.INVISIBLE);
+		}
+		btnOpenFiles.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
-				if (smSM != null) {
-					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(cntC);
-					 
-					// set title
-					alertDialogBuilder.setTitle("Sales/Mortgage Exists");
-			 
-					// set dialog message
-					alertDialogBuilder.setMessage("You already have Sales/Mortgage info. Overwrite?")
-									  .setCancelable(false)
-									  .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-										  public void onClick(DialogInterface dialog, int id) {
-											  Intent intI = new Intent(MainActivity.this, SalesMortgageActivity.class);
-											  intI.putExtra("Location", locL);
-											  startActivity(intI);
-										  }
-									  })
-									  .setNegativeButton("No", new DialogInterface.OnClickListener() {
-										  public void onClick(DialogInterface dialog, int id) {
-											  dialog.cancel();
-										  }
-									  });
-			 
-					// create alert dialog
-					AlertDialog alertDialog = alertDialogBuilder.create();
-			 
-					// show it
-					alertDialog.show();			
-				} else {
-					Intent intI = new Intent(MainActivity.this, SalesMortgageActivity.class);
-					intI.putExtra("Location", locL);
-					startActivity(intI);
-				}
-			}
-		});
-		
-		final Button btnRehab = (Button) findViewById(R.id.btnRehab);
-		btnRehab.setOnClickListener(new OnClickListener() {
-			public void onClick(View view) {
-				if (rR != null) {
-					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(cntC);
-					 
-					// set title
-					alertDialogBuilder.setTitle("Rehab Exists");
-			 
-					// set dialog message
-					alertDialogBuilder.setMessage("You already have Rehab info. Overwrite?")
-									  .setCancelable(false)
-									  .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-										  public void onClick(DialogInterface dialog, int id) {
-											  Intent intI = new Intent(MainActivity.this, RehabActivity.class);
-											  intI.putExtra("Location", locL);
-											  intI.putExtra("SalesMortgage", smSM);
-											  startActivity(intI);
-										  }
-									  })
-									  .setNegativeButton("No", new DialogInterface.OnClickListener() {
-										  public void onClick(DialogInterface dialog, int id) {
-											  dialog.cancel();
-										  }
-									  });
-			 
-					// create alert dialog
-					AlertDialog alertDialog = alertDialogBuilder.create();
-			 
-					// show it
-					alertDialog.show();			
-					
-				} else {
-					Intent intI = new Intent(MainActivity.this, RehabActivity.class);
-					intI.putExtra("Location", locL);
-					intI.putExtra("SalesMortgage", smSM);
-					startActivity(intI);
-				}
+				Toast.makeText(getApplicationContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+			    //Intent intI = new Intent(MainActivity.this, DonateActivity.class);
+			    //startActivity(intI);
 			}
 		});
 
-		final Button btnRes = (Button) findViewById(R.id.btnReserves);
-		btnRes.setOnClickListener(new OnClickListener() {
-			public void onClick(View view) {
-				if (rsR != null) {
-					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(cntC);
-					 
-					// set title
-					alertDialogBuilder.setTitle("Reserves Exists");
-			 
-					// set dialog message
-					alertDialogBuilder.setMessage("You already have Reserves info. Overwrite?")
-									  .setCancelable(false)
-									  .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-										  public void onClick(DialogInterface dialog, int id) {
-											  Intent intI = new Intent(MainActivity.this, ReservesActivity.class);
-											  intI.putExtra("Location", locL);
-											  intI.putExtra("SalesMortgage", smSM);
-											  intI.putExtra("Rehab", rR);
-											  startActivity(intI);
-										  }
-									  })
-									  .setNegativeButton("No", new DialogInterface.OnClickListener() {
-										  public void onClick(DialogInterface dialog, int id) {
-											  dialog.cancel();
-										  }
-									  });
-			 
-					// create alert dialog
-					AlertDialog alertDialog = alertDialogBuilder.create();
-			 
-					// show it
-					alertDialog.show();			
-					
-				} else {
-					Intent intI = new Intent(MainActivity.this, ReservesActivity.class);
-					intI.putExtra("Location", locL);
-					intI.putExtra("SalesMortgage", smSM);
-					intI.putExtra("Rehab", rR);
-					startActivity(intI);
-				}
-			}
-		});
 
-		final Button btnCEPMI = (Button) findViewById(R.id.btnClosExpPMI);
-		btnCEPMI.setOnClickListener(new OnClickListener() {
-			public void onClick(View view) {
-				if (cemC != null) {
-					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(cntC);
-					 
-					// set title
-					alertDialogBuilder.setTitle("Closing Expenses/Prop Mkt Exists");
-			 
-					// set dialog message
-					alertDialogBuilder.setMessage("You already have Closing Expenses/Prop Mkt info. Overwrite?")
-									  .setCancelable(false)
-									  .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-										  public void onClick(DialogInterface dialog, int id) {
-											  Intent intI = new Intent(MainActivity.this, ClosExpPropMktInfoActivity.class);
-											  intI.putExtra("Location", locL);
-											  intI.putExtra("SalesMortgage", smSM);
-											  intI.putExtra("Rehab", rR);
-											  intI.putExtra("Reserves", rsR);
-											  startActivity(intI);
-										  }
-									  })
-									  .setNegativeButton("No", new DialogInterface.OnClickListener() {
-										  public void onClick(DialogInterface dialog, int id) {
-											  dialog.cancel();
-										  }
-									  });
-			 
-					// create alert dialog
-					AlertDialog alertDialog = alertDialogBuilder.create();
-			 
-					// show it
-					alertDialog.show();			
-					
-				} else {
-					Intent intI = new Intent(MainActivity.this, ClosExpPropMktInfoActivity.class);
-					intI.putExtra("Location", locL);
-					intI.putExtra("SalesMortgage", smSM);
-					intI.putExtra("Rehab", rR);
-					intI.putExtra("Reserves", rsR);
-					startActivity(intI);
-				}
-			}
-		});
-
-		final Button btnFinRes = (Button) findViewById(R.id.btnFinalResult);
-		btnFinRes.setOnClickListener(new OnClickListener() {
-			public void onClick(View view) {
-				if (locL == null) {
-					Toast.makeText(getApplicationContext(), "No Location info", Toast.LENGTH_SHORT).show();
-				} else if (smSM == null) {
-					Toast.makeText(getApplicationContext(), "No Sales/Mortgage info", Toast.LENGTH_SHORT).show();
-				} else if (rR == null) {
-					Toast.makeText(getApplicationContext(), "No Rehab info", Toast.LENGTH_SHORT).show();
-				} else if (rsR == null) {
-					Toast.makeText(getApplicationContext(), "No Reserves info", Toast.LENGTH_SHORT).show();
-				} else if (cemC == null) {
-					Toast.makeText(getApplicationContext(), "No Closing Exp/Prop Mkt info", Toast.LENGTH_SHORT).show();
-				} else {
-					Intent intI = new Intent(MainActivity.this, FinalResultActivity.class);
-					intI.putExtra("Location", locL);
-					intI.putExtra("SalesMortgage", smSM);
-					intI.putExtra("Rehab", rR);
-					intI.putExtra("Reserves", rsR);
-					intI.putExtra("ClosExpPropMktInfo", cemC);
-					startActivity(intI);
-				}
-			}
-		});
-
-		final Button btnFlip = (Button) findViewById(R.id.btnWhatIsFlip);
-		btnFlip.setOnClickListener(new OnClickListener() {
-			public void onClick(View view) {
-			    Intent intI = new Intent(MainActivity.this, WhatIsFlipulator.class);
-			    startActivity(intI);
-			}
-		});
-*/
 	}
 	
 	 public boolean onKeyDown(int keyCode, KeyEvent event) {

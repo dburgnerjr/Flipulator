@@ -260,9 +260,8 @@ public class FinalResultActivity extends Activity {
 		// saves results to text file
 		File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorPremium");
 	    myDir.mkdirs();
-	    Toast.makeText(getApplicationContext(), myDir.getPath(), Toast.LENGTH_SHORT).show();
-		String strFilename = locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode() + ".txt";
-		File file = new File(myDir, strFilename);
+	    String strFileName = locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode() + ".txt";
+		File file = new File(myDir, strFileName);
 
 		String strMessage = "Rehab Type:" + setS.getRehab() + ":";
 		strMessage += "Finance Type:" + setS.getFinance() + ":";
@@ -313,13 +312,17 @@ public class FinalResultActivity extends Activity {
 		try {
 		    stream.write(strMessage.getBytes());
 		} finally {
-		    stream.close();
+			String strSavedFile = "File saved as: " + strFileName;
+			Toast.makeText(getApplicationContext(), strSavedFile, Toast.LENGTH_SHORT).show();
+			stream.close();
 		}
 	}
 
 	 public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
+		String strBackMessage = "Press Previous to make changes, Save to save info to file, ";
+		strBackMessage += "Main Menu to return to main menu or Email Results to email.";
 		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
-			exitByBackKey();
+			Toast.makeText(getApplicationContext(), strBackMessage, Toast.LENGTH_SHORT).show();
 		    return true;
 		}
 		return super.onKeyDown(nKeyCode, keEvent);

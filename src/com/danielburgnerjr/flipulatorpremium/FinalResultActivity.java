@@ -48,6 +48,9 @@ public class FinalResultActivity extends Activity {
 		rsR = (Reserves) intI.getSerializableExtra("Reserves");
 		cemC = (ClosExpPropMktInfo) intI.getSerializableExtra("ClosExpPropMktInfo");
 
+		TextView tvSettings = (TextView) findViewById(R.id.txtRehabFinance);		
+		tvSettings.setText(setS.toString());
+		
 		TextView tvFRAddress = (TextView) findViewById(R.id.txtLocationAddress);
 		TextView tvFRCityStZip = (TextView) findViewById(R.id.txtLocationCityStZip);
 		TextView tvSF = (TextView) findViewById(R.id.txtLocationSqFootage);
@@ -327,25 +330,5 @@ public class FinalResultActivity extends Activity {
 		}
 		return super.onKeyDown(nKeyCode, keEvent);
      }
-
-	 protected void exitByBackKey() {
-		AlertDialog adAlertBox = new AlertDialog.Builder(this)
-		    .setMessage("Do you want to go back to main menu?")
-		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-		        // do something when the button is clicked
-		        public void onClick(DialogInterface arg0, int arg1) {
-		        	Intent intB = new Intent(FinalResultActivity.this, MainActivity.class);
-		        	startActivity(intB);
-		        	finish();
-		            //close();
-		        }
-		    })
-		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-		        // do something when the button is clicked
-		        public void onClick(DialogInterface arg0, int arg1) {
-		        }
-		    })
-		    .show();
-	 }
 
 }

@@ -24,6 +24,7 @@ public class ReservesActivity extends Activity {
 	private SalesMortgage smSM;
 	private Rehab rR;
 	private Reserves resR;
+	private ClosExpPropMktInfo cemC;
 	
 	private EditText etInsurance;		// sales price
 	private EditText etTaxes;			// property taxes
@@ -100,6 +101,7 @@ public class ReservesActivity extends Activity {
 			etWater.setText((int)resR.getWater() + "");
 		}
 
+		cemC = (ClosExpPropMktInfo) intI.getSerializableExtra("ClosExpPropMktInfo");
 	}
 
 	public void prevPage(View view) {
@@ -108,6 +110,8 @@ public class ReservesActivity extends Activity {
 		intI.putExtra("Location", locL);
 		intI.putExtra("SalesMortgage", smSM);
 		intI.putExtra("Rehab", rR);
+		intI.putExtra("Reserves", resR);
+		intI.putExtra("ClosExpPropMktInfo", cemC);
 		startActivity(intI);
 		finish();
 	}
@@ -140,6 +144,9 @@ public class ReservesActivity extends Activity {
 			rsR.setTotalExpenses();
 	    
 			intI.putExtra("Reserves", rsR);
+			if (cemC != null) {
+				intI.putExtra("ClosExpPropMktInfo", cemC);
+			}
 
 			startActivity(intI);
 			finish();
@@ -147,30 +154,12 @@ public class ReservesActivity extends Activity {
 	}
 	
 	 public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
+		String strBackMessage = "Press Previous to return to Sales/Mortgage, Next to enter Closing Expenses/";
+		strBackMessage += "Property Market info or Help for assistance.";
 		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
-			exitByBackKey();
+			Toast.makeText(getApplicationContext(), strBackMessage, Toast.LENGTH_SHORT).show();
 		    return true;
 		}
 		return super.onKeyDown(nKeyCode, keEvent);
-   }
-
-	 protected void exitByBackKey() {
-		AlertDialog adAlertBox = new AlertDialog.Builder(this)
-		    .setMessage("Do you want to go back to main menu?")
-		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-		        // do something when the button is clicked
-		        public void onClick(DialogInterface arg0, int arg1) {
-		        	Intent intB = new Intent(ReservesActivity.this, MainActivity.class);
-		        	startActivity(intB);
-		        	finish();
-		            //close();
-		        }
-		    })
-		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-		        // do something when the button is clicked
-		        public void onClick(DialogInterface arg0, int arg1) {
-		        }
-		    })
-		    .show();
-	 }
+  }
 }

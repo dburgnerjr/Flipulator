@@ -115,6 +115,7 @@ public class ClosExpPropMktInfoActivity extends Activity {
 		intI.putExtra("SalesMortgage", smSM);
 		intI.putExtra("Rehab", rR);
 		intI.putExtra("Reserves", rsR);
+		intI.putExtra("ClosExpPropMktInfo", cemC);
 		startActivity(intI);
 		finish();
 	}
@@ -155,30 +156,12 @@ public class ClosExpPropMktInfoActivity extends Activity {
 	}
 	
 	 public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
+		String strBackMessage = "Press Previous to return to Reserves, Next to see Final Results ";
+		strBackMessage += "or Help for assistance.";
 		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
-			exitByBackKey();
+			Toast.makeText(getApplicationContext(), strBackMessage, Toast.LENGTH_SHORT).show();
 		    return true;
 		}
 		return super.onKeyDown(nKeyCode, keEvent);
   }
-
-	 protected void exitByBackKey() {
-		AlertDialog adAlertBox = new AlertDialog.Builder(this)
-		    .setMessage("Do you want to go back to main menu?")
-		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-		        // do something when the button is clicked
-		        public void onClick(DialogInterface arg0, int arg1) {
-		        	Intent intB = new Intent(ClosExpPropMktInfoActivity.this, MainActivity.class);
-		        	startActivity(intB);
-		        	finish();
-		            //close();
-		        }
-		    })
-		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-		        // do something when the button is clicked
-		        public void onClick(DialogInterface arg0, int arg1) {
-		        }
-		    })
-		    .show();
-	 }
 }

@@ -27,10 +27,7 @@ public class MainActivity extends Activity {
 		File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorPremium");
 		String strPath = myDir.getPath();
 		//Toast.makeText(getApplicationContext(), strPath, Toast.LENGTH_SHORT).show();
-		
-		Intent intI = getIntent();
-		setS = (Settings) intI.getSerializableExtra("Settings");		
-        
+		        
 		final Button btnAbout = (Button) findViewById(R.id.btnAbout);
 		btnAbout.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
@@ -42,25 +39,21 @@ public class MainActivity extends Activity {
 		final Button btnCalculate = (Button) findViewById(R.id.btnCalculate);
 		btnCalculate.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
-				if (setS == null) {
-					setS = new Settings(0, 0);	// default is flat rate rehab class and original finance class
-				}
-				
-				Intent intL = new Intent(MainActivity.this, LocationActivity.class);
-			    intL.putExtra("Settings", setS);
+				Intent intL = new Intent(MainActivity.this, SettingsActivity.class);
 			    startActivity(intL);
 			    finish();
 			}
 		});
 
 		final Button btnSettings = (Button) findViewById(R.id.btnSettings);
-		btnSettings.setOnClickListener(new OnClickListener() {
+		btnSettings.setVisibility(View.INVISIBLE);
+/*		btnSettings.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
 			    Intent intI = new Intent(MainActivity.this, SettingsActivity.class);
 			    startActivity(intI);
 			}
 		});
-
+*/
 		final Button btnDonate = (Button) findViewById(R.id.btnDonate);
 		btnDonate.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {

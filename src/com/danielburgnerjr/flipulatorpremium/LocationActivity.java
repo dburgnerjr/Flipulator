@@ -18,6 +18,10 @@ public class LocationActivity extends Activity {
 	final Context cntC = this;
 	private Settings setS;
 	private Location locL;
+	private SalesMortgage smSM;
+	private Rehab rR;
+	private Reserves resR;
+	private ClosExpPropMktInfo cemC;
 	
 	private EditText etAddress;			// address
 	private EditText etCity;			// city
@@ -97,11 +101,20 @@ public class LocationActivity extends Activity {
 			etBedrooms.setText(locL.getBedrooms() + "");
 			etBathrooms.setText(locL.getBathrooms() + "");
 		}
+		smSM = (SalesMortgage) intI.getSerializableExtra("SalesMortgage");
+		rR = (Rehab) intI.getSerializableExtra("Rehab");
+		resR = (Reserves) intI.getSerializableExtra("Reserves");
+		cemC = (ClosExpPropMktInfo) intI.getSerializableExtra("ClosExpPropMktInfo");
 	}
 
 	public void prevPage(View view) {
-		Intent intI = new Intent(this, MainActivity.class);
+		Intent intI = new Intent(this, SettingsActivity.class);
 		intI.putExtra("Settings", setS);
+		intI.putExtra("Location", locL);
+		intI.putExtra("SalesMortgage", smSM);
+		intI.putExtra("Rehab", rR);
+		intI.putExtra("Reserves", resR);
+		intI.putExtra("ClosExpPropMktInfo", cemC);
 		startActivity(intI);
 		finish();
 	}
@@ -133,38 +146,32 @@ public class LocationActivity extends Activity {
 			locL.setBedrooms(Integer.parseInt(etBedrooms.getText().toString()));
 			locL.setBathrooms(Integer.parseInt(etBathrooms.getText().toString()));
 	    
-			intI.putExtra("Location", locL);
 			intI.putExtra("Settings", setS);
+			intI.putExtra("Location", locL);
+			if (smSM != null) {
+				intI.putExtra("SalesMortgage", smSM);
+			}
+			if (rR != null) {
+				intI.putExtra("Rehab", rR);
+			}
+			if (resR != null) {
+				intI.putExtra("Reserves", resR);
+			}
+			if (cemC != null) {
+				intI.putExtra("ClosExpPropMktInfo", cemC);
+			}
 			startActivity(intI);
 			finish();
 		}
 	}
 	
 	 public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {
+		String strBackMessage = "Press Previous to return to Settings, Next to enter Sales/Mortgage Info ";
+		strBackMessage += "or Help for assistance.";
 		if (nKeyCode == KeyEvent.KEYCODE_BACK) {
-			exitByBackKey();
+			Toast.makeText(getApplicationContext(), strBackMessage, Toast.LENGTH_SHORT).show();
 		    return true;
 		}
 		return super.onKeyDown(nKeyCode, keEvent);
-     }
-
-	 protected void exitByBackKey() {
-		AlertDialog adAlertBox = new AlertDialog.Builder(this)
-		    .setMessage("Do you want to go back to main menu?")
-		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-		        // do something when the button is clicked
-		        public void onClick(DialogInterface arg0, int arg1) {
-		        	Intent intB = new Intent(LocationActivity.this, MainActivity.class);
-		        	startActivity(intB);
-		        	finish();
-		            //close();
-		        }
-		    })
-		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-		        // do something when the button is clicked
-		        public void onClick(DialogInterface arg0, int arg1) {
-		        }
-		    })
-		    .show();
-	 }
+   }
 }

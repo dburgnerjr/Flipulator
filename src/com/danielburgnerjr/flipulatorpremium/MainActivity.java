@@ -45,15 +45,6 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		final Button btnSettings = (Button) findViewById(R.id.btnSettings);
-		btnSettings.setVisibility(View.INVISIBLE);
-/*		btnSettings.setOnClickListener(new OnClickListener() {
-			public void onClick(View view) {
-			    Intent intI = new Intent(MainActivity.this, SettingsActivity.class);
-			    startActivity(intI);
-			}
-		});
-*/
 		final Button btnDonate = (Button) findViewById(R.id.btnDonate);
 		btnDonate.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
@@ -83,9 +74,9 @@ public class MainActivity extends Activity {
 		}
 		btnOpenFiles.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
-				Toast.makeText(getApplicationContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
-			    //Intent intI = new Intent(MainActivity.this, DonateActivity.class);
-			    //startActivity(intI);
+				//Toast.makeText(getApplicationContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+			    Intent intI = new Intent(MainActivity.this, OpenFilesActivity.class);
+			    startActivity(intI);
 			}
 		});
 

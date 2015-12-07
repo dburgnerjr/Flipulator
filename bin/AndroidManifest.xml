@@ -38,6 +38,11 @@
 			android:theme="@style/AppTheme" >
 		</activity>
         <activity
+			android:name=".SettingsActivity"
+			android:label="Settings"
+			android:theme="@style/AppTheme" >
+		</activity>
+        <activity
 			android:name=".DonateActivity"
 			android:label="Donate"
 			android:theme="@style/AppTheme" >

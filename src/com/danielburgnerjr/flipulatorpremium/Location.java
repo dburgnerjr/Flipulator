@@ -14,6 +14,42 @@ public class Location implements Serializable {
 	private int nBedrooms;			// number of bedrooms
 	private int nBathrooms;			// number of bathrooms
 
+	//**********************************************************************	
+	// Constructor function (default)
+	//	Inputs:	none
+	//	Output:	none
+	//**********************************************************************	
+	public Location() {
+		strAddress = "";
+		strCity = "";
+		strState = "";
+		strZIPCode = "";
+		nSquareFootage = 0;
+		nBedrooms = 0;
+		nBathrooms = 0;
+	}
+
+	//**********************************************************************	
+	// Constructor function 
+	//	Inputs:	strA (String) - representing street address
+	//          strC (String) - representing city
+	//			strS (String) - representing state
+	//          strZ (String) - representing ZIP code
+	//			nSF  (int)    - representing square footage
+	//          nBR  (int)    - representing bedrooms
+	//          nBA  (int)    - representing bathrooms
+	//	Output:	none
+	//**********************************************************************	
+	public Location(String strA, String strC, String strS, String strZ, int nSF, int nBR, int nBA) {
+		strAddress = strA;
+		strCity = strC;
+		strState = strS;
+		strZIPCode = strZ;
+		nSquareFootage = nSF;
+		nBedrooms = nBR;
+		nBathrooms = nBA;
+	}
+
 	public String getAddress() {
 		return strAddress;
 	}

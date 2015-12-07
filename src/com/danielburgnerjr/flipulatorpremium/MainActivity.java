@@ -74,9 +74,9 @@ public class MainActivity extends Activity {
 		}
 		btnOpenFiles.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
-				//Toast.makeText(getApplicationContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
-			    Intent intI = new Intent(MainActivity.this, OpenFilesActivity.class);
+				Intent intI = new Intent(MainActivity.this, OpenFilesActivity.class);
 			    startActivity(intI);
+			    finish();
 			}
 		});
 

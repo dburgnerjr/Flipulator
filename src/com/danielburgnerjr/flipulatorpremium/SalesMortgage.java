@@ -15,6 +15,45 @@ public class SalesMortgage implements Serializable {
 	private int nTerm;				// term
 	private double dMonthlyPmt;		// monthly payment
 
+	//**********************************************************************	
+	// Constructor function (default)
+	//	Inputs:	none
+	//	Output:	none
+	//**********************************************************************	
+	public SalesMortgage() {
+		dSalesPrice = 0;
+		dPercentDown = 0;
+		dOfferBid = 0;
+		dDownPayment = 0;
+		dLoanAmount = 0;
+		dInterestRate = 0;
+		nTerm = 0;
+		dMonthlyPmt = 0;
+	}
+
+	//**********************************************************************	
+	// Constructor function 
+	//	Inputs:	dSP (double) - representing sales price
+	//          dPD (double) - representing percent down
+	//			dOB (double) - representing offer bid
+	//			dDP (double) - representing down payment
+	//			dLA (double) - representing loan amount
+	//          dIR (double) - representing interest rate
+	//			nT  (int)    - representing term
+	//			dMP (double) - representing monthly payment
+	//	Output:	none
+	//**********************************************************************	
+	public SalesMortgage(double dSP, double dPD, double dOB, double dDP, double dLA, double dIR, int nT, double dMP) {
+		dSalesPrice = dSP;
+		dPercentDown = dPD;
+		dOfferBid = dOB;
+		dDownPayment = dDP;
+		dLoanAmount = dLA;
+		dInterestRate = dIR;
+		nTerm = nT;
+		dMonthlyPmt = dMP;
+	}
+
 	public double getSalesPrice() {
 		return dSalesPrice;
 	}

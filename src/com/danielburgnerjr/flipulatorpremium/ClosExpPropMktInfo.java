@@ -13,6 +13,39 @@ public class ClosExpPropMktInfo implements Serializable {
 	private double dComparables;	// comparables
 	private double dSellingPrice;	// selling price
 
+	//**********************************************************************	
+	// Constructor function (default)
+	//	Inputs:	none
+	//	Output:	none
+	//**********************************************************************	
+	public ClosExpPropMktInfo() {
+		dRealEstComm = 0;
+		dBuyClosCost = 0;
+		dSellClosCost = 0;
+		dFMVARV = 0;
+		dComparables = 0;
+		dSellingPrice = 0;
+	}
+
+	//**********************************************************************	
+	// Constructor function 
+	//	Inputs:	dRE (double) - representing real estate commission
+	//          dBC (double) - representing buyer closing costs
+	//			dSC (double) - representing seller closing costs
+	//          dMV (double) - representing FMV/ARV
+	//			dCO (double) - representing comparables
+	//			dSP (double) - representing selling price
+	//	Output:	none
+	//**********************************************************************	
+	public ClosExpPropMktInfo(double dRE, double dBC, double dSC, double dMV, double dCO, double dSP) {
+		dRealEstComm = dRE;
+		dBuyClosCost = dBC;
+		dSellClosCost = dSC;
+		dFMVARV = dMV;
+		dComparables = dCO;
+		dSellingPrice = dSP;
+	}
+
 	public double getRealEstComm() {
 		return dRealEstComm;
 	}

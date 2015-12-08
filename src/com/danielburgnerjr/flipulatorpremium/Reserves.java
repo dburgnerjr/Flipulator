@@ -14,6 +14,42 @@ public class Reserves implements Serializable {
 	private double dElectric;		// electric
 	private double dTotalExpenses;	// total expenses
 
+	//**********************************************************************	
+	// Constructor function (default)
+	//	Inputs:	none
+	//	Output:	none
+	//**********************************************************************	
+	public Reserves() {
+		dMortgage = 0;
+		dInsurance = 0;
+		dTaxes = 0;
+		dWater = 0;
+		dGas = 0;
+		dElectric = 0;
+		dTotalExpenses = 0;
+	}
+
+	//**********************************************************************	
+	// Constructor function 
+	//	Inputs:	dM (double) - representing mortgage
+	//          dI (double) - representing insurance
+	//			dT (double) - representing taxes
+	//          dW (double) - representing water
+	//			dG (double) - representing gas
+	//			dE (double) - representing electric
+	//			dTE (double) - representing total expenses
+	//	Output:	none
+	//**********************************************************************	
+	public Reserves(double dM, double dI, double dT, double dW, double dG, double dE, double dTE) {
+		dMortgage = dM;
+		dInsurance = dI;
+		dTaxes = dT;
+		dWater = dW;
+		dGas = dG;
+		dElectric = dE;
+		dTotalExpenses = dTE;
+	}
+
 	public double getMortgage() {
 		return dMortgage;
 	}

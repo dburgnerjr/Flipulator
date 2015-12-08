@@ -73,6 +73,10 @@ public class OpenFilesActivity extends Activity {
                Intent newActivity;
                Settings setS = null;
                Location locL = null;
+               SalesMortgage smSM = null;
+               Rehab rR = null;
+               Reserves resR = null;
+               ClosExpPropMktInfo cemC = null;
                try {
             	   File fPath = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorPremium");
             	   String strFilePath = fPath.getPath() + "/" + itemValue + ".txt";
@@ -98,8 +102,50 @@ public class OpenFilesActivity extends Activity {
 	            	   locL = new Location(strValues[5], strValues[7], strValues[9], strValues[11],
 	            			   			   Integer.parseInt(strValues[13]), Integer.parseInt(strValues[15]),
 	            			   			   Integer.parseInt(strValues[17]));
+	            	   smSM = new SalesMortgage(Double.parseDouble(strValues[19]), Double.parseDouble(strValues[21]),
+	            			   					Double.parseDouble(strValues[23]), Double.parseDouble(strValues[27]),
+	            			   					Double.parseDouble(strValues[29]), Double.parseDouble(strValues[31]),
+	            			   					Integer.parseInt(strValues[33]), Double.parseDouble(strValues[35]));
+	            	   if (setS.getRehab() == 0) {
+	            		   rR = new RehabFlatRate(Double.parseDouble(strValues[25]));
+	            	   }
+	            	   if (setS.getRehab() == 1) {
+		       				int nCostSF = (int)(Double.parseDouble(strValues[25])/locL.getSquareFootage());
+		       				String strType = "";
+		    	      	  	switch (nCostSF) {
+		    	      	  		case 15:
+		    	      	  					strType = "Low";
+		    	      	  					break;
+		    	      	  		case 20:
+		    	      	  		case 25:
+		    	      	  					strType = "Medium";
+		    		    	  				break;
+		    	      	  		case 30:
+		    	      	  					strType = "High";
+		    		    	  				break;
+		    	      	  		case 40:
+		    	      	  					strType = "Super-High";
+		    		    	  				break;
+		    	      	  		case 125:
+		    	      	  					strType = "Bulldozer";
+		    		    	  				break;
+		    	      	    }
+
+	            		   rR = new RehabType(locL.getSquareFootage(), strType);
+	            	   }
+	            	   resR = new Reserves(Double.parseDouble(strValues[37]), Double.parseDouble(strValues[39]),
+			   							   Double.parseDouble(strValues[41]), Double.parseDouble(strValues[43]),
+			   							   Double.parseDouble(strValues[45]), Double.parseDouble(strValues[47]),
+			   							   Double.parseDouble(strValues[49]));
+	            	   cemC = new ClosExpPropMktInfo(Double.parseDouble(strValues[53]), Double.parseDouble(strValues[57]),
+	            			   						 Double.parseDouble(strValues[61]), Double.parseDouble(strValues[67]),
+	            			   						 Double.parseDouble(strValues[69]), Double.parseDouble(strValues[71]));
 	            	   //Toast.makeText(getApplicationContext(), setS.toString(), Toast.LENGTH_SHORT).show();
 	            	   //Toast.makeText(getApplicationContext(), locL.toString(), Toast.LENGTH_SHORT).show();
+	            	   //Toast.makeText(getApplicationContext(), smSM.toString(), Toast.LENGTH_SHORT).show();
+	            	   //Toast.makeText(getApplicationContext(), rR.toString(), Toast.LENGTH_SHORT).show();
+	            	   //Toast.makeText(getApplicationContext(), resR.toString(), Toast.LENGTH_SHORT).show();
+	            	   //Toast.makeText(getApplicationContext(), cemC.toString(), Toast.LENGTH_SHORT).show();
 	               }
                } catch (IOException e) {
             	   Toast.makeText(getApplicationContext(), "IO Exception", Toast.LENGTH_SHORT).show();
@@ -107,6 +153,10 @@ public class OpenFilesActivity extends Activity {
             	   newActivity = new Intent(OpenFilesActivity.this, SettingsActivity.class);
             	   newActivity.putExtra("Settings", setS);
             	   newActivity.putExtra("Location", locL);
+            	   newActivity.putExtra("SalesMortgage", smSM);
+            	   newActivity.putExtra("Rehab", rR);
+            	   newActivity.putExtra("Reserves", resR);
+            	   newActivity.putExtra("ClosExpPropMktInfo", cemC);
             	   startActivity(newActivity);
             	   finish();
                }               

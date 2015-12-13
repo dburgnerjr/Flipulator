@@ -15,6 +15,22 @@ import android.widget.Toast;
 import android.content.DialogInterface;
 import android.content.Intent;
 import java.io.*;
+
+import java.util.Locale;
+
+import jxl.CellView;
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import jxl.format.UnderlineStyle;
+import jxl.write.Formula;
+import jxl.write.Label;
+import jxl.write.Number;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
  
 public class FinalResultActivity extends Activity {
  
@@ -26,6 +42,9 @@ public class FinalResultActivity extends Activity {
 	private ClosExpPropMktInfo cemC;
 	private FinalResult frF;
 	private Spinner spnTimeFrame;
+	private WritableCellFormat timesBoldUnderline;
+	private WritableCellFormat times;
+
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -259,12 +278,51 @@ public class FinalResultActivity extends Activity {
    		startActivity(intEmailActivity);
 	}
 
-	public void saveFile(View view) throws FileNotFoundException, IOException {
+	public void saveFile(View view) throws FileNotFoundException, IOException, WriteException {
 		// saves results to text file
 		File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorPremium");
 	    myDir.mkdirs();
 	    String strFileName = locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode() + ".txt";
+	    String strFileNameXls = locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode() + ".xls";
 		File file = new File(myDir, strFileName);
+		File fileXls = new File(myDir, strFileNameXls);
+		
+	    WorkbookSettings wbSettings = new WorkbookSettings();
+
+	    wbSettings.setLocale(new Locale("en", "EN"));
+
+	    WritableWorkbook workbook = Workbook.createWorkbook(fileXls, wbSettings);
+	    workbook.createSheet(locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode(), 0);
+	    WritableSheet excelSheet = workbook.getSheet(0);
+
+	    // Lets create a times font
+	    WritableFont times10pt = new WritableFont(WritableFont.TIMES, 10);
+	    // Define the cell format
+	    times = new WritableCellFormat(times10pt);
+	    // Lets automatically wrap the cells
+	    times.setWrap(true);
+
+	    // create create a bold font with underlines
+	    WritableFont times10ptBoldUnderline = new WritableFont(WritableFont.TIMES, 10, WritableFont.BOLD, false,
+	        UnderlineStyle.SINGLE);
+	    timesBoldUnderline = new WritableCellFormat(times10ptBoldUnderline);
+	    // Lets automatically wrap the cells
+	    timesBoldUnderline.setWrap(true);
+
+	    CellView cv = new CellView();
+	    cv.setFormat(times);
+	    cv.setFormat(timesBoldUnderline);
+	    cv.setAutosize(true);
+
+	    // Write a few headers
+	    Label label;
+	    label = new Label(5, 0, "Original", times);
+	    excelSheet.addCell(label);
+
+	    //createContent(excelSheet);
+
+	    workbook.write();
+	    workbook.close();
 
 		String strMessage = "Rehab Type:" + setS.getRehab() + ":";
 		strMessage += "Finance Type:" + setS.getFinance() + ":";

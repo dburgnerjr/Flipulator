@@ -25,6 +25,7 @@ import jxl.format.UnderlineStyle;
 import jxl.write.Formula;
 import jxl.write.Label;
 import jxl.write.Number;
+import jxl.write.WritableCell;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
@@ -42,7 +43,7 @@ public class FinalResultActivity extends Activity {
 	private ClosExpPropMktInfo cemC;
 	private FinalResult frF;
 	private Spinner spnTimeFrame;
-	private WritableCellFormat timesBoldUnderline;
+	private WritableCellFormat timesBold;
 	private WritableCellFormat times;
 
     
@@ -296,29 +297,91 @@ public class FinalResultActivity extends Activity {
 	    WritableSheet excelSheet = workbook.getSheet(0);
 
 	    // Lets create a times font
-	    WritableFont times10pt = new WritableFont(WritableFont.TIMES, 10);
+	    WritableFont times14ptHeader = new WritableFont(WritableFont.TIMES, 14, WritableFont.BOLD);
 	    // Define the cell format
-	    times = new WritableCellFormat(times10pt);
+	    times = new WritableCellFormat(times14ptHeader);
 	    // Lets automatically wrap the cells
 	    times.setWrap(true);
 
-	    // create create a bold font with underlines
-	    WritableFont times10ptBoldUnderline = new WritableFont(WritableFont.TIMES, 10, WritableFont.BOLD, false,
-	        UnderlineStyle.SINGLE);
-	    timesBoldUnderline = new WritableCellFormat(times10ptBoldUnderline);
+	    // create create a bold font
+	    WritableFont times10ptBold = new WritableFont(WritableFont.TIMES, 10, WritableFont.BOLD, false);
+	    timesBold = new WritableCellFormat(times10ptBold);
 	    // Lets automatically wrap the cells
-	    timesBoldUnderline.setWrap(true);
+	    timesBold.setWrap(true);
 
 	    CellView cv = new CellView();
 	    cv.setFormat(times);
-	    cv.setFormat(timesBoldUnderline);
+	    cv.setFormat(timesBold);
 	    cv.setAutosize(true);
 
 	    // Write a few headers
-	    Label label;
-	    label = new Label(5, 0, "Original", times);
-	    excelSheet.addCell(label);
+	    WritableCell wrcOriginal = new Label(0, 0, "Original", times);
+	    excelSheet.setColumnView(0, 25);
+	    excelSheet.setColumnView(1, 15);
+	    excelSheet.setColumnView(2, 17);
+	    excelSheet.setColumnView(3, 17);
+	    excelSheet.setColumnView(4, 17);
+	    excelSheet.setColumnView(5, 3);
+	    excelSheet.setColumnView(6, 3);
+	    excelSheet.setColumnView(7, 25);
+	    excelSheet.setColumnView(8, 15);
+	    excelSheet.setColumnView(9, 17);
+	    excelSheet.setColumnView(10, 17);
+	    excelSheet.setColumnView(11, 17);
+	    excelSheet.setColumnView(12, 3);
+	    excelSheet.setColumnView(13, 3);
+	    excelSheet.setColumnView(14, 25);
+	    excelSheet.setColumnView(15, 15);
+	    excelSheet.setColumnView(16, 17);
+	    excelSheet.setColumnView(17, 17);
+	    excelSheet.setColumnView(18, 17);
+	    excelSheet.addCell(wrcOriginal);
+	    excelSheet.mergeCells(0, 0, 4, 0);
+	    excelSheet.setRowView(0, (int)((1.5d * 14)*20), false);
 
+	    WritableCell wrcOwnerCarry = new Label(7, 0, "Owner Carry Rehab Cost", times);
+	    excelSheet.addCell(wrcOwnerCarry);
+	    excelSheet.mergeCells(7, 0, 11, 0);
+
+	    WritableCell wrcFinanceRehab = new Label(14, 0, "Finance Rehab Cost", times);
+	    excelSheet.addCell(wrcFinanceRehab);
+	    excelSheet.mergeCells(14, 0, 18, 0);
+	    
+	    Label lblPropAddressOrig;
+	    lblPropAddressOrig = new Label(0, 1, "Property Address:", timesBold);
+	    excelSheet.addCell(lblPropAddressOrig);
+
+	    Label lblCityOrig;
+	    lblCityOrig = new Label(0, 2, "City:", timesBold);
+	    excelSheet.addCell(lblCityOrig);
+
+	    Label lblStZipOrig;
+	    lblStZipOrig = new Label(2, 2, "State/ZIP:", timesBold);
+	    excelSheet.addCell(lblStZipOrig);
+
+	    Label lblPropAddressOwnerCarry;
+	    lblPropAddressOwnerCarry = new Label(7, 1, "Property Address:", timesBold);
+	    excelSheet.addCell(lblPropAddressOwnerCarry);
+
+	    Label lblCityOwnerCarry;
+	    lblCityOwnerCarry = new Label(7, 2, "City:", timesBold);
+	    excelSheet.addCell(lblCityOwnerCarry);
+
+	    Label lblStZipOwnerCarry;
+	    lblStZipOwnerCarry = new Label(9, 2, "State/ZIP:", timesBold);
+	    excelSheet.addCell(lblStZipOwnerCarry);
+
+	    Label lblPropAddressFinRehab;
+	    lblPropAddressFinRehab = new Label(14, 1, "Property Address:", timesBold);
+	    excelSheet.addCell(lblPropAddressFinRehab);
+
+	    Label lblCityFinRehab;
+	    lblCityFinRehab = new Label(14, 2, "City:", timesBold);
+	    excelSheet.addCell(lblCityFinRehab);
+
+	    Label lblStZipFinRehab;
+	    lblStZipFinRehab = new Label(16, 2, "State/ZIP:", timesBold);
+	    excelSheet.addCell(lblStZipFinRehab);
 	    //createContent(excelSheet);
 
 	    workbook.write();

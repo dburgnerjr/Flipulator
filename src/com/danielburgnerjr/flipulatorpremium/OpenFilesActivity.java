@@ -104,7 +104,7 @@ public class OpenFilesActivity extends Activity {
 	            	   setS = new Settings(Integer.parseInt(strValues[1]), Integer.parseInt(strValues[3]));
 	            	   locL = new Location(strValues[5], strValues[7], strValues[9], strValues[11],
 	            			   			   Integer.parseInt(strValues[13]), Integer.parseInt(strValues[15]),
-	            			   			   Integer.parseInt(strValues[17]));
+	            			   			   Double.parseDouble(strValues[17]));
 	            	   smSM = new SalesMortgage(Double.parseDouble(strValues[19]), Double.parseDouble(strValues[21]),
 	            			   					Double.parseDouble(strValues[23]), Double.parseDouble(strValues[27]),
 	            			   					Double.parseDouble(strValues[29]), Double.parseDouble(strValues[31]),

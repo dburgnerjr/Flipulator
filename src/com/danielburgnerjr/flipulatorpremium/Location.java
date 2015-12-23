@@ -12,7 +12,7 @@ public class Location implements Serializable {
 	private String strZIPCode;		// ZIP Code
 	private int nSquareFootage;		// square footage
 	private int nBedrooms;			// number of bedrooms
-	private int nBathrooms;			// number of bathrooms
+	private double dBathrooms;		// number of bathrooms
 
 	//**********************************************************************	
 	// Constructor function (default)
@@ -26,7 +26,7 @@ public class Location implements Serializable {
 		strZIPCode = "";
 		nSquareFootage = 0;
 		nBedrooms = 0;
-		nBathrooms = 0;
+		dBathrooms = 0;
 	}
 
 	//**********************************************************************	
@@ -37,17 +37,17 @@ public class Location implements Serializable {
 	//          strZ (String) - representing ZIP code
 	//			nSF  (int)    - representing square footage
 	//          nBR  (int)    - representing bedrooms
-	//          nBA  (int)    - representing bathrooms
+	//          dBA  (int)    - representing bathrooms
 	//	Output:	none
 	//**********************************************************************	
-	public Location(String strA, String strC, String strS, String strZ, int nSF, int nBR, int nBA) {
+	public Location(String strA, String strC, String strS, String strZ, int nSF, int nBR, double dBA) {
 		strAddress = strA;
 		strCity = strC;
 		strState = strS;
 		strZIPCode = strZ;
 		nSquareFootage = nSF;
 		nBedrooms = nBR;
-		nBathrooms = nBA;
+		dBathrooms = dBA;
 	}
 
 	public String getAddress() {
@@ -98,17 +98,17 @@ public class Location implements Serializable {
 		this.nBedrooms = nBR;
 	}
 
-	public int getBathrooms() {
-		return nBathrooms;
+	public double getBathrooms() {
+		return dBathrooms;
 	}
 
-	public void setBathrooms(int nBA) {
-		this.nBathrooms = nBA;
+	public void setBathrooms(double dBA) {
+		this.dBathrooms = dBA;
 	}
 	
     @Override
     public String toString() {
         return "Location\nAddress: " + strAddress + "\nCity: " + strCity + "\nState: " + strState + "\nZIP Code: " + strZIPCode +
-        	   "\nSquare Footage: " + nSquareFootage + "\nBedrooms: " + nBedrooms + "\nBathrooms: " + nBathrooms;
+        	   "\nSquare Footage: " + nSquareFootage + "\nBedrooms: " + nBedrooms + "\nBathrooms: " + dBathrooms;
     }  
 }

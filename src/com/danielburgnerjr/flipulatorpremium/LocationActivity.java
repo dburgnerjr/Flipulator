@@ -144,7 +144,7 @@ public class LocationActivity extends Activity {
 			locL.setZIPCode(etZIPCode.getText().toString());
 			locL.setSquareFootage(Integer.parseInt(etSquareFootage.getText().toString()));
 			locL.setBedrooms(Integer.parseInt(etBedrooms.getText().toString()));
-			locL.setBathrooms(Integer.parseInt(etBathrooms.getText().toString()));
+			locL.setBathrooms(Double.parseDouble(etBathrooms.getText().toString()));
 	    
 			intI.putExtra("Settings", setS);
 			intI.putExtra("Location", locL);

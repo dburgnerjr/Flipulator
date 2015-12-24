@@ -14,8 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.DialogInterface;
 import android.content.Intent;
-import java.io.*;
 
+import java.io.*;
+import java.text.DecimalFormat;
 import java.util.Locale;
 
 import jxl.CellView;
@@ -25,6 +26,7 @@ import jxl.format.UnderlineStyle;
 import jxl.write.Formula;
 import jxl.write.Label;
 import jxl.write.Number;
+import jxl.write.NumberFormat;
 import jxl.write.WritableCell;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
@@ -314,8 +316,54 @@ public class FinalResultActivity extends Activity {
 	    cv.setFormat(timesBold);
 	    cv.setAutosize(true);
 
+	    // Number and writable cell formats
+	    NumberFormat nbfDollar = new NumberFormat("$###,000");
+	    WritableCellFormat wcfDollar = new WritableCellFormat(nbfDollar);
+
+	    NumberFormat nbfPercent = new NumberFormat("##%");
+	    WritableCellFormat wcfPercent = new WritableCellFormat(nbfPercent);
+
+	    NumberFormat nbfPercentTwoPlaces = new NumberFormat("#0.00%");
+	    WritableCellFormat wcfPercentTwoPlaces = new WritableCellFormat(nbfPercentTwoPlaces);
+
 	    // Write a few headers
 	    WritableCell wrcOriginal = new Label(0, 0, "Original", times);
+	    excelSheet.addCell(wrcOriginal);
+	    excelSheet.mergeCells(0, 0, 4, 0);
+
+	    WritableCell wrcOwnerCarry = new Label(7, 0, "Owner Carry Rehab Cost", times);
+	    excelSheet.addCell(wrcOwnerCarry);
+	    excelSheet.mergeCells(7, 0, 11, 0);
+
+	    WritableCell wrcFinanceRehab = new Label(13, 0, "Finance Rehab Cost", times);
+	    excelSheet.addCell(wrcFinanceRehab);
+	    excelSheet.mergeCells(13, 0, 17, 0);
+
+	    WritableCell wrcSalesOrig = new Label(0, 6, "I. Sales Information", times);
+	    excelSheet.addCell(wrcSalesOrig);
+	    excelSheet.mergeCells(0, 6, 1, 6);
+
+	    WritableCell wrcMortOrig = new Label(2, 6, "II. Mortgage Information", times);
+	    excelSheet.addCell(wrcMortOrig);
+	    excelSheet.mergeCells(2, 6, 4, 6);
+
+	    WritableCell wrcSalesOwnerCarry = new Label(7, 6, "I. Sales Information", times);
+	    excelSheet.addCell(wrcSalesOwnerCarry);
+	    excelSheet.mergeCells(7, 6, 8, 6);
+
+	    WritableCell wrcMortOwnerCarry = new Label(9, 6, "II. Mortgage Information", times);
+	    excelSheet.addCell(wrcMortOwnerCarry);
+	    excelSheet.mergeCells(9, 6, 11, 6);
+
+	    WritableCell wrcSalesFinanceRehab = new Label(13, 6, "I. Sales Information", times);
+	    excelSheet.addCell(wrcSalesFinanceRehab);
+	    excelSheet.mergeCells(13, 6, 14, 6);
+
+	    WritableCell wrcMortFinanceRehab = new Label(15, 6, "II. Mortgage Information", times);
+	    excelSheet.addCell(wrcMortFinanceRehab);
+	    excelSheet.mergeCells(15, 6, 17, 6);
+
+	    // set up column views
 	    excelSheet.setColumnView(0, 25);
 	    excelSheet.setColumnView(1, 14);
 	    excelSheet.setColumnView(2, 17);
@@ -334,8 +382,8 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.setColumnView(15, 19);
 	    excelSheet.setColumnView(16, 17);
 	    excelSheet.setColumnView(17, 14);
-	    excelSheet.addCell(wrcOriginal);
-	    excelSheet.mergeCells(0, 0, 4, 0);
+	    
+	    // set up row views
 	    excelSheet.setRowView(0, (int)((1.5d * 14)*20), false);
 	    excelSheet.setRowView(6, (int)((1.5d * 14)*20), false);
 	    excelSheet.setRowView(18, (int)((1.5d * 14)*20), false);
@@ -343,14 +391,7 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.setRowView(42, (int)((1.5d * 14)*20), false);
 	    excelSheet.setRowView(58, (int)((1.5d * 14)*20), false);
 
-	    WritableCell wrcOwnerCarry = new Label(7, 0, "Owner Carry Rehab Cost", times);
-	    excelSheet.addCell(wrcOwnerCarry);
-	    excelSheet.mergeCells(7, 0, 11, 0);
-
-	    WritableCell wrcFinanceRehab = new Label(13, 0, "Finance Rehab Cost", times);
-	    excelSheet.addCell(wrcFinanceRehab);
-	    excelSheet.mergeCells(13, 0, 17, 0);
-	    
+	    // location info - original
 	    Label lblPropAddressOrig;
 	    lblPropAddressOrig = new Label(0, 1, "Property Address:", timesBold);
 	    excelSheet.addCell(lblPropAddressOrig);
@@ -397,6 +438,69 @@ public class FinalResultActivity extends Activity {
 	    Label lblBA = new Label(3, 4, locL.getBathrooms() + "", timesBold);
 	    excelSheet.addCell(lblBA);
 
+	    // sales info - original
+	    Label lblSalesPriceOrig;
+	    lblSalesPriceOrig = new Label(0, 8, "Sales Price:", timesBold);
+	    excelSheet.addCell(lblSalesPriceOrig);
+	    Number nbrSalesPriceO = new Number(1, 8, smSM.getSalesPrice(), wcfDollar);
+	    excelSheet.addCell(nbrSalesPriceO);
+
+	    Label lblPercentDownOrig;
+	    lblPercentDownOrig = new Label(0, 10, "Percent Down:", timesBold);
+	    excelSheet.addCell(lblPercentDownOrig);
+	    Number nbrPercentDownO = new Number(1, 10, (smSM.getPercentDown()/100), wcfPercent);
+	    excelSheet.addCell(nbrPercentDownO);
+
+	    Label lblOfferBidOrig;
+	    lblOfferBidOrig = new Label(0, 12, "Offer/Bid Price:", timesBold);
+	    excelSheet.addCell(lblOfferBidOrig);
+	    Number nbrOfferBidO = new Number(1, 12, smSM.getOfferBid(), wcfDollar);
+	    excelSheet.addCell(nbrOfferBidO);
+
+	    Label lblRehabOrig;
+	    lblRehabOrig = new Label(0, 14, "Rehab Budget:", timesBold);
+	    excelSheet.addCell(lblRehabOrig);
+	    Number nbrRehabO = new Number(1, 14, rR.getBudget(), wcfDollar);
+	    excelSheet.addCell(nbrRehabO);
+
+	    // mortgage info - original
+	    Label lblDownPaymentOrig;
+	    lblDownPaymentOrig = new Label(2, 8, "Down Payment:", timesBold);
+	    excelSheet.addCell(lblDownPaymentOrig);
+	    StringBuffer buf = new StringBuffer();
+	    buf.append("SUM(B11*B9)");
+	    Formula forDownPaymentO = new Formula(3, 8, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forDownPaymentO);
+
+	    Label lblLoanAmountOrig;
+	    lblLoanAmountOrig = new Label(2, 10, "Loan Amount:", timesBold);
+	    excelSheet.addCell(lblLoanAmountOrig);
+	    buf = new StringBuffer();
+	    buf.append("(B13-D9)");
+	    Formula forLoanAmountO = new Formula(3, 10, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forLoanAmountO);
+
+	    Label lblInterestRateOrig;
+	    lblInterestRateOrig = new Label(2, 12, "Interest Rate:", timesBold);
+	    excelSheet.addCell(lblInterestRateOrig);
+	    Number nbrInterestRateO = new Number(3, 12, (smSM.getInterestRate()/100), wcfPercentTwoPlaces);
+	    excelSheet.addCell(nbrInterestRateO);
+
+	    Label lblTermOrig;
+	    lblTermOrig = new Label(2, 14, "Term:", timesBold);
+	    excelSheet.addCell(lblTermOrig);
+	    Number nbrTermO = new Number(3, 14, smSM.getTerm());
+	    excelSheet.addCell(nbrTermO);
+
+	    Label lblMonthlyPmtOrig;
+	    lblMonthlyPmtOrig = new Label(2, 16, "Monthly Pmt:", timesBold);
+	    excelSheet.addCell(lblMonthlyPmtOrig);
+	    buf = new StringBuffer();
+	    buf.append("SUM(D13*D11/12)");
+	    Formula forMonthlyPmtO = new Formula(3, 16, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMonthlyPmtO);
+
+	    // location info - owner carry
 	    Label lblPropAddressOwnerCarry;
 	    lblPropAddressOwnerCarry = new Label(7, 1, "Property Address:", timesBold);
 	    excelSheet.addCell(lblPropAddressOwnerCarry);
@@ -443,6 +547,69 @@ public class FinalResultActivity extends Activity {
 	    Label lblBAOC = new Label(10, 4, locL.getBathrooms() + "", timesBold);
 	    excelSheet.addCell(lblBAOC);
 
+	    // sales info - owner carry
+	    Label lblSalesPriceOwnerCarry;
+	    lblSalesPriceOwnerCarry = new Label(7, 8, "Sales Price:", timesBold);
+	    excelSheet.addCell(lblSalesPriceOwnerCarry);
+	    Number nbrSalesPriceOC = new Number(8, 8, smSM.getSalesPrice(), wcfDollar);
+	    excelSheet.addCell(nbrSalesPriceOC);
+
+	    Label lblPercentDownOwnerCarry;
+	    lblPercentDownOwnerCarry = new Label(7, 10, "Percent Down:", timesBold);
+	    excelSheet.addCell(lblPercentDownOwnerCarry);
+	    Number nbrPercentDownOC = new Number(8, 10, (smSM.getPercentDown()/100), wcfPercent);
+	    excelSheet.addCell(nbrPercentDownOC);
+
+	    Label lblOfferBidOwnerCarry;
+	    lblOfferBidOwnerCarry = new Label(7, 12, "Offer/Bid Price:", timesBold);
+	    excelSheet.addCell(lblOfferBidOwnerCarry);
+	    Number nbrOfferBidOC = new Number(8, 12, smSM.getOfferBid(), wcfDollar);
+	    excelSheet.addCell(nbrOfferBidOC);
+
+	    Label lblRehabOwnerCarry;
+	    lblRehabOwnerCarry = new Label(7, 14, "Rehab Budget:", timesBold);
+	    excelSheet.addCell(lblRehabOwnerCarry);
+	    Number nbrRehabOC = new Number(8, 14, rR.getBudget(), wcfDollar);
+	    excelSheet.addCell(nbrRehabOC);
+
+	    // mortgage info - original
+	    Label lblDownPaymentOwnerCarry;
+	    lblDownPaymentOwnerCarry = new Label(9, 8, "Down Payment:", timesBold);
+	    excelSheet.addCell(lblDownPaymentOwnerCarry);
+	    buf = new StringBuffer();
+	    buf.append("SUM(I11*I9)");
+	    Formula forDownPaymentOC = new Formula(10, 8, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forDownPaymentOC);
+
+	    Label lblLoanAmountOwnerCarry;
+	    lblLoanAmountOwnerCarry = new Label(9, 10, "Loan Amount:", timesBold);
+	    excelSheet.addCell(lblLoanAmountOwnerCarry);
+	    buf = new StringBuffer();
+	    buf.append("(I13-K9)");
+	    Formula forLoanAmountOC = new Formula(10, 10, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forLoanAmountOC);
+
+	    Label lblInterestRateOwnerCarry;
+	    lblInterestRateOwnerCarry = new Label(9, 12, "Interest Rate:", timesBold);
+	    excelSheet.addCell(lblInterestRateOwnerCarry);
+	    Number nbrInterestRateOC = new Number(10, 12, (smSM.getInterestRate()/100), wcfPercentTwoPlaces);
+	    excelSheet.addCell(nbrInterestRateOC);
+
+	    Label lblTermOwnerCarry;
+	    lblTermOwnerCarry = new Label(9, 14, "Term:", timesBold);
+	    excelSheet.addCell(lblTermOwnerCarry);
+	    Number nbrTermOC = new Number(10, 14, smSM.getTerm());
+	    excelSheet.addCell(nbrTermOC);
+
+	    Label lblMonthlyPmtOwnerCarry;
+	    lblMonthlyPmtOwnerCarry = new Label(9, 16, "Monthly Pmt:", timesBold);
+	    excelSheet.addCell(lblMonthlyPmtOwnerCarry);
+	    buf = new StringBuffer();
+	    buf.append("SUM(K13*K11/12)");
+	    Formula forMonthlyPmtOC = new Formula(10, 16, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMonthlyPmtOC);
+
+	    // location info - finance rehab
 	    Label lblPropAddressFinRehab;
 	    lblPropAddressFinRehab = new Label(13, 1, "Property Address:", timesBold);
 	    excelSheet.addCell(lblPropAddressFinRehab);
@@ -488,6 +655,68 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.mergeCells(16, 4, 17, 4);
 	    Label lblBAFR = new Label(16, 4, locL.getBathrooms() + "", timesBold);
 	    excelSheet.addCell(lblBAFR);
+
+	    // sales info - finance rehab
+	    Label lblSalesPriceFinRehab;
+	    lblSalesPriceFinRehab = new Label(13, 8, "Sales Price:", timesBold);
+	    excelSheet.addCell(lblSalesPriceFinRehab);
+	    Number nbrSalesPriceFR = new Number(14, 8, smSM.getSalesPrice(), wcfDollar);
+	    excelSheet.addCell(nbrSalesPriceFR);
+
+	    Label lblPercentDownFinRehab;
+	    lblPercentDownFinRehab = new Label(13, 10, "Percent Down:", timesBold);
+	    excelSheet.addCell(lblPercentDownFinRehab);
+	    Number nbrPercentDownFR = new Number(14, 10, (smSM.getPercentDown()/100), wcfPercent);
+	    excelSheet.addCell(nbrPercentDownFR);
+
+	    Label lblOfferBidFinRehab;
+	    lblOfferBidFinRehab = new Label(13, 12, "Offer/Bid Price:", timesBold);
+	    excelSheet.addCell(lblOfferBidFinRehab);
+	    Number nbrOfferBidFR = new Number(14, 12, smSM.getOfferBid(), wcfDollar);
+	    excelSheet.addCell(nbrOfferBidFR);
+
+	    Label lblRehabFinRehab;
+	    lblRehabFinRehab = new Label(13, 14, "Rehab Budget:", timesBold);
+	    excelSheet.addCell(lblRehabFinRehab);
+	    Number nbrRehabFR = new Number(14, 14, rR.getBudget(), wcfDollar);
+	    excelSheet.addCell(nbrRehabFR);
+
+	    // mortgage info - finance rehab
+	    Label lblDownPaymentFinRehab;
+	    lblDownPaymentFinRehab = new Label(15, 8, "Down Payment:", timesBold);
+	    excelSheet.addCell(lblDownPaymentFinRehab);
+	    buf = new StringBuffer();
+	    buf.append("SUM(O11*O9)");
+	    Formula forDownPaymentFR = new Formula(16, 8, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forDownPaymentFR);
+
+	    Label lblLoanAmountFinRehab;
+	    lblLoanAmountFinRehab = new Label(15, 10, "Loan Amount:", timesBold);
+	    excelSheet.addCell(lblLoanAmountFinRehab);
+	    buf = new StringBuffer();
+	    buf.append("(O13+O15-Q9)");
+	    Formula forLoanAmountFR = new Formula(16, 10, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forLoanAmountFR);
+
+	    Label lblInterestRateFinRehab;
+	    lblInterestRateFinRehab = new Label(15, 12, "Interest Rate:", timesBold);
+	    excelSheet.addCell(lblInterestRateFinRehab);
+	    Number nbrInterestRateFR = new Number(16, 12, (smSM.getInterestRate()/100), wcfPercentTwoPlaces);
+	    excelSheet.addCell(nbrInterestRateFR);
+
+	    Label lblTermFinRehab;
+	    lblTermFinRehab = new Label(15, 14, "Term:", timesBold);
+	    excelSheet.addCell(lblTermFinRehab);
+	    Number nbrTermFR = new Number(16, 14, smSM.getTerm());
+	    excelSheet.addCell(nbrTermFR);
+
+	    Label lblMonthlyPmtFinRehab;
+	    lblMonthlyPmtFinRehab = new Label(15, 16, "Monthly Pmt:", timesBold);
+	    excelSheet.addCell(lblMonthlyPmtFinRehab);
+	    buf = new StringBuffer();
+	    buf.append("SUM(Q13*Q11/12)");
+	    Formula forMonthlyPmtFR = new Formula(16, 16, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMonthlyPmtFR);
 	    //createContent(excelSheet);
 
 	    workbook.write();

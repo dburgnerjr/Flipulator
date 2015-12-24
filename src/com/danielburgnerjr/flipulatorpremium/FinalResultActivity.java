@@ -337,6 +337,11 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.addCell(wrcOriginal);
 	    excelSheet.mergeCells(0, 0, 4, 0);
 	    excelSheet.setRowView(0, (int)((1.5d * 14)*20), false);
+	    excelSheet.setRowView(6, (int)((1.5d * 14)*20), false);
+	    excelSheet.setRowView(18, (int)((1.5d * 14)*20), false);
+	    excelSheet.setRowView(34, (int)((1.5d * 14)*20), false);
+	    excelSheet.setRowView(42, (int)((1.5d * 14)*20), false);
+	    excelSheet.setRowView(58, (int)((1.5d * 14)*20), false);
 
 	    WritableCell wrcOwnerCarry = new Label(7, 0, "Owner Carry Rehab Cost", times);
 	    excelSheet.addCell(wrcOwnerCarry);
@@ -359,25 +364,38 @@ public class FinalResultActivity extends Activity {
 	    Label lblCity = new Label(1, 2, locL.getCity(), timesBold);
 	    excelSheet.addCell(lblCity);
 
-	    Label lblStZipOrig;
-	    lblStZipOrig = new Label(2, 2, "State/ZIP:", timesBold);
-	    excelSheet.addCell(lblStZipOrig);
-	    excelSheet.mergeCells(3, 2, 4, 2);
-	    Label lblStZip = new Label(3, 2, locL.getState() + " " + locL.getZIPCode(), timesBold);
+	    Label lblStateOrig;
+	    lblStateOrig = new Label(0, 3, "State:", timesBold);
+	    excelSheet.addCell(lblStateOrig);
+	    Label lblState = new Label(1, 3, locL.getState(), timesBold);
+	    excelSheet.addCell(lblState);
+
+	    Label lblZipOrig;
+	    lblZipOrig = new Label(0, 4, "ZIP:", timesBold);
+	    excelSheet.addCell(lblZipOrig);
+	    Label lblStZip = new Label(1, 4, locL.getZIPCode(), timesBold);
 	    excelSheet.addCell(lblStZip);
 
 	    Label lblSquareFootageOrig;
-	    lblSquareFootageOrig = new Label(0, 3, "Square Footage:", timesBold);
+	    lblSquareFootageOrig = new Label(2, 2, "Square Footage:", timesBold);
 	    excelSheet.addCell(lblSquareFootageOrig);
-	    Label lblSquareFootage = new Label(1, 3, locL.getSquareFootage() + " SF", timesBold);
+	    excelSheet.mergeCells(3, 2, 4, 2);
+	    Label lblSquareFootage = new Label(3, 2, locL.getSquareFootage() + "", timesBold);
 	    excelSheet.addCell(lblSquareFootage);
 
-	    Label lblBRBAOrig;
-	    lblBRBAOrig = new Label(2, 3, "BR/BA:", timesBold);
-	    excelSheet.addCell(lblBRBAOrig);
+	    Label lblBROrig;
+	    lblBROrig = new Label(2, 3, "BR:", timesBold);
+	    excelSheet.addCell(lblBROrig);
 	    excelSheet.mergeCells(3, 3, 4, 3);
-	    Label lblBRBA = new Label(3, 3, locL.getBedrooms() + " BR/" + locL.getBathrooms() + " BA", timesBold);
-	    excelSheet.addCell(lblBRBA);
+	    Label lblBR = new Label(3, 3, locL.getBedrooms() + "", timesBold);
+	    excelSheet.addCell(lblBR);
+
+	    Label lblBAOrig;
+	    lblBAOrig = new Label(2, 4, "BA:", timesBold);
+	    excelSheet.addCell(lblBAOrig);
+	    excelSheet.mergeCells(3, 4, 4, 4);
+	    Label lblBA = new Label(3, 4, locL.getBathrooms() + "", timesBold);
+	    excelSheet.addCell(lblBA);
 
 	    Label lblPropAddressOwnerCarry;
 	    lblPropAddressOwnerCarry = new Label(7, 1, "Property Address:", timesBold);
@@ -392,25 +410,38 @@ public class FinalResultActivity extends Activity {
 	    Label lblCityOC = new Label(8, 2, locL.getCity(), timesBold);
 	    excelSheet.addCell(lblCityOC);
 
-	    Label lblStZipOwnerCarry;
-	    lblStZipOwnerCarry = new Label(9, 2, "State/ZIP:", timesBold);
-	    excelSheet.addCell(lblStZipOwnerCarry);
-	    excelSheet.mergeCells(10, 2, 11, 2);
-	    Label lblStZipOC = new Label(10, 2, locL.getState() + " " + locL.getZIPCode(), timesBold);
-	    excelSheet.addCell(lblStZipOC);
+	    Label lblStOwnerCarry;
+	    lblStOwnerCarry = new Label(7, 3, "State:", timesBold);
+	    excelSheet.addCell(lblStOwnerCarry);
+	    Label lblStOC = new Label(8, 3, locL.getState(), timesBold);
+	    excelSheet.addCell(lblStOC);
+
+	    Label lblZipOwnerCarry;
+	    lblZipOwnerCarry = new Label(7, 4, "ZIP:", timesBold);
+	    excelSheet.addCell(lblZipOwnerCarry);
+	    Label lblZipOC = new Label(8, 4, locL.getZIPCode(), timesBold);
+	    excelSheet.addCell(lblZipOC);
 
 	    Label lblSquareFootageOwnerCarry;
-	    lblSquareFootageOwnerCarry = new Label(7, 3, "Square Footage:", timesBold);
+	    lblSquareFootageOwnerCarry = new Label(9, 2, "Square Footage:", timesBold);
 	    excelSheet.addCell(lblSquareFootageOwnerCarry);
-	    Label lblSquareFootageOC = new Label(8, 3, locL.getSquareFootage() + " SF", timesBold);
+	    excelSheet.mergeCells(10, 2, 11, 2);
+	    Label lblSquareFootageOC = new Label(10, 2, locL.getSquareFootage() + "", timesBold);
 	    excelSheet.addCell(lblSquareFootageOC);
 
-	    Label lblBRBAOwnerCarry;
-	    lblBRBAOwnerCarry = new Label(9, 3, "BR/BA:", timesBold);
-	    excelSheet.addCell(lblBRBAOwnerCarry);
+	    Label lblBROwnerCarry;
+	    lblBROwnerCarry = new Label(9, 3, "BR:", timesBold);
+	    excelSheet.addCell(lblBROwnerCarry);
 	    excelSheet.mergeCells(10, 3, 11, 3);
-	    Label lblBRBAOC = new Label(10, 3, locL.getBedrooms() + " BR/" + locL.getBathrooms() + " BA", timesBold);
-	    excelSheet.addCell(lblBRBAOC);
+	    Label lblBROC = new Label(10, 3, locL.getBedrooms() + "", timesBold);
+	    excelSheet.addCell(lblBROC);
+
+	    Label lblBAOwnerCarry;
+	    lblBAOwnerCarry = new Label(9, 4, "BA:", timesBold);
+	    excelSheet.addCell(lblBAOwnerCarry);
+	    excelSheet.mergeCells(10, 4, 11, 4);
+	    Label lblBAOC = new Label(10, 4, locL.getBathrooms() + "", timesBold);
+	    excelSheet.addCell(lblBAOC);
 
 	    Label lblPropAddressFinRehab;
 	    lblPropAddressFinRehab = new Label(13, 1, "Property Address:", timesBold);
@@ -425,25 +456,38 @@ public class FinalResultActivity extends Activity {
 	    Label lblCityFR = new Label(14, 2, locL.getCity(), timesBold);
 	    excelSheet.addCell(lblCityFR);
 
-	    Label lblStZipFinRehab;
-	    lblStZipFinRehab = new Label(15, 2, "State/ZIP:", timesBold);
-	    excelSheet.addCell(lblStZipFinRehab);
-	    excelSheet.mergeCells(16, 2, 17, 2);
-	    Label lblStZipFR = new Label(16, 2, locL.getState() + " " + locL.getZIPCode(), timesBold);
-	    excelSheet.addCell(lblStZipFR);
+	    Label lblStFinRehab;
+	    lblStFinRehab = new Label(13, 3, "State:", timesBold);
+	    excelSheet.addCell(lblStFinRehab);
+	    Label lblStFR = new Label(14, 3, locL.getState(), timesBold);
+	    excelSheet.addCell(lblStFR);
+
+	    Label lblZipFinRehab;
+	    lblZipFinRehab = new Label(13, 4, "ZIP:", timesBold);
+	    excelSheet.addCell(lblZipFinRehab);
+	    Label lblZipFR = new Label(14, 4, locL.getZIPCode(), timesBold);
+	    excelSheet.addCell(lblZipFR);
 
 	    Label lblSquareFootageFinRehab;
-	    lblSquareFootageFinRehab = new Label(13, 3, "Square Footage:", timesBold);
+	    lblSquareFootageFinRehab = new Label(15, 2, "Square Footage:", timesBold);
 	    excelSheet.addCell(lblSquareFootageFinRehab);
-	    Label lblSquareFootageFR = new Label(14, 3, locL.getSquareFootage() + " SF", timesBold);
+	    excelSheet.mergeCells(16, 2, 17, 2);
+	    Label lblSquareFootageFR = new Label(16, 2, locL.getSquareFootage() + "", timesBold);
 	    excelSheet.addCell(lblSquareFootageFR);
 
-	    Label lblBRBAFinRehab;
-	    lblBRBAFinRehab = new Label(15, 3, "BR/BA:", timesBold);
-	    excelSheet.addCell(lblBRBAFinRehab);
+	    Label lblBRFinRehab;
+	    lblBRFinRehab = new Label(15, 3, "BR:", timesBold);
+	    excelSheet.addCell(lblBRFinRehab);
 	    excelSheet.mergeCells(16, 3, 17, 3);
-	    Label lblBRBAFR = new Label(16, 3, locL.getBedrooms() + " BR/" + locL.getBathrooms() + " BA", timesBold);
-	    excelSheet.addCell(lblBRBAFR);
+	    Label lblBRFR = new Label(16, 3, locL.getBedrooms() + "", timesBold);
+	    excelSheet.addCell(lblBRFR);
+
+	    Label lblBAFinRehab;
+	    lblBAFinRehab = new Label(15, 4, "BA:", timesBold);
+	    excelSheet.addCell(lblBAFinRehab);
+	    excelSheet.mergeCells(16, 4, 17, 4);
+	    Label lblBAFR = new Label(16, 4, locL.getBathrooms() + "", timesBold);
+	    excelSheet.addCell(lblBAFR);
 	    //createContent(excelSheet);
 
 	    workbook.write();

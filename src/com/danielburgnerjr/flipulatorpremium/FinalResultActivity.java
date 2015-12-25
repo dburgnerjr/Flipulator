@@ -363,6 +363,54 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.addCell(wrcMortFinanceRehab);
 	    excelSheet.mergeCells(15, 6, 17, 6);
 
+	    WritableCell wrcReservesOrig = new Label(0, 18, "III. Reserves", times);
+	    excelSheet.addCell(wrcReservesOrig);
+	    excelSheet.mergeCells(0, 18, 4, 18);
+
+	    WritableCell wrcReservesOC = new Label(7, 18, "III. Reserves", times);
+	    excelSheet.addCell(wrcReservesOC);
+	    excelSheet.mergeCells(7, 18, 11, 18);
+
+	    WritableCell wrcReservesFinRehab = new Label(13, 18, "III. Reserves", times);
+	    excelSheet.addCell(wrcReservesFinRehab);
+	    excelSheet.mergeCells(13, 18, 17, 18);
+
+	    WritableCell wrcClosingOrig = new Label(0, 34, "IV. Closing Expenses", times);
+	    excelSheet.addCell(wrcClosingOrig);
+	    excelSheet.mergeCells(0, 34, 4, 34);
+
+	    WritableCell wrcClosingOC = new Label(7, 34, "IV. Closing Expenses", times);
+	    excelSheet.addCell(wrcClosingOC);
+	    excelSheet.mergeCells(7, 34, 11, 34);
+
+	    WritableCell wrcClosingFinRehab = new Label(13, 34, "IV. Closing Expenses", times);
+	    excelSheet.addCell(wrcClosingFinRehab);
+	    excelSheet.mergeCells(13, 34, 17, 34);
+
+	    WritableCell wrcPropMktOrig = new Label(0, 42, "V. Property/Market Information", times);
+	    excelSheet.addCell(wrcPropMktOrig);
+	    excelSheet.mergeCells(0, 42, 4, 42);
+
+	    WritableCell wrcPropMktOC = new Label(7, 42, "V. Property/Market Information", times);
+	    excelSheet.addCell(wrcPropMktOC);
+	    excelSheet.mergeCells(7, 42, 11, 42);
+
+	    WritableCell wrcPropMktFinRehab = new Label(13, 42, "V. Property/Market Information", times);
+	    excelSheet.addCell(wrcPropMktFinRehab);
+	    excelSheet.mergeCells(13, 42, 17, 42);
+
+	    WritableCell wrcROIOrig = new Label(0, 58, "VI. Return on Investment", times);
+	    excelSheet.addCell(wrcROIOrig);
+	    excelSheet.mergeCells(0, 58, 4, 58);
+
+	    WritableCell wrcROIOC = new Label(7, 58, "VI. Return on Investment", times);
+	    excelSheet.addCell(wrcROIOC);
+	    excelSheet.mergeCells(7, 58, 11, 58);
+
+	    WritableCell wrcROIFinRehab = new Label(13, 58, "VI. Return on Investment", times);
+	    excelSheet.addCell(wrcROIFinRehab);
+	    excelSheet.mergeCells(13, 58, 17, 58);
+
 	    // set up column views
 	    excelSheet.setColumnView(0, 25);
 	    excelSheet.setColumnView(1, 14);

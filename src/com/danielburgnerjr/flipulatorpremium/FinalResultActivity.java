@@ -299,13 +299,13 @@ public class FinalResultActivity extends Activity {
 	    WritableSheet excelSheet = workbook.getSheet(0);
 
 	    // Lets create a times font
-	    WritableFont times14ptHeader = new WritableFont(WritableFont.TIMES, 14, WritableFont.BOLD);
+	    WritableFont times18ptHeader = new WritableFont(WritableFont.TIMES, 18, WritableFont.BOLD);
 	    // Define the cell format
-	    times = new WritableCellFormat(times14ptHeader);
+	    times = new WritableCellFormat(times18ptHeader);
 	    // Lets automatically wrap the cells
 	    times.setWrap(true);
 
-	    // create create a bold font
+	    // create a bold font
 	    WritableFont times10ptBold = new WritableFont(WritableFont.TIMES, 10, WritableFont.BOLD, false);
 	    timesBold = new WritableCellFormat(times10ptBold);
 	    // Lets automatically wrap the cells
@@ -317,7 +317,7 @@ public class FinalResultActivity extends Activity {
 	    cv.setAutosize(true);
 
 	    // Number and writable cell formats
-	    NumberFormat nbfDollar = new NumberFormat("$###,000");
+	    NumberFormat nbfDollar = new NumberFormat("$###,#00");
 	    WritableCellFormat wcfDollar = new WritableCellFormat(nbfDollar);
 
 	    NumberFormat nbfPercent = new NumberFormat("##%");
@@ -548,6 +548,181 @@ public class FinalResultActivity extends Activity {
 	    Formula forMonthlyPmtO = new Formula(3, 16, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forMonthlyPmtO);
 
+	    // reserves info - original
+	    Label lblMonthlyReservesOrig;
+	    lblMonthlyReservesOrig = new Label(1, 19, "Monthly", timesBold);
+	    excelSheet.addCell(lblMonthlyReservesOrig);
+
+	    Label lblSixMonthReservesOrig;
+	    lblSixMonthReservesOrig = new Label(2, 19, "6 Months", timesBold);
+	    excelSheet.addCell(lblSixMonthReservesOrig);
+
+	    Label lblNineMonthReservesOrig;
+	    lblNineMonthReservesOrig = new Label(3, 19, "9 Months", timesBold);
+	    excelSheet.addCell(lblNineMonthReservesOrig);
+	    
+	    Label lblTwelveMonthReservesOrig;
+	    lblTwelveMonthReservesOrig = new Label(4, 19, "12 Months", timesBold);
+	    excelSheet.addCell(lblTwelveMonthReservesOrig);
+
+	    Label lblMortgageReservesOrig;
+	    lblMortgageReservesOrig = new Label(0, 20, "Mortgage", timesBold);
+	    excelSheet.addCell(lblMortgageReservesOrig);
+
+	    buf = new StringBuffer();
+	    buf.append("(D17)");
+	    Formula forMortgageMonthO = new Formula(1, 20, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMortgageMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(D17*6)");
+	    Formula forMortgageSixMonthO = new Formula(2, 20, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMortgageSixMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(D17*9)");
+	    Formula forMortgageNineMonthO = new Formula(3, 20, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMortgageNineMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(D13*D11)");
+	    Formula forMortgageAnnualO = new Formula(4, 20, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMortgageAnnualO);
+
+	    Label lblTaxesReservesOrig;
+	    lblTaxesReservesOrig = new Label(0, 22, "Taxes", timesBold);
+	    excelSheet.addCell(lblTaxesReservesOrig);
+
+	    buf = new StringBuffer();
+	    buf.append("(C23/6)");
+	    Formula forTaxesMonthO = new Formula(1, 22, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTaxesMonthO);
+
+	    Number nbrTaxesO = new Number(2, 22, rsR.getTaxes(), wcfDollar);
+	    excelSheet.addCell(nbrTaxesO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(C23*9/6)");
+	    Formula forTaxesNineMonthO = new Formula(3, 22, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTaxesNineMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(C23*2)");
+	    Formula forTaxesAnnualO = new Formula(4, 22, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTaxesAnnualO);
+
+	    Label lblInsuranceReservesOrig;
+	    lblInsuranceReservesOrig = new Label(0, 24, "Insurance", timesBold);
+	    excelSheet.addCell(lblInsuranceReservesOrig);
+
+	    buf = new StringBuffer();
+	    buf.append("(C25/6)");
+	    Formula forInsuranceMonthO = new Formula(1, 24, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forInsuranceMonthO);
+
+	    Number nbrInsuranceO = new Number(2, 24, rsR.getInsurance(), wcfDollar);
+	    excelSheet.addCell(nbrInsuranceO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(C25*9/6)");
+	    Formula forInsuranceNineMonthO = new Formula(3, 24, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forInsuranceNineMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(C25*2)");
+	    Formula forInsuranceAnnualO = new Formula(4, 24, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forInsuranceAnnualO);
+
+	    Label lblWaterReservesOriginal;
+	    lblWaterReservesOriginal = new Label(0, 26, "Water", timesBold);
+	    excelSheet.addCell(lblWaterReservesOriginal);
+
+	    buf = new StringBuffer();
+	    buf.append("(C27/6)");
+	    Formula forWaterMonthO = new Formula(1, 26, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forWaterMonthO);
+
+	    Number nbrWaterO = new Number(2, 26, rsR.getWater(), wcfDollar);
+	    excelSheet.addCell(nbrWaterO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(C27*9/6)");
+	    Formula forWaterNineMonthO = new Formula(3, 26, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forWaterNineMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(C27*2)");
+	    Formula forWaterAnnualO = new Formula(4, 26, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forWaterAnnualO);
+
+	    Label lblGasReservesOriginal;
+	    lblGasReservesOriginal = new Label(0, 28, "Gas", timesBold);
+	    excelSheet.addCell(lblGasReservesOriginal);
+
+	    buf = new StringBuffer();
+	    buf.append("(C29/6)");
+	    Formula forGasMonthO = new Formula(1, 28, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGasMonthO);
+
+	    Number nbrGasO = new Number(2, 28, rsR.getGas(), wcfDollar);
+	    excelSheet.addCell(nbrGasO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(C29*9/6)");
+	    Formula forGasNineMonthO = new Formula(3, 28, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGasNineMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(C29*2)");
+	    Formula forGasAnnualO = new Formula(4, 28, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGasAnnualO);
+
+	    Label lblElectricReservesOriginal;
+	    lblElectricReservesOriginal = new Label(0, 30, "Electric", timesBold);
+	    excelSheet.addCell(lblElectricReservesOriginal);
+
+	    buf = new StringBuffer();
+	    buf.append("(C31/6)");
+	    Formula forElectricMonthO = new Formula(1, 30, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forElectricMonthO);
+
+	    Number nbrElectricO = new Number(2, 30, rsR.getElectric(), wcfDollar);
+	    excelSheet.addCell(nbrElectricO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(C31*9/6)");
+	    Formula forElectricNineMonthO = new Formula(3, 30, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forElectricNineMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(C31*2)");
+	    Formula forElectricAnnualO = new Formula(4, 30, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forElectricAnnualO);
+
+	    Label lblTotalReservesOriginal;
+	    lblTotalReservesOriginal = new Label(0, 32, "Total Expenses", timesBold);
+	    excelSheet.addCell(lblTotalReservesOriginal);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(B21:B31)");
+	    Formula forTotalMonthO = new Formula(1, 32, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(C21:C31)");
+	    Formula forTotalSixMonthO = new Formula(2, 32, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalSixMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(D21:D31)");
+	    Formula forTotalNineMonthO = new Formula(3, 32, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalNineMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(E21:E31)");
+	    Formula forTotalAnnualO = new Formula(4, 32, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalAnnualO);
+
 	    // location info - owner carry
 	    Label lblPropAddressOwnerCarry;
 	    lblPropAddressOwnerCarry = new Label(7, 1, "Property Address:", timesBold);
@@ -657,6 +832,181 @@ public class FinalResultActivity extends Activity {
 	    Formula forMonthlyPmtOC = new Formula(10, 16, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forMonthlyPmtOC);
 
+	    // reserves info - owner carry
+	    Label lblMonthlyReservesOwnerCarry;
+	    lblMonthlyReservesOwnerCarry = new Label(8, 19, "Monthly", timesBold);
+	    excelSheet.addCell(lblMonthlyReservesOwnerCarry);
+
+	    Label lblSixMonthReservesOwnerCarry;
+	    lblSixMonthReservesOwnerCarry = new Label(9, 19, "6 Months", timesBold);
+	    excelSheet.addCell(lblSixMonthReservesOwnerCarry);
+
+	    Label lblNineMonthReservesOwnerCarry;
+	    lblNineMonthReservesOwnerCarry = new Label(10, 19, "9 Months", timesBold);
+	    excelSheet.addCell(lblNineMonthReservesOwnerCarry);
+	    
+	    Label lblTwelveMonthReservesOwnerCarry;
+	    lblTwelveMonthReservesOwnerCarry = new Label(11, 19, "12 Months", timesBold);
+	    excelSheet.addCell(lblTwelveMonthReservesOwnerCarry);
+
+	    Label lblMortgageReservesOwnerCarry;
+	    lblMortgageReservesOwnerCarry = new Label(7, 20, "Mortgage", timesBold);
+	    excelSheet.addCell(lblMortgageReservesOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(K17)");
+	    Formula forMortgageMonthOC = new Formula(8, 20, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMortgageMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(K17*6)");
+	    Formula forMortgageSixMonthOC = new Formula(9, 20, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMortgageSixMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(K17*9)");
+	    Formula forMortgageNineMonthOC = new Formula(10, 20, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMortgageNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(K13*K11)");
+	    Formula forMortgageAnnualOC = new Formula(11, 20, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMortgageAnnualOC);
+
+	    Label lblTaxesReservesOwnerCarry;
+	    lblTaxesReservesOwnerCarry = new Label(7, 22, "Taxes", timesBold);
+	    excelSheet.addCell(lblTaxesReservesOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(J23/6)");
+	    Formula forTaxesMonthOC = new Formula(8, 22, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTaxesMonthOC);
+
+	    Number nbrTaxesOC = new Number(9, 22, rsR.getTaxes(), wcfDollar);
+	    excelSheet.addCell(nbrTaxesOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(J23*9/6)");
+	    Formula forTaxesNineMonthOC = new Formula(10, 22, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTaxesNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(J23*2)");
+	    Formula forTaxesAnnualOC = new Formula(11, 22, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTaxesAnnualOC);
+
+	    Label lblInsuranceReservesOwnerCarry;
+	    lblInsuranceReservesOwnerCarry = new Label(7, 24, "Insurance", timesBold);
+	    excelSheet.addCell(lblInsuranceReservesOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(J25/6)");
+	    Formula forInsuranceMonthOC = new Formula(8, 24, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forInsuranceMonthOC);
+
+	    Number nbrInsuranceOC = new Number(9, 24, rsR.getInsurance(), wcfDollar);
+	    excelSheet.addCell(nbrInsuranceOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(J25*9/6)");
+	    Formula forInsuranceNineMonthOC = new Formula(10, 24, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forInsuranceNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(J25*2)");
+	    Formula forInsuranceAnnualOC = new Formula(11, 24, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forInsuranceAnnualOC);
+
+	    Label lblWaterReservesOwnerCarry;
+	    lblWaterReservesOwnerCarry = new Label(7, 26, "Water", timesBold);
+	    excelSheet.addCell(lblWaterReservesOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(J27/6)");
+	    Formula forWaterMonthOC = new Formula(8, 26, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forWaterMonthOC);
+
+	    Number nbrWaterOC = new Number(9, 26, rsR.getWater(), wcfDollar);
+	    excelSheet.addCell(nbrWaterOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(J27*9/6)");
+	    Formula forWaterNineMonthOC = new Formula(10, 26, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forWaterNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(J27*2)");
+	    Formula forWaterAnnualOC = new Formula(11, 26, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forWaterAnnualOC);
+
+	    Label lblGasReservesOwnerCarry;
+	    lblGasReservesOwnerCarry = new Label(7, 28, "Gas", timesBold);
+	    excelSheet.addCell(lblGasReservesOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(J29/6)");
+	    Formula forGasMonthOC = new Formula(8, 28, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGasMonthOC);
+
+	    Number nbrGasOC = new Number(9, 28, rsR.getGas(), wcfDollar);
+	    excelSheet.addCell(nbrGasOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(J29*9/6)");
+	    Formula forGasNineMonthOC = new Formula(10, 28, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGasNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(J29*2)");
+	    Formula forGasAnnualOC = new Formula(11, 28, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGasAnnualOC);
+
+	    Label lblElectricReservesOwnerCarry;
+	    lblElectricReservesOwnerCarry = new Label(7, 30, "Electric", timesBold);
+	    excelSheet.addCell(lblElectricReservesOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(J31/6)");
+	    Formula forElectricMonthOC = new Formula(8, 30, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forElectricMonthOC);
+
+	    Number nbrElectricOC = new Number(9, 30, rsR.getElectric(), wcfDollar);
+	    excelSheet.addCell(nbrElectricOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(J31*9/6)");
+	    Formula forElectricNineMonthOC = new Formula(10, 30, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forElectricNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(J31*2)");
+	    Formula forElectricAnnualOC = new Formula(11, 30, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forElectricAnnualOC);
+
+	    Label lblTotalReservesOwnerCarry;
+	    lblTotalReservesOwnerCarry = new Label(7, 32, "Total Expenses", timesBold);
+	    excelSheet.addCell(lblTotalReservesOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(I21:I31)");
+	    Formula forTotalMonthOC = new Formula(8, 32, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(J21:J31)");
+	    Formula forTotalSixMonthOC = new Formula(9, 32, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalSixMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(K21:K31)");
+	    Formula forTotalNineMonthOC = new Formula(10, 32, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(L21:L31)");
+	    Formula forTotalAnnualOC = new Formula(11, 32, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalAnnualOC);
+
 	    // location info - finance rehab
 	    Label lblPropAddressFinRehab;
 	    lblPropAddressFinRehab = new Label(13, 1, "Property Address:", timesBold);
@@ -765,6 +1115,181 @@ public class FinalResultActivity extends Activity {
 	    buf.append("SUM(Q13*Q11/12)");
 	    Formula forMonthlyPmtFR = new Formula(16, 16, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forMonthlyPmtFR);
+
+	    // reserves info - finance rehab
+	    Label lblMonthlyReservesFinRehab;
+	    lblMonthlyReservesFinRehab = new Label(14, 19, "Monthly", timesBold);
+	    excelSheet.addCell(lblMonthlyReservesFinRehab);
+
+	    Label lblSixMonthReservesFinRehab;
+	    lblSixMonthReservesFinRehab = new Label(15, 19, "6 Months", timesBold);
+	    excelSheet.addCell(lblSixMonthReservesFinRehab);
+
+	    Label lblNineMonthReservesFinRehab;
+	    lblNineMonthReservesFinRehab = new Label(16, 19, "9 Months", timesBold);
+	    excelSheet.addCell(lblNineMonthReservesFinRehab);
+	    
+	    Label lblTwelveMonthReservesFinRehab;
+	    lblTwelveMonthReservesFinRehab = new Label(17, 19, "12 Months", timesBold);
+	    excelSheet.addCell(lblTwelveMonthReservesFinRehab);
+
+	    Label lblMortgageReservesFinRehab;
+	    lblMortgageReservesFinRehab = new Label(13, 20, "Mortgage", timesBold);
+	    excelSheet.addCell(lblMortgageReservesFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(Q17)");
+	    Formula forMortgageMonthFR = new Formula(14, 20, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMortgageMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(Q17*6)");
+	    Formula forMortgageSixMonthFR = new Formula(15, 20, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMortgageSixMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(Q17*9)");
+	    Formula forMortgageNineMonthFR = new Formula(16, 20, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMortgageNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(Q13*Q11)");
+	    Formula forMortgageAnnualFR = new Formula(17, 20, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMortgageAnnualFR);
+
+	    Label lblTaxesReservesFinRehab;
+	    lblTaxesReservesFinRehab = new Label(13, 22, "Taxes", timesBold);
+	    excelSheet.addCell(lblTaxesReservesFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(P23/6)");
+	    Formula forTaxesMonthFR = new Formula(14, 22, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTaxesMonthFR);
+
+	    Number nbrTaxesFR = new Number(15, 22, rsR.getTaxes(), wcfDollar);
+	    excelSheet.addCell(nbrTaxesFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(P23*9/6)");
+	    Formula forTaxesNineMonthFR = new Formula(16, 22, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTaxesNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(P23*2)");
+	    Formula forTaxesAnnualFR = new Formula(17, 22, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTaxesAnnualFR);
+
+	    Label lblInsuranceReservesFinRehab;
+	    lblInsuranceReservesFinRehab = new Label(13, 24, "Insurance", timesBold);
+	    excelSheet.addCell(lblInsuranceReservesFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(P25/6)");
+	    Formula forInsuranceMonthFR = new Formula(14, 24, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forInsuranceMonthFR);
+
+	    Number nbrInsuranceFR = new Number(15, 24, rsR.getInsurance(), wcfDollar);
+	    excelSheet.addCell(nbrInsuranceFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(P25*9/6)");
+	    Formula forInsuranceNineMonthFR = new Formula(16, 24, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forInsuranceNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(P25*2)");
+	    Formula forInsuranceAnnualFR = new Formula(17, 24, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forInsuranceAnnualFR);
+
+	    Label lblWaterReservesFinRehab;
+	    lblWaterReservesFinRehab = new Label(13, 26, "Water", timesBold);
+	    excelSheet.addCell(lblWaterReservesFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(P27/6)");
+	    Formula forWaterMonthFR = new Formula(14, 26, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forWaterMonthFR);
+
+	    Number nbrWaterFR = new Number(15, 26, rsR.getWater(), wcfDollar);
+	    excelSheet.addCell(nbrWaterFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(P27*9/6)");
+	    Formula forWaterNineMonthFR = new Formula(16, 26, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forWaterNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(P27*2)");
+	    Formula forWaterAnnualFR = new Formula(17, 26, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forWaterAnnualFR);
+
+	    Label lblGasReservesFinRehab;
+	    lblGasReservesFinRehab = new Label(13, 28, "Gas", timesBold);
+	    excelSheet.addCell(lblGasReservesFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(P29/6)");
+	    Formula forGasMonthFR = new Formula(14, 28, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGasMonthFR);
+
+	    Number nbrGasFR = new Number(15, 28, rsR.getGas(), wcfDollar);
+	    excelSheet.addCell(nbrGasFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(P29*9/6)");
+	    Formula forGasNineMonthFR = new Formula(16, 28, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGasNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(P29*2)");
+	    Formula forGasAnnualFR = new Formula(17, 28, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGasAnnualFR);
+
+	    Label lblElectricReservesFinRehab;
+	    lblElectricReservesFinRehab = new Label(13, 30, "Electric", timesBold);
+	    excelSheet.addCell(lblElectricReservesFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(P31/6)");
+	    Formula forElectricMonthFR = new Formula(14, 30, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forElectricMonthFR);
+
+	    Number nbrElectricFR = new Number(15, 30, rsR.getElectric(), wcfDollar);
+	    excelSheet.addCell(nbrElectricFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(P31*9/6)");
+	    Formula forElectricNineMonthFR = new Formula(16, 30, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forElectricNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(P31*2)");
+	    Formula forElectricAnnualFR = new Formula(17, 30, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forElectricAnnualFR);
+
+	    Label lblTotalReservesFinRehab;
+	    lblTotalReservesFinRehab = new Label(13, 32, "Total Expenses", timesBold);
+	    excelSheet.addCell(lblTotalReservesFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(O21:O31)");
+	    Formula forTotalMonthFR = new Formula(14, 32, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(P21:P31)");
+	    Formula forTotalSixMonthFR = new Formula(15, 32, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalSixMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(Q21:Q31)");
+	    Formula forTotalNineMonthFR = new Formula(16, 32, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("SUM(R21:R31)");
+	    Formula forTotalAnnualFR = new Formula(17, 32, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalAnnualFR);
 	    //createContent(excelSheet);
 
 	    workbook.write();

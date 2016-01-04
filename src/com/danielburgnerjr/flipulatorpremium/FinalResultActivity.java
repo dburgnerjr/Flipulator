@@ -299,14 +299,14 @@ public class FinalResultActivity extends Activity {
 	    WritableSheet excelSheet = workbook.getSheet(0);
 
 	    // Lets create a times font
-	    WritableFont times18ptHeader = new WritableFont(WritableFont.TIMES, 18, WritableFont.BOLD);
+	    WritableFont times18ptHeader = new WritableFont(WritableFont.ARIAL, 18, WritableFont.BOLD);
 	    // Define the cell format
 	    times = new WritableCellFormat(times18ptHeader);
 	    // Lets automatically wrap the cells
 	    times.setWrap(true);
 
 	    // create a bold font
-	    WritableFont times10ptBold = new WritableFont(WritableFont.TIMES, 10, WritableFont.BOLD, false);
+	    WritableFont times10ptBold = new WritableFont(WritableFont.ARIAL, 10, WritableFont.BOLD, false);
 	    timesBold = new WritableCellFormat(times10ptBold);
 	    // Lets automatically wrap the cells
 	    timesBold.setWrap(true);

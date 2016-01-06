@@ -281,15 +281,8 @@ public class FinalResultActivity extends Activity {
    		startActivity(intEmailActivity);
 	}
 
-	public void saveFile(View view) throws FileNotFoundException, IOException, WriteException {
-		// saves results to text file
-		File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorPremium");
-	    myDir.mkdirs();
-	    String strFileName = locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode() + ".txt";
-	    String strFileNameXls = locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode() + ".xls";
-		File file = new File(myDir, strFileName);
-		File fileXls = new File(myDir, strFileNameXls);
-		
+	public void createSpreadsheet(File fDir, String strXLSFile) throws IOException, WriteException {
+		File fileXls = new File(fDir, strXLSFile);
 	    WorkbookSettings wbSettings = new WorkbookSettings();
 
 	    wbSettings.setLocale(new Locale("en", "EN"));
@@ -1293,7 +1286,19 @@ public class FinalResultActivity extends Activity {
 	    //createContent(excelSheet);
 
 	    workbook.write();
-	    workbook.close();
+	    workbook.close();		
+	}
+	
+	public void saveFile(View view) throws FileNotFoundException, IOException, WriteException {
+		// saves results to text file
+		File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorPremium");
+	    myDir.mkdirs();
+	    String strFileName = locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode() + ".txt";
+	    String strFileNameXls = locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode() + ".xls";
+		File file = new File(myDir, strFileName);
+		
+		// create Excel spreadsheet
+		createSpreadsheet(myDir, strFileNameXls);
 
 		String strMessage = "Rehab Type:" + setS.getRehab() + ":";
 		strMessage += "Finance Type:" + setS.getFinance() + ":";

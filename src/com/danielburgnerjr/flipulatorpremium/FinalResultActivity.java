@@ -178,6 +178,30 @@ public class FinalResultActivity extends Activity {
 	    		frF.setGrossProfit(cemC.getSellingPrice());
 	    		frF.setCapGains();
 	    		frF.setNetProfit();
+	    		if (frF.getGrossProfit() < 30000.0) {
+	    			AlertDialog adAlertBox = new AlertDialog.Builder(FinalResultActivity.this)
+	    		    .setMessage("Your gross profit is below $30K! Would you like to make changes now?")
+	    		    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+	    		        // do something when the button is clicked
+	    		        public void onClick(DialogInterface arg0, int arg1) {
+	    		        	Intent intB = new Intent(FinalResultActivity.this, SettingsActivity.class);
+	    		    		intB.putExtra("Settings", setS);
+	    		    		intB.putExtra("Location", locL);
+	    		    		intB.putExtra("SalesMortgage", smSM);
+	    		    		intB.putExtra("Rehab", rR);
+	    		    		intB.putExtra("Reserves", rsR);
+	    		    		intB.putExtra("ClosExpPropMktInfo", cemC);
+	    		        	startActivity(intB);
+	    		        	finish();
+	    		        }
+	    		    })
+	    		    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+	    		        // do something when the button is clicked
+	    		        public void onClick(DialogInterface arg0, int arg1) {
+	    		        }
+	    		    })
+	    		    .show();
+	    		}
 	    		frF.setROI(cemC.getSellingPrice());
 	    		frF.setCashOnCash();
 

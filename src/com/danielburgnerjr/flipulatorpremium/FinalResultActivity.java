@@ -404,17 +404,17 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.addCell(wrcClosingFinRehab);
 	    excelSheet.mergeCells(13, 34, 17, 34);
 
-	    WritableCell wrcPropMktOrig = new Label(0, 46, "V. Property/Market Information", times);
+	    WritableCell wrcPropMktOrig = new Label(0, 45, "V. Property/Market Information", times);
 	    excelSheet.addCell(wrcPropMktOrig);
-	    excelSheet.mergeCells(0, 46, 4, 46);
+	    excelSheet.mergeCells(0, 45, 4, 45);
 
-	    WritableCell wrcPropMktOC = new Label(7, 46, "V. Property/Market Information", times);
+	    WritableCell wrcPropMktOC = new Label(7, 45, "V. Property/Market Information", times);
 	    excelSheet.addCell(wrcPropMktOC);
-	    excelSheet.mergeCells(7, 46, 11, 46);
+	    excelSheet.mergeCells(7, 45, 11, 45);
 
-	    WritableCell wrcPropMktFinRehab = new Label(13, 46, "V. Property/Market Information", times);
+	    WritableCell wrcPropMktFinRehab = new Label(13, 45, "V. Property/Market Information", times);
 	    excelSheet.addCell(wrcPropMktFinRehab);
-	    excelSheet.mergeCells(13, 46, 17, 46);
+	    excelSheet.mergeCells(13, 45, 17, 45);
 
 	    WritableCell wrcROIOrig = new Label(0, 58, "VI. Return on Investment", times);
 	    excelSheet.addCell(wrcROIOrig);
@@ -453,7 +453,7 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.setRowView(6, (int)((1.5d * 14)*20), false);
 	    excelSheet.setRowView(18, (int)((1.5d * 14)*20), false);
 	    excelSheet.setRowView(34, (int)((1.5d * 14)*20), false);
-	    excelSheet.setRowView(46, (int)((1.5d * 14)*20), false);
+	    excelSheet.setRowView(45, (int)((1.5d * 14)*20), false);
 	    excelSheet.setRowView(58, (int)((1.5d * 14)*20), false);
 
 	    // location info - original
@@ -762,7 +762,7 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.addCell(lblBuyerClosingCostOriginal);
 
 	    buf = new StringBuffer();
-	    buf.append("0");
+	    buf.append("(B13*D39)");
 	    Formula forBuyerClosingCostO = new Formula(1, 38, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forBuyerClosingCostO);
 
@@ -778,7 +778,7 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.addCell(lblSellerClosingCostOriginal);
 
 	    buf = new StringBuffer();
-	    buf.append("0");
+	    buf.append("(B9*D40)");
 	    Formula forSellerClosingCostO = new Formula(1, 39, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forSellerClosingCostO);
 
@@ -806,17 +806,17 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.addCell(lblTotalCostsOriginal);
 
 	    buf = new StringBuffer();
-	    buf.append("0");
+	    buf.append("(B13+B15+C33+B37+B39)");
 	    Formula forTotalCostsSixMonthO = new Formula(2, 42, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forTotalCostsSixMonthO);
 
 	    buf = new StringBuffer();
-	    buf.append("0");
+	    buf.append("(B13+B15+D33+B37+B39)");
 	    Formula forTotalCostsNineMonthO = new Formula(3, 42, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forTotalCostsNineMonthO);
 
 	    buf = new StringBuffer();
-	    buf.append("0");
+	    buf.append("(B13+B15+E33+B37+B39)");
 	    Formula forTotalCostsAnnualO = new Formula(4, 42, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forTotalCostsAnnualO);
 
@@ -825,17 +825,17 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.addCell(lblOutOfPocketOriginal);
 
 	    buf = new StringBuffer();
-	    buf.append("0");
+	    buf.append("(B15+B39+C33+D9)");
 	    Formula forOutOfPocketSixMonthO = new Formula(2, 43, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forOutOfPocketSixMonthO);
 
 	    buf = new StringBuffer();
-	    buf.append("0");
+	    buf.append("(B15+B39+D33+D9)");
 	    Formula forOutOfPocketNineMonthO = new Formula(3, 43, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forOutOfPocketNineMonthO);
 
 	    buf = new StringBuffer();
-	    buf.append("0");
+	    buf.append("(B15+B39+E33+D9)");
 	    Formula forOutOfPocketAnnualO = new Formula(4, 43, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forOutOfPocketAnnualO);
 
@@ -1123,6 +1123,105 @@ public class FinalResultActivity extends Activity {
 	    Formula forTotalAnnualOC = new Formula(11, 32, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forTotalAnnualOC);
 
+	    // closing expenses - owner carry
+	    Label lblRealEstateCommissionOwnerCarry;
+	    lblRealEstateCommissionOwnerCarry = new Label(7, 36, "Real Estate Commission", timesBold);
+	    excelSheet.addCell(lblRealEstateCommissionOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("0");
+	    Formula forRealEstateCommissionOC = new Formula(8, 36, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forRealEstateCommissionOC);
+
+	    Label lblCommissionPercentageOwnerCarry;
+	    lblCommissionPercentageOwnerCarry = new Label(9, 36, "Commission %", timesBold);
+	    excelSheet.addCell(lblCommissionPercentageOwnerCarry);
+
+	    Number nbrCommissionPercentageOC = new Number(10, 36, (cemC.getRealEstComm()/100), wcfPercentTwoPlaces);
+	    excelSheet.addCell(nbrCommissionPercentageOC);
+
+	    Label lblBuyerClosingCostOwnerCarry;
+	    lblBuyerClosingCostOwnerCarry = new Label(7, 38, "Buyer Closing Costs", timesBold);
+	    excelSheet.addCell(lblBuyerClosingCostOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(I13*K39)");
+	    Formula forBuyerClosingCostOC = new Formula(8, 38, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forBuyerClosingCostOC);
+
+	    Label lblBuyerClosingCostPercentageOwnerCarry;
+	    lblBuyerClosingCostPercentageOwnerCarry = new Label(9, 38, "Closing Costs %", timesBold);
+	    excelSheet.addCell(lblBuyerClosingCostPercentageOwnerCarry);
+
+	    Number nbrBuyerClosingCostPercentageOC = new Number(10, 38, (cemC.getBuyClosCost()/100), wcfPercentTwoPlaces);
+	    excelSheet.addCell(nbrBuyerClosingCostPercentageOC);
+
+	    Label lblSellerClosingCostOwnerCarry;
+	    lblSellerClosingCostOwnerCarry = new Label(7, 39, "Seller Closing Costs", timesBold);
+	    excelSheet.addCell(lblSellerClosingCostOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(I9*K40)");
+	    Formula forSellerClosingCostOC = new Formula(8, 39, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forSellerClosingCostOC);
+
+	    Label lblSellerClosingCostPercentageOwnerCarry;
+	    lblSellerClosingCostPercentageOwnerCarry = new Label(9, 39, "Closing Costs %", timesBold);
+	    excelSheet.addCell(lblSellerClosingCostPercentageOwnerCarry);
+
+	    Number nbrSellerClosingCostPercentageOC = new Number(10, 39, (cemC.getSellClosCost()/100), wcfPercentTwoPlaces);
+	    excelSheet.addCell(nbrSellerClosingCostPercentageOC);
+
+	    Label lblSixMonthClosExpOwnerCarry;
+	    lblSixMonthClosExpOwnerCarry = new Label(9, 41, "6 Months", timesBold);
+	    excelSheet.addCell(lblSixMonthClosExpOwnerCarry);
+
+	    Label lblNineMonthClosExpOwnerCarry;
+	    lblNineMonthClosExpOwnerCarry = new Label(10, 41, "9 Months", timesBold);
+	    excelSheet.addCell(lblNineMonthClosExpOwnerCarry);
+	    
+	    Label lblTwelveMonthClosExpOwnerCarry;
+	    lblTwelveMonthClosExpOwnerCarry = new Label(11, 41, "12 Months", timesBold);
+	    excelSheet.addCell(lblTwelveMonthClosExpOwnerCarry);
+
+	    Label lblTotalCostsOwnerCarry;
+	    lblTotalCostsOwnerCarry = new Label(7, 42, "Total Costs", timesBold);
+	    excelSheet.addCell(lblTotalCostsOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(I13+I15+J33+I37+I39)");
+	    Formula forTotalCostsSixMonthOC = new Formula(9, 42, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalCostsSixMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(I13+I15+K33+I37+I39)");
+	    Formula forTotalCostsNineMonthOC = new Formula(10, 42, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalCostsNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(I13+I15+L33+I37+I39)");
+	    Formula forTotalCostsAnnualOC = new Formula(11, 42, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalCostsAnnualOC);
+
+	    Label lblOutOfPocketOwnerCarry;
+	    lblOutOfPocketOwnerCarry = new Label(7, 43, "Out of Pocket Expenses", timesBold);
+	    excelSheet.addCell(lblOutOfPocketOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(I15+I39+J33+K9)");
+	    Formula forOutOfPocketSixMonthOC = new Formula(9, 43, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forOutOfPocketSixMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(I15+I39+K33+K9)");
+	    Formula forOutOfPocketNineMonthOC = new Formula(10, 43, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forOutOfPocketNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(I15+I39+L33+K9)");
+	    Formula forOutOfPocketAnnualOC = new Formula(11, 43, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forOutOfPocketAnnualOC);
+
 	    // location info - finance rehab
 	    Label lblPropAddressFinRehab;
 	    lblPropAddressFinRehab = new Label(13, 1, "Property Address:", timesBold);
@@ -1406,6 +1505,105 @@ public class FinalResultActivity extends Activity {
 	    buf.append("SUM(R21:R31)");
 	    Formula forTotalAnnualFR = new Formula(17, 32, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forTotalAnnualFR);
+
+	    // closing expenses - finance rehab
+	    Label lblRealEstateCommissionFinRehab;
+	    lblRealEstateCommissionFinRehab = new Label(13, 36, "Real Estate Commission", timesBold);
+	    excelSheet.addCell(lblRealEstateCommissionFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("0");
+	    Formula forRealEstateCommissionFR = new Formula(14, 36, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forRealEstateCommissionFR);
+
+	    Label lblCommissionPercentageFinRehab;
+	    lblCommissionPercentageFinRehab = new Label(15, 36, "Commission %", timesBold);
+	    excelSheet.addCell(lblCommissionPercentageFinRehab);
+
+	    Number nbrCommissionPercentageFR = new Number(16, 36, (cemC.getRealEstComm()/100), wcfPercentTwoPlaces);
+	    excelSheet.addCell(nbrCommissionPercentageFR);
+
+	    Label lblBuyerClosingCostFinRehab;
+	    lblBuyerClosingCostFinRehab = new Label(13, 38, "Buyer Closing Costs", timesBold);
+	    excelSheet.addCell(lblBuyerClosingCostFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(O13*Q39)");
+	    Formula forBuyerClosingCostFR = new Formula(14, 38, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forBuyerClosingCostFR);
+
+	    Label lblBuyerClosingCostPercentageFinRehab;
+	    lblBuyerClosingCostPercentageFinRehab = new Label(15, 38, "Closing Costs %", timesBold);
+	    excelSheet.addCell(lblBuyerClosingCostPercentageFinRehab);
+
+	    Number nbrBuyerClosingCostPercentageFR = new Number(16, 38, (cemC.getBuyClosCost()/100), wcfPercentTwoPlaces);
+	    excelSheet.addCell(nbrBuyerClosingCostPercentageFR);
+
+	    Label lblSellerClosingCostFinRehab;
+	    lblSellerClosingCostFinRehab = new Label(13, 39, "Seller Closing Costs", timesBold);
+	    excelSheet.addCell(lblSellerClosingCostFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(O9*Q40)");
+	    Formula forSellerClosingCostFR = new Formula(14, 39, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forSellerClosingCostFR);
+
+	    Label lblSellerClosingCostPercentageFinRehab;
+	    lblSellerClosingCostPercentageFinRehab = new Label(15, 39, "Closing Costs %", timesBold);
+	    excelSheet.addCell(lblSellerClosingCostPercentageFinRehab);
+
+	    Number nbrSellerClosingCostPercentageFR = new Number(16, 39, (cemC.getSellClosCost()/100), wcfPercentTwoPlaces);
+	    excelSheet.addCell(nbrSellerClosingCostPercentageFR);
+
+	    Label lblSixMonthClosExpFinRehab;
+	    lblSixMonthClosExpFinRehab = new Label(15, 41, "6 Months", timesBold);
+	    excelSheet.addCell(lblSixMonthClosExpFinRehab);
+
+	    Label lblNineMonthClosExpFinRehab;
+	    lblNineMonthClosExpFinRehab = new Label(16, 41, "9 Months", timesBold);
+	    excelSheet.addCell(lblNineMonthClosExpFinRehab);
+	    
+	    Label lblTwelveMonthClosExpFinRehab;
+	    lblTwelveMonthClosExpFinRehab = new Label(17, 41, "12 Months", timesBold);
+	    excelSheet.addCell(lblTwelveMonthClosExpFinRehab);
+
+	    Label lblTotalCostsFinRehab;
+	    lblTotalCostsFinRehab = new Label(13, 42, "Total Costs", timesBold);
+	    excelSheet.addCell(lblTotalCostsFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(O13+O15+P33+O37+O39)");
+	    Formula forTotalCostsSixMonthFR = new Formula(15, 42, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalCostsSixMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(O13+O15+Q33+O37+O39)");
+	    Formula forTotalCostsNineMonthFR = new Formula(16, 42, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalCostsNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(O13+O15+R33+O37+O39)");
+	    Formula forTotalCostsAnnualFR = new Formula(17, 42, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forTotalCostsAnnualFR);
+
+	    Label lblOutOfPocketFinRehab;
+	    lblOutOfPocketFinRehab = new Label(13, 43, "Out of Pocket Expenses", timesBold);
+	    excelSheet.addCell(lblOutOfPocketFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(O39+P33+Q9)");
+	    Formula forOutOfPocketSixMonthFR = new Formula(15, 43, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forOutOfPocketSixMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(O39+Q33+Q9)");
+	    Formula forOutOfPocketNineMonthFR = new Formula(16, 43, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forOutOfPocketNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(O39+R33+Q9)");
+	    Formula forOutOfPocketAnnualFR = new Formula(17, 43, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forOutOfPocketAnnualFR);
 	    //createContent(excelSheet);
 
 	    workbook.write();

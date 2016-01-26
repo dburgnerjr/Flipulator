@@ -1058,7 +1058,7 @@ public class FinalResultActivity extends Activity {
 	    Number nbrRehabOC = new Number(8, 14, rR.getBudget(), wcfDollar);
 	    excelSheet.addCell(nbrRehabOC);
 
-	    // mortgage info - original
+	    // mortgage info - owner carry
 	    Label lblDownPaymentOwnerCarry;
 	    lblDownPaymentOwnerCarry = new Label(9, 8, "Down Payment:", timesBold);
 	    excelSheet.addCell(lblDownPaymentOwnerCarry);
@@ -1276,7 +1276,7 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.addCell(lblRealEstateCommissionOwnerCarry);
 
 	    buf = new StringBuffer();
-	    buf.append("0");
+	    buf.append("(J50*K37)");
 	    Formula forRealEstateCommissionOC = new Formula(8, 36, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forRealEstateCommissionOC);
 
@@ -1368,6 +1368,153 @@ public class FinalResultActivity extends Activity {
 	    buf.append("(I15+I39+L33+K9)");
 	    Formula forOutOfPocketAnnualOC = new Formula(11, 43, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forOutOfPocketAnnualOC);
+
+	    // property market info - owner carry
+	    Label lblSixMonthPropMktOwnerCarry;
+	    lblSixMonthPropMktOwnerCarry = new Label(9, 46, "6 Months", timesBold);
+	    excelSheet.addCell(lblSixMonthPropMktOwnerCarry);
+
+	    Label lblNineMonthPropMktOwnerCarry;
+	    lblNineMonthPropMktOwnerCarry = new Label(10, 46, "9 Months", timesBold);
+	    excelSheet.addCell(lblNineMonthPropMktOwnerCarry);
+	    
+	    Label lblTwelveMonthPropMktOwnerCarry;
+	    lblTwelveMonthPropMktOwnerCarry = new Label(11, 46, "12 Months", timesBold);
+	    excelSheet.addCell(lblTwelveMonthPropMktOwnerCarry);
+
+	    Label lblFMVARVOwnerCarry;
+	    lblFMVARVOwnerCarry = new Label(7, 47, "FMV/ARV", timesBold);
+	    excelSheet.addCell(lblFMVARVOwnerCarry);
+
+	    Number nbrFMVARVSixMonthOC = new Number(9, 47, cemC.getFMVARV(), wcfDollar);
+	    excelSheet.addCell(nbrFMVARVSixMonthOC);
+
+	    Number nbrFMVARVNineMonthOC = new Number(10, 47, cemC.getFMVARV(), wcfDollar);
+	    excelSheet.addCell(nbrFMVARVNineMonthOC);
+
+	    Number nbrFMVARVAnnualOC = new Number(11, 47, cemC.getFMVARV(), wcfDollar);
+	    excelSheet.addCell(nbrFMVARVAnnualOC);
+
+	    Label lblComparablesOwnerCarry;
+	    lblComparablesOwnerCarry = new Label(7, 48, "Comparables", timesBold);
+	    excelSheet.addCell(lblComparablesOwnerCarry);
+
+	    Number nbrComparablesSixMonthOC = new Number(9, 48, cemC.getComparables(), wcfDollar);
+	    excelSheet.addCell(nbrComparablesSixMonthOC);
+
+	    Number nbrComparablesNineMonthOC = new Number(10, 48, cemC.getComparables(), wcfDollar);
+	    excelSheet.addCell(nbrComparablesNineMonthOC);
+
+	    Number nbrComparablesAnnualOC = new Number(11, 48, cemC.getComparables(), wcfDollar);
+	    excelSheet.addCell(nbrComparablesAnnualOC);
+
+	    Label lblSellingPriceOwnerCarry;
+	    lblSellingPriceOwnerCarry = new Label(7, 49, "Selling Price", timesBold);
+	    excelSheet.addCell(lblSellingPriceOwnerCarry);
+
+	    Number nbrSellingPriceSixMonthOC = new Number(9, 49, cemC.getSellingPrice(), wcfDollar);
+	    excelSheet.addCell(nbrSellingPriceSixMonthOC);
+
+	    Number nbrSellingPriceNineMonthOC = new Number(10, 49, cemC.getSellingPrice(), wcfDollar);
+	    excelSheet.addCell(nbrSellingPriceNineMonthOC);
+
+	    Number nbrSellingPriceAnnualOC = new Number(11, 49, cemC.getSellingPrice(), wcfDollar);
+	    excelSheet.addCell(nbrSellingPriceAnnualOC);
+
+	    Label lblBuyerCostsOwnerCarry;
+	    lblBuyerCostsOwnerCarry = new Label(7, 51, "Buyer's Costs", timesBold);
+	    excelSheet.addCell(lblBuyerCostsOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(J43)");
+	    Formula forBuyerCostsSixMonthOC = new Formula(9, 51, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forBuyerCostsSixMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(K43)");
+	    Formula forBuyerCostsNineMonthOC = new Formula(10, 51, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forBuyerCostsNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(L43)");
+	    Formula forBuyerCostsAnnualOC = new Formula(11, 51, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forBuyerCostsAnnualOC);
+
+	    Label lblGrossProfitOwnerCarry;
+	    lblGrossProfitOwnerCarry = new Label(7, 52, "Gross Profit", timesBold);
+	    excelSheet.addCell(lblGrossProfitOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(J50-J52)");
+	    Formula forGrossProfitSixMonthOC = new Formula(9, 52, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGrossProfitSixMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(K50-K52)");
+	    Formula forGrossProfitNineMonthOC = new Formula(10, 52, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGrossProfitNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(L50-L52)");
+	    Formula forGrossProfitAnnualOC = new Formula(11, 52, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGrossProfitAnnualOC);
+
+	    Label lblCapitalGainsOwnerCarry;
+	    lblCapitalGainsOwnerCarry = new Label(7, 53, "Capital Gains", timesBold);
+	    excelSheet.addCell(lblCapitalGainsOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(J53*0.3)");
+	    Formula forCapitalGainsSixMonthOC = new Formula(9, 53, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forCapitalGainsSixMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(K53*0.3)");
+	    Formula forCapitalGainsNineMonthOC = new Formula(10, 53, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forCapitalGainsNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(L53*0.3)");
+	    Formula forCapitalGainsAnnualOC = new Formula(11, 53, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forCapitalGainsAnnualOC);
+
+	    Label lblNetProfitOwnerCarry;
+	    lblNetProfitOwnerCarry = new Label(7, 54, "Net Profit", timesBold);
+	    excelSheet.addCell(lblNetProfitOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(J53-J54)");
+	    Formula forNetProfitSixMonthOC = new Formula(9, 54, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forNetProfitSixMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(K53-K54)");
+	    Formula forNetProfitNineMonthOC = new Formula(10, 54, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forNetProfitNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(L53-L54)");
+	    Formula forNetProfitAnnualOC = new Formula(11, 54, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forNetProfitAnnualOC);
+
+	    Label lblRateOfReturnOwnerCarry;
+	    lblRateOfReturnOwnerCarry = new Label(7, 56, "Rate of Return", timesBold);
+	    excelSheet.addCell(lblRateOfReturnOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(J55/J50)");
+	    Formula forRateOfReturnSixMonthOC = new Formula(9, 56, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forRateOfReturnSixMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(K55/K50)");
+	    Formula forRateOfReturnNineMonthOC = new Formula(10, 56, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forRateOfReturnNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(L55/L50)");
+	    Formula forRateOfReturnAnnualOC = new Formula(11, 56, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forRateOfReturnAnnualOC);
 
 	    // location info - finance rehab
 	    Label lblPropAddressFinRehab;
@@ -1659,7 +1806,7 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.addCell(lblRealEstateCommissionFinRehab);
 
 	    buf = new StringBuffer();
-	    buf.append("0");
+	    buf.append("(P50*Q37)");
 	    Formula forRealEstateCommissionFR = new Formula(14, 36, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forRealEstateCommissionFR);
 
@@ -1751,6 +1898,153 @@ public class FinalResultActivity extends Activity {
 	    buf.append("(O39+R33+Q9)");
 	    Formula forOutOfPocketAnnualFR = new Formula(17, 43, buf.toString(), wcfDollar);
 	    excelSheet.addCell(forOutOfPocketAnnualFR);
+
+	    // property market info - fin rehab
+	    Label lblSixMonthPropMktFinRehab;
+	    lblSixMonthPropMktFinRehab = new Label(15, 46, "6 Months", timesBold);
+	    excelSheet.addCell(lblSixMonthPropMktFinRehab);
+
+	    Label lblNineMonthPropMktFinRehab;
+	    lblNineMonthPropMktFinRehab = new Label(16, 46, "9 Months", timesBold);
+	    excelSheet.addCell(lblNineMonthPropMktFinRehab);
+	    
+	    Label lblTwelveMonthPropMktFinRehab;
+	    lblTwelveMonthPropMktFinRehab = new Label(17, 46, "12 Months", timesBold);
+	    excelSheet.addCell(lblTwelveMonthPropMktFinRehab);
+
+	    Label lblFMVARVFinRehab;
+	    lblFMVARVFinRehab = new Label(13, 47, "FMV/ARV", timesBold);
+	    excelSheet.addCell(lblFMVARVFinRehab);
+
+	    Number nbrFMVARVSixMonthFR = new Number(15, 47, cemC.getFMVARV(), wcfDollar);
+	    excelSheet.addCell(nbrFMVARVSixMonthFR);
+
+	    Number nbrFMVARVNineMonthFR = new Number(16, 47, cemC.getFMVARV(), wcfDollar);
+	    excelSheet.addCell(nbrFMVARVNineMonthFR);
+
+	    Number nbrFMVARVAnnualFR = new Number(17, 47, cemC.getFMVARV(), wcfDollar);
+	    excelSheet.addCell(nbrFMVARVAnnualFR);
+
+	    Label lblComparablesFinRehab;
+	    lblComparablesFinRehab = new Label(13, 48, "Comparables", timesBold);
+	    excelSheet.addCell(lblComparablesFinRehab);
+
+	    Number nbrComparablesSixMonthFR = new Number(15, 48, cemC.getComparables(), wcfDollar);
+	    excelSheet.addCell(nbrComparablesSixMonthFR);
+
+	    Number nbrComparablesNineMonthFR = new Number(16, 48, cemC.getComparables(), wcfDollar);
+	    excelSheet.addCell(nbrComparablesNineMonthFR);
+
+	    Number nbrComparablesAnnualFR = new Number(17, 48, cemC.getComparables(), wcfDollar);
+	    excelSheet.addCell(nbrComparablesAnnualFR);
+
+	    Label lblSellingPriceFinRehab;
+	    lblSellingPriceFinRehab = new Label(13, 49, "Selling Price", timesBold);
+	    excelSheet.addCell(lblSellingPriceFinRehab);
+
+	    Number nbrSellingPriceSixMonthFR = new Number(15, 49, cemC.getSellingPrice(), wcfDollar);
+	    excelSheet.addCell(nbrSellingPriceSixMonthFR);
+
+	    Number nbrSellingPriceNineMonthFR = new Number(16, 49, cemC.getSellingPrice(), wcfDollar);
+	    excelSheet.addCell(nbrSellingPriceNineMonthFR);
+
+	    Number nbrSellingPriceAnnualFR = new Number(17, 49, cemC.getSellingPrice(), wcfDollar);
+	    excelSheet.addCell(nbrSellingPriceAnnualFR);
+
+	    Label lblBuyerCostsFinRehab;
+	    lblBuyerCostsFinRehab = new Label(13, 51, "Buyer's Costs", timesBold);
+	    excelSheet.addCell(lblBuyerCostsFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(P43)");
+	    Formula forBuyerCostsSixMonthFR = new Formula(15, 51, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forBuyerCostsSixMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(Q43)");
+	    Formula forBuyerCostsNineMonthFR = new Formula(16, 51, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forBuyerCostsNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(R43)");
+	    Formula forBuyerCostsAnnualFR = new Formula(17, 51, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forBuyerCostsAnnualFR);
+
+	    Label lblGrossProfitFinRehab;
+	    lblGrossProfitFinRehab = new Label(13, 52, "Gross Profit", timesBold);
+	    excelSheet.addCell(lblGrossProfitFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(P50-P52)");
+	    Formula forGrossProfitSixMonthFR = new Formula(15, 52, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGrossProfitSixMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(Q50-Q52)");
+	    Formula forGrossProfitNineMonthFR = new Formula(16, 52, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGrossProfitNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(R50-R52)");
+	    Formula forGrossProfitAnnualFR = new Formula(17, 52, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forGrossProfitAnnualFR);
+
+	    Label lblCapitalGainsFinRehab;
+	    lblCapitalGainsFinRehab = new Label(13, 53, "Capital Gains", timesBold);
+	    excelSheet.addCell(lblCapitalGainsFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(P53*0.3)");
+	    Formula forCapitalGainsSixMonthFR = new Formula(15, 53, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forCapitalGainsSixMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(Q53*0.3)");
+	    Formula forCapitalGainsNineMonthFR = new Formula(16, 53, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forCapitalGainsNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(R53*0.3)");
+	    Formula forCapitalGainsAnnualFR = new Formula(17, 53, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forCapitalGainsAnnualFR);
+
+	    Label lblNetProfitFinRehab;
+	    lblNetProfitFinRehab = new Label(13, 54, "Net Profit", timesBold);
+	    excelSheet.addCell(lblNetProfitFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(P53-P54)");
+	    Formula forNetProfitSixMonthFR = new Formula(15, 54, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forNetProfitSixMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(Q53-Q54)");
+	    Formula forNetProfitNineMonthFR = new Formula(16, 54, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forNetProfitNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(R53-R54)");
+	    Formula forNetProfitAnnualFR = new Formula(17, 54, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forNetProfitAnnualFR);
+
+	    Label lblRateOfReturnFinRehab;
+	    lblRateOfReturnFinRehab = new Label(13, 56, "Rate of Return", timesBold);
+	    excelSheet.addCell(lblRateOfReturnFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(P55/P50)");
+	    Formula forRateOfReturnSixMonthFR = new Formula(15, 56, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forRateOfReturnSixMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(Q55/Q50)");
+	    Formula forRateOfReturnNineMonthFR = new Formula(16, 56, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forRateOfReturnNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(R55/R50)");
+	    Formula forRateOfReturnAnnualFR = new Formula(17, 56, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forRateOfReturnAnnualFR);
 	    //createContent(excelSheet);
 
 	    workbook.write();

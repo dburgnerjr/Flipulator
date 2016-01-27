@@ -986,6 +986,76 @@ public class FinalResultActivity extends Activity {
 	    Formula forRateOfReturnAnnualO = new Formula(4, 56, buf.toString(), wcfPercent);
 	    excelSheet.addCell(forRateOfReturnAnnualO);
 
+	    // rate of return info - original
+	    Label lblSixMonthRateReturnOrig;
+	    lblSixMonthRateReturnOrig = new Label(2, 59, "6 Months", timesBold);
+	    excelSheet.addCell(lblSixMonthRateReturnOrig);
+
+	    Label lblNineMonthRateReturnOrig;
+	    lblNineMonthRateReturnOrig = new Label(3, 59, "9 Months", timesBold);
+	    excelSheet.addCell(lblNineMonthRateReturnOrig);
+	    
+	    Label lblTwelveMonthRateReturnOrig;
+	    lblTwelveMonthRateReturnOrig = new Label(4, 59, "12 Months", timesBold);
+	    excelSheet.addCell(lblTwelveMonthRateReturnOrig);
+
+	    Label lblMoneyOutOriginal;
+	    lblMoneyOutOriginal = new Label(0, 60, "Money Out", timesBold);
+	    excelSheet.addCell(lblMoneyOutOriginal);
+
+	    buf = new StringBuffer();
+	    buf.append("(C43)");
+	    Formula forMoneyOutSixMonthO = new Formula(2, 60, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyOutSixMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("(D43)");
+	    Formula forMoneyOutNineMonthO = new Formula(3, 60, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyOutNineMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("(E43)");
+	    Formula forMoneyOutAnnualO = new Formula(4, 60, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyOutAnnualO);
+
+	    Label lblMoneyInOriginal;
+	    lblMoneyInOriginal = new Label(0, 61, "Money In", timesBold);
+	    excelSheet.addCell(lblMoneyInOriginal);
+
+	    buf = new StringBuffer();
+	    buf.append("(C55)");
+	    Formula forMoneyInSixMonthO = new Formula(2, 61, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyInSixMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("(D55)");
+	    Formula forMoneyInNineMonthO = new Formula(3, 61, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyInNineMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("(E55)");
+	    Formula forMoneyInAnnualO = new Formula(4, 61, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyInAnnualO);
+
+	    Label lblCashCashReturnOriginal;
+	    lblCashCashReturnOriginal = new Label(0, 62, "Cash on Cash Return", timesBold);
+	    excelSheet.addCell(lblCashCashReturnOriginal);
+
+	    buf = new StringBuffer();
+	    buf.append("(C62/C61)");
+	    Formula forCashCashReturnSixMonthO = new Formula(2, 62, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forCashCashReturnSixMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("(D62/D61)");
+	    Formula forCashCashReturnNineMonthO = new Formula(3, 62, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forCashCashReturnNineMonthO);
+
+	    buf = new StringBuffer();
+	    buf.append("(E62/E61)");
+	    Formula forCashCashReturnAnnualO = new Formula(4, 62, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forCashCashReturnAnnualO);
+
 	    // location info - owner carry
 	    Label lblPropAddressOwnerCarry;
 	    lblPropAddressOwnerCarry = new Label(7, 1, "Property Address:", timesBold);

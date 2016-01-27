@@ -1586,6 +1586,76 @@ public class FinalResultActivity extends Activity {
 	    Formula forRateOfReturnAnnualOC = new Formula(11, 56, buf.toString(), wcfPercent);
 	    excelSheet.addCell(forRateOfReturnAnnualOC);
 
+	    // rate of return info - owner carry
+	    Label lblSixMonthRateReturnOwnerCarry;
+	    lblSixMonthRateReturnOwnerCarry = new Label(9, 59, "6 Months", timesBold);
+	    excelSheet.addCell(lblSixMonthRateReturnOwnerCarry);
+
+	    Label lblNineMonthRateReturnOwnerCarry;
+	    lblNineMonthRateReturnOwnerCarry = new Label(10, 59, "9 Months", timesBold);
+	    excelSheet.addCell(lblNineMonthRateReturnOwnerCarry);
+	    
+	    Label lblTwelveMonthRateReturnOwnerCarry;
+	    lblTwelveMonthRateReturnOwnerCarry = new Label(11, 59, "12 Months", timesBold);
+	    excelSheet.addCell(lblTwelveMonthRateReturnOwnerCarry);
+
+	    Label lblMoneyOutOwnerCarry;
+	    lblMoneyOutOwnerCarry = new Label(7, 60, "Money Out", timesBold);
+	    excelSheet.addCell(lblMoneyOutOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(J43)");
+	    Formula forMoneyOutSixMonthOC = new Formula(9, 60, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyOutSixMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(K43)");
+	    Formula forMoneyOutNineMonthOC = new Formula(10, 60, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyOutNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(L43)");
+	    Formula forMoneyOutAnnualOC = new Formula(11, 60, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyOutAnnualOC);
+
+	    Label lblMoneyInOwnerCarry;
+	    lblMoneyInOwnerCarry = new Label(7, 61, "Money In", timesBold);
+	    excelSheet.addCell(lblMoneyInOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(J55)");
+	    Formula forMoneyInSixMonthOC = new Formula(9, 61, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyInSixMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(K55)");
+	    Formula forMoneyInNineMonthOC = new Formula(10, 61, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyInNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(L55)");
+	    Formula forMoneyInAnnualOC = new Formula(11, 61, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyInAnnualOC);
+
+	    Label lblCashCashReturnOwnerCarry;
+	    lblCashCashReturnOwnerCarry = new Label(7, 62, "Cash on Cash Return", timesBold);
+	    excelSheet.addCell(lblCashCashReturnOwnerCarry);
+
+	    buf = new StringBuffer();
+	    buf.append("(J62/J61)");
+	    Formula forCashCashReturnSixMonthOC = new Formula(9, 62, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forCashCashReturnSixMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(K62/K61)");
+	    Formula forCashCashReturnNineMonthOC = new Formula(10, 62, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forCashCashReturnNineMonthOC);
+
+	    buf = new StringBuffer();
+	    buf.append("(L62/L61)");
+	    Formula forCashCashReturnAnnualOC = new Formula(11, 62, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forCashCashReturnAnnualOC);
+
 	    // location info - finance rehab
 	    Label lblPropAddressFinRehab;
 	    lblPropAddressFinRehab = new Label(13, 1, "Property Address:", timesBold);
@@ -2115,6 +2185,76 @@ public class FinalResultActivity extends Activity {
 	    buf.append("(R55/R50)");
 	    Formula forRateOfReturnAnnualFR = new Formula(17, 56, buf.toString(), wcfPercent);
 	    excelSheet.addCell(forRateOfReturnAnnualFR);
+
+	    // rate of return info - finance rehab
+	    Label lblSixMonthRateReturnFinRehab;
+	    lblSixMonthRateReturnFinRehab = new Label(15, 59, "6 Months", timesBold);
+	    excelSheet.addCell(lblSixMonthRateReturnFinRehab);
+
+	    Label lblNineMonthRateReturnFinRehab;
+	    lblNineMonthRateReturnFinRehab = new Label(16, 59, "9 Months", timesBold);
+	    excelSheet.addCell(lblNineMonthRateReturnFinRehab);
+	    
+	    Label lblTwelveMonthRateReturnFinRehab;
+	    lblTwelveMonthRateReturnFinRehab = new Label(17, 59, "12 Months", timesBold);
+	    excelSheet.addCell(lblTwelveMonthRateReturnFinRehab);
+
+	    Label lblMoneyOutFinRehab;
+	    lblMoneyOutFinRehab = new Label(13, 60, "Money Out", timesBold);
+	    excelSheet.addCell(lblMoneyOutFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(P43)");
+	    Formula forMoneyOutSixMonthFR = new Formula(15, 60, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyOutSixMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(Q43)");
+	    Formula forMoneyOutNineMonthFR = new Formula(16, 60, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyOutNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(R43)");
+	    Formula forMoneyOutAnnualFR = new Formula(17, 60, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyOutAnnualFR);
+
+	    Label lblMoneyInFinRehab;
+	    lblMoneyInFinRehab = new Label(13, 61, "Money In", timesBold);
+	    excelSheet.addCell(lblMoneyInFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(P55)");
+	    Formula forMoneyInSixMonthFR = new Formula(15, 61, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyInSixMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(Q55)");
+	    Formula forMoneyInNineMonthFR = new Formula(16, 61, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyInNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(R55)");
+	    Formula forMoneyInAnnualFR = new Formula(17, 61, buf.toString(), wcfDollar);
+	    excelSheet.addCell(forMoneyInAnnualFR);
+
+	    Label lblCashCashReturnFinRehab;
+	    lblCashCashReturnFinRehab = new Label(13, 62, "Cash on Cash Return", timesBold);
+	    excelSheet.addCell(lblCashCashReturnFinRehab);
+
+	    buf = new StringBuffer();
+	    buf.append("(P62/P61)");
+	    Formula forCashCashReturnSixMonthFR = new Formula(15, 62, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forCashCashReturnSixMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(Q62/Q61)");
+	    Formula forCashCashReturnNineMonthFR = new Formula(16, 62, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forCashCashReturnNineMonthFR);
+
+	    buf = new StringBuffer();
+	    buf.append("(R62/R61)");
+	    Formula forCashCashReturnAnnualFR = new Formula(17, 62, buf.toString(), wcfPercent);
+	    excelSheet.addCell(forCashCashReturnAnnualFR);
 	    //createContent(excelSheet);
 
 	    workbook.write();

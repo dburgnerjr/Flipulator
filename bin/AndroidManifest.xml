@@ -59,7 +59,7 @@
 		</activity>
         <activity
 			android:name=".ReservesActivity"
-			android:label="Reserves"
+			android:label="Reserves (6 Months)"
 			android:theme="@style/AppTheme" >
 		</activity>
         <activity

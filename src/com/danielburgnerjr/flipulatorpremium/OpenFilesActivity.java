@@ -106,11 +106,11 @@ public class OpenFilesActivity extends Activity {
 	            			   			   Integer.parseInt(strValues[13]), Integer.parseInt(strValues[15]),
 	            			   			   Double.parseDouble(strValues[17]));
 	            	   smSM = new SalesMortgage(Double.parseDouble(strValues[19]), Double.parseDouble(strValues[21]),
-	            			   					Double.parseDouble(strValues[23]), Double.parseDouble(strValues[27]),
-	            			   					Double.parseDouble(strValues[29]), Double.parseDouble(strValues[31]),
-	            			   					Integer.parseInt(strValues[33]), Double.parseDouble(strValues[35]));
+	            			   					Double.parseDouble(strValues[23]), Double.parseDouble(strValues[29]),
+	            			   					Double.parseDouble(strValues[31]), Double.parseDouble(strValues[33]),
+	            			   					Integer.parseInt(strValues[35]), Double.parseDouble(strValues[37]));
 	            	   if (setS.getRehab() == 0) {
-	            		   rR = new RehabFlatRate(Double.parseDouble(strValues[25]));
+	            		   rR = new RehabFlatRate(Double.parseDouble(strValues[25]), strValues[27]);
 	            	   }
 	            	   if (setS.getRehab() == 1) {
 		       				int nCostSF = (int)(Double.parseDouble(strValues[25])/locL.getSquareFootage());
@@ -134,15 +134,15 @@ public class OpenFilesActivity extends Activity {
 		    		    	  				break;
 		    	      	    }
 
-	            		   rR = new RehabType(locL.getSquareFootage(), strType);
+	            		   rR = new RehabType(locL.getSquareFootage(), strType, strValues[27]);
 	            	   }
-	            	   resR = new Reserves(Double.parseDouble(strValues[37]), Double.parseDouble(strValues[39]),
-			   							   Double.parseDouble(strValues[41]), Double.parseDouble(strValues[43]),
-			   							   Double.parseDouble(strValues[45]), Double.parseDouble(strValues[47]),
-			   							   Double.parseDouble(strValues[49]));
-	            	   cemC = new ClosExpPropMktInfo(Double.parseDouble(strValues[53]), Double.parseDouble(strValues[57]),
-	            			   						 Double.parseDouble(strValues[61]), Double.parseDouble(strValues[67]),
-	            			   						 Double.parseDouble(strValues[69]), Double.parseDouble(strValues[71]));
+	            	   resR = new Reserves(Double.parseDouble(strValues[39]), Double.parseDouble(strValues[41]),
+			   							   Double.parseDouble(strValues[43]), Double.parseDouble(strValues[45]),
+			   							   Double.parseDouble(strValues[47]), Double.parseDouble(strValues[49]),
+			   							   Double.parseDouble(strValues[51]));
+	            	   cemC = new ClosExpPropMktInfo(Double.parseDouble(strValues[55]), Double.parseDouble(strValues[59]),
+	            			   						 Double.parseDouble(strValues[63]), Double.parseDouble(strValues[69]),
+	            			   						 Double.parseDouble(strValues[71]), Double.parseDouble(strValues[73]));
 	            	   //Toast.makeText(getApplicationContext(), setS.toString(), Toast.LENGTH_SHORT).show();
 	            	   //Toast.makeText(getApplicationContext(), locL.toString(), Toast.LENGTH_SHORT).show();
 	            	   //Toast.makeText(getApplicationContext(), smSM.toString(), Toast.LENGTH_SHORT).show();

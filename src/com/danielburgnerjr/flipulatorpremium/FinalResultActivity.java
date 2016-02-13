@@ -87,11 +87,13 @@ public class FinalResultActivity extends Activity {
 		TextView tvPercentDown = (TextView) findViewById(R.id.txtPercentDown);
 		TextView tvOfferBid = (TextView) findViewById(R.id.txtOfferBid);
 		TextView tvRehabBudget = (TextView) findViewById(R.id.txtRehabBudget);
+		TextView tvBudgetItems = (TextView) findViewById(R.id.txtBudgetItems);
 		
 		tvSalePrice.setText("Sale Price:\t\t\t\t\t\t\t $" + String.format("%.0f", smSM.getSalesPrice()));
 		tvPercentDown.setText("Percent Down %:\t\t\t\t " + String.format("%.0f", smSM.getPercentDown()) + "%");
 		tvOfferBid.setText("Offer/Bid Price:\t\t\t\t $" + String.format("%.0f", smSM.getOfferBid()));
 		tvRehabBudget.setText("Rehab Budget:\t\t\t\t\t $" + String.format("%.0f", rR.getBudget()));
+		tvBudgetItems.setText("Budget Items:\t\t\t\t\t " + rR.getBudgetItems());
 
 		TextView tvDownPayment = (TextView) findViewById(R.id.txtDownPayment);
 		TextView tvLoanAmount = (TextView) findViewById(R.id.txtLoanAmount);
@@ -266,6 +268,7 @@ public class FinalResultActivity extends Activity {
 		strMessage += "Percent Down %:\t\t\t\t  " + String.format("%.0f", smSM.getPercentDown()) + "%\n";
 		strMessage += "Offer/Bid Price:\t\t\t\t$" + String.format("%.0f", smSM.getOfferBid()) + "\n";
 		strMessage += "Rehab Budget:\t\t\t\t\t $" + String.format("%.0f", rR.getBudget()) + "\n";
+		strMessage += "Budget Items:\t\t\t\t\t " + rR.getBudgetItems() + "\n";
 		strMessage += "Down Payment:\t\t\t\t   $" + String.format("%.0f", smSM.getDownPayment()) + "\n";
 		strMessage += "Loan Amount:\t\t\t\t\t  $" + String.format("%.0f", smSM.getLoanAmount()) + "\n";
 		strMessage += "Interest Rate %:\t\t\t\t " + String.format("%.0f", smSM.getInterestRate()) + "%\n";
@@ -2270,7 +2273,7 @@ public class FinalResultActivity extends Activity {
 		File file = new File(myDir, strFileName);
 		
 		// create Excel spreadsheet
-		createSpreadsheet(myDir, strFileNameXls);
+		//createSpreadsheet(myDir, strFileNameXls);
 
 		String strMessage = "Rehab Type:" + setS.getRehab() + ":";
 		strMessage += "Finance Type:" + setS.getFinance() + ":";
@@ -2285,6 +2288,7 @@ public class FinalResultActivity extends Activity {
 		strMessage += "Percent Down %:" + String.format("%.0f", smSM.getPercentDown()) + ":";
 		strMessage += "Offer/Bid Price:" + String.format("%.0f", smSM.getOfferBid()) + ":";
 		strMessage += "Rehab Budget:" + String.format("%.0f", rR.getBudget()) + ":";
+		strMessage += "Budget Items:" + rR.getBudgetItems() + ":";
 		strMessage += "Down Payment:" + String.format("%.0f", smSM.getDownPayment()) + ":";
 		strMessage += "Loan Amount:" + String.format("%.0f", smSM.getLoanAmount()) + ":";
 		strMessage += "Interest Rate %:" + String.format("%.0f", smSM.getInterestRate()) + ":";

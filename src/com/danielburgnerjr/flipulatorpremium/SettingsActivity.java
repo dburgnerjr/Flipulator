@@ -49,7 +49,7 @@ public class SettingsActivity extends Activity {
 		
 		Intent intI = getIntent();
 		setS = (Settings) intI.getSerializableExtra("Settings");
-				
+		Toast.makeText(getApplicationContext(), "Rehab Type: " + setS.getRehab(), Toast.LENGTH_SHORT).show();		
 		rgRehab   = (RadioGroup)findViewById(R.id.rdoRehab);
 		rgFinance   = (RadioGroup)findViewById(R.id.rdoFinance);
 		btnHelp = (Button)findViewById(R.id.txtHelp);
@@ -179,6 +179,7 @@ public class SettingsActivity extends Activity {
 			Toast.makeText(getApplicationContext(), "Must Enter Finance Model", Toast.LENGTH_SHORT).show();
 		} else {
 			Intent intI = new Intent(this, LocationActivity.class);
+			Toast.makeText(getApplicationContext(), "Rehab Value: " + nRehab, Toast.LENGTH_SHORT).show();		
 			Settings setS = new Settings(nRehab, nFinance);
 			intI.putExtra("Settings", setS);	    
 			if (locL != null) {

@@ -34,6 +34,7 @@ public class SalesMortgageActivity extends Activity {
 	private EditText etTerm;			// term
 	private TextView tvRehabFlatRate;
 	private EditText etRehabBudget;
+	private EditText etBudgetItems;		// budget items
 	private TextView tvRehabType;
 	private Spinner spnRehabType;
 	private Button btnHelp;				// help
@@ -47,12 +48,13 @@ public class SalesMortgageActivity extends Activity {
 		
 		setS = (Settings) intI.getSerializableExtra("Settings");
 		locL = (Location) intI.getSerializableExtra("Location");
-		
+		Toast.makeText(getApplicationContext(), "Rehab Type: " + setS.getRehab(), Toast.LENGTH_SHORT).show();
 		etSalesPrice   = (EditText)findViewById(R.id.txtSalePrice);
 		etPercentDown   = (EditText)findViewById(R.id.txtPercentDown);
 		etOfferBid   = (EditText)findViewById(R.id.txtOfferBid);
 		etInterestRate   = (EditText)findViewById(R.id.txtInterestRate);
 		etTerm   = (EditText)findViewById(R.id.txtTerm);
+		etBudgetItems   = (EditText)findViewById(R.id.txtBudgetItems);
 		
 		ArrayAdapter<CharSequence> aradAdapter = ArrayAdapter.createFromResource(
 				  this, R.array.rehab_type, android.R.layout.simple_spinner_item );
@@ -78,7 +80,7 @@ public class SalesMortgageActivity extends Activity {
  
 				// set dialog message
 				alertDialogBuilder.setMessage("Enter the sales price, percentage down, offer or bid, interest rate, " +
-											  "term of mortgage and rehab budget.  Rehab budget can be a flat rate or " + 
+											  "term of mortgage, budget items and rehab budget.  Rehab budget can be a flat rate or " + 
 											  "a rehab type. Rehab types are classified as:  Low ($15/sf, yard work and " + 
 											  "painting), Medium ($20/sf > 1500 sf or $25/sf < 1500 sf, Low + kitchen and " + 
 											  "bathrooms, High ($30/sf, Medium + new roof), Super-High ($40/sf, complete " + 
@@ -135,12 +137,14 @@ public class SalesMortgageActivity extends Activity {
 		rR = (Rehab) intI.getSerializableExtra("Rehab");
 		// if Rehab object is null, fields are blank
 		if (rR == null) {
+			etBudgetItems.setText("");
 			if (setS.getRehab() == 0) {
 				etRehabBudget.setText("");
 			} else {
 				spnRehabType.setSelection(0);
 			}
 		} else {
+			etBudgetItems.setText(rR.getBudgetItems());
 			if (setS.getRehab() == 0) {
 				etRehabBudget.setText((int)rR.getBudget() + "");
 			} else {
@@ -192,6 +196,8 @@ public class SalesMortgageActivity extends Activity {
 			Toast.makeText(getApplicationContext(), "Must Enter Interest Rate", Toast.LENGTH_SHORT).show();
 		} else if (("").equals(etTerm.getText().toString())) {
 			Toast.makeText(getApplicationContext(), "Must Enter Term", Toast.LENGTH_SHORT).show();
+		} else if (("").equals(etBudgetItems.getText().toString())) {
+			Toast.makeText(getApplicationContext(), "Must Enter Budget Items", Toast.LENGTH_SHORT).show();
 		} else {
 			Intent intI = new Intent(this, ReservesActivity.class);
 			intI.putExtra("Location", locL);
@@ -212,12 +218,13 @@ public class SalesMortgageActivity extends Activity {
 	    	}
 	    	
 	    	Rehab rR;
+			String strBI = etBudgetItems.getText().toString();
 	    	if (setS.getRehab() == 0) {
 				if (("").equals(etRehabBudget.getText().toString())) {
 					Toast.makeText(getApplicationContext(), "Must Enter Rehab Budget", Toast.LENGTH_SHORT).show();
 				} else {
 					double dB = Double.parseDouble(etRehabBudget.getText().toString());
-					rR = new RehabFlatRate(dB);
+					rR = new RehabFlatRate(dB, strBI);
 					// if finance rehab flag is selected, set monthly payment as follows
 					if (setS.getFinance() == 2) {
 				    	smSM.setMonthlyPmt(rR.getBudget());
@@ -235,7 +242,7 @@ public class SalesMortgageActivity extends Activity {
 				}	    		
 	    	} else {
 				String strRTSel = spnRehabType.getSelectedItem().toString();
-				rR = new RehabType(locL.getSquareFootage(), strRTSel);
+				rR = new RehabType(locL.getSquareFootage(), strRTSel, strBI);
 				// if finance rehab flag is selected, set monthly payment as follows
 				if (setS.getFinance() == 2) {
 			    	smSM.setMonthlyPmt(rR.getBudget());

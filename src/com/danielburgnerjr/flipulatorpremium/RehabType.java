@@ -36,11 +36,13 @@ public class RehabType extends Rehab implements Serializable {
 	// Constructor function 
 	//	Inputs:	nSF (int) - representing square footage
 	//			strT (String) - representing type
+	//			strBI (String) - representing budget items
 	//	Output:	none
 	//**********************************************************************	
-	public RehabType(int nSF, String strT) {
-		nSqFoot = nSF;	// stores square footage
-		strType = strT; // stores rehab type
+	public RehabType(int nSF, String strT, String strBI) {
+		nSqFoot = nSF;			// stores square footage
+		strType = strT; 		// stores rehab type
+		strBudgetItems = strBI; // stores budget items
 		
 		// determines budget based on type and square footage
 		if (strType.equals("Low")) {
@@ -66,7 +68,8 @@ public class RehabType extends Rehab implements Serializable {
 	//	Output:	String (object representation)
 	//**********************************************************************	
 	public String toString() {
-		return "Rehab Type: " + strType + "\nBudget based on " + nSqFoot + " square feet is: $" + String.format("%.2f", dBudget);
+		return "Rehab Type: " + strType + "\nBudget based on " + nSqFoot + " square feet is: $" + 
+				String.format("%.2f", dBudget) + "Budget Items: " + strBudgetItems;
 	}
 
 }

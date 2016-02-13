@@ -122,10 +122,34 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llBudgetItems"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:layout_below="@+id/llTerm"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="35sp"
+            android:layout_weight="0.5"
+            android:text="@string/budgetItems" />
+
+        <EditText
+            android:id="@+id/txtBudgetItems"
+            android:layout_width="0sp"
+            android:layout_height="35sp"
+            android:layout_weight="0.5"
+            android:textSize="12sp"
+            android:ems="10"
+            android:inputType="text"
+            android:imeOptions="actionDone" />
+    </LinearLayout>
+    
+    <LinearLayout
         android:id="@+id/llRehabBudget"
         android:layout_width="fill_parent"
         android:layout_height="35sp"
-        android:layout_below="@+id/llTerm"
+        android:layout_below="@+id/llBudgetItems"
         android:orientation="horizontal" >
 
         <TextView
@@ -149,7 +173,7 @@
         android:id="@+id/llRehabType"
         android:layout_width="fill_parent"
         android:layout_height="40sp"
-        android:layout_below="@+id/llTerm"
+        android:layout_below="@+id/llBudgetItems"
         android:orientation="horizontal" >
 
         <TextView

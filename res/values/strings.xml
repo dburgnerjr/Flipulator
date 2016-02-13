@@ -70,6 +70,7 @@
     <string name="interestRate">Interest Rate %:</string>
     <string name="term">Term (months):</string>
     <string name="monthlyPmt">Monthly Pmt:</string>
+    <string name="budgetItems">Budget Items:</string>
     
     <string name="monthlyRes">Monthly</string>
     <string name="semiAnnRes">Semi-Annual</string>

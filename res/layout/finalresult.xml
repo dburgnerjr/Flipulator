@@ -175,7 +175,7 @@
 		     <LinearLayout
 		        android:id="@+id/llRehabBudget"
 		        android:layout_width="fill_parent"
-		        android:layout_height="35sp"
+		        android:layout_height="20sp"
 		        android:orientation="horizontal" >
 		
 		        <TextView 
@@ -185,7 +185,21 @@
 			        android:layout_weight="1"
 			        android:text="@string/rehab_budget" />	               
 		    </LinearLayout>
+
+		    <LinearLayout
+		        android:id="@+id/llBudgetItems"
+		        android:layout_width="fill_parent"
+		        android:layout_height="35sp"
+		        android:orientation="horizontal" >
 		
+		        <TextView 
+			        android:id="@+id/txtBudgetItems"
+			        android:layout_width="0dp"
+			        android:layout_height="20sp"
+			        android:layout_weight="1"
+			        android:text="@string/budgetItems" />	               
+		    </LinearLayout>
+		     		
 		    <LinearLayout
 		        android:id="@+id/llMortgageFR"
 		        android:layout_width="fill_parent"

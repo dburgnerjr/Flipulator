@@ -21,7 +21,9 @@ public abstract class Rehab implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	protected double dBudget;		// budget
+	protected double dBudget;			// budget
+	protected String strBudgetItems;	// list of items that need repair
+
 	
 	//**********************************************************************	
 	// Constructor function (default)
@@ -33,12 +35,13 @@ public abstract class Rehab implements Serializable {
 
 	//**********************************************************************	
 	// Constructor function 
-	//	Inputs:	strT (String) - representing title
-	//          dB (double) - representing price
+	//	Inputs:	dB (double) - representing budget
+	//          strT (String) - representing budget items
 	//	Output:	none
 	//**********************************************************************	
-	public Rehab(double dB) {
-		dBudget = dB;   	// sets budget
+	public Rehab(double dB, String strBI) {
+		dBudget = dB;   		// sets budget
+		strBudgetItems = strBI; // sets budget items
 	}
 
 	//**********************************************************************	
@@ -50,7 +53,16 @@ public abstract class Rehab implements Serializable {
 		return dBudget;		// returns budget
 	}
 
-   //**********************************************************************	
+	//**********************************************************************	
+	//  getBudgetItems - gets Budget items
+    //	Inputs:	none
+	//	Output:	String (budget items)
+	//**********************************************************************	
+	public String getBudgetItems() {
+		return strBudgetItems;	// returns budget items
+	}
+
+    //**********************************************************************	
 	// toString - displays the object's attributes
 	//	Inputs:	none
 	//	Output:	String (object representation)

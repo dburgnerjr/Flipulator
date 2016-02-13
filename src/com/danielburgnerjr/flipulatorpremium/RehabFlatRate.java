@@ -32,12 +32,12 @@ public class RehabFlatRate extends Rehab implements Serializable {
 
 	//**********************************************************************	
 	// Constructor function 
-	//	Inputs:	strT (String) - representing title
-	//          dB (double) - representing price
+	//	Inputs:	dB (double) - representing budget
+	//          strT (String) - representing budget items
 	//	Output:	none
 	//**********************************************************************	
-	public RehabFlatRate(double dB) {
-		super(dB);   	// sets budget
+	public RehabFlatRate(double dB, String strBI) {
+		super(dB, strBI);   // sets budget and budget items
 	}
 
    //**********************************************************************	
@@ -46,7 +46,8 @@ public class RehabFlatRate extends Rehab implements Serializable {
 	//	Output:	String (object representation)
 	//**********************************************************************	
 	public String toString() {
-		return "Rehab Flat Rate Budget: $" + String.format("%.2f", dBudget);
+		return "Rehab Flat Rate Budget: $" + String.format("%.2f", dBudget) + "\n" +
+			   "Budget Items: " + strBudgetItems;
 	}
 
 }

@@ -1059,6 +1059,24 @@ public class FinalResultActivity extends Activity {
 	    Formula forCashCashReturnAnnualO = new Formula(4, 62, buf.toString(), wcfPercent);
 	    excelSheet.addCell(forCashCashReturnAnnualO);
 
+	    // settings and budget items
+	    Label lblRehab;
+	    lblRehab = new Label(0, 64, "Rehab Type", timesBold);
+	    excelSheet.addCell(lblRehab);
+	    Label lblRehabType = new Label(1, 64, setS.getRehab() + "", timesBold);
+	    excelSheet.addCell(lblRehabType);
+	    Label lblFinance;
+	    lblFinance = new Label(2, 64, "Finance Type", timesBold);
+	    excelSheet.addCell(lblFinance);
+	    Label lblFinanceType = new Label(3, 64, setS.getFinance() + "", timesBold);
+	    excelSheet.addCell(lblFinanceType);
+	    Label lblBudgetItems;
+	    lblBudgetItems = new Label(0, 65, "Budget Items", timesBold);
+	    excelSheet.addCell(lblBudgetItems);
+	    Label lblBudgetItemsList = new Label(1, 65, rR.getBudgetItems(), timesBold);
+	    excelSheet.addCell(lblBudgetItemsList);
+	    excelSheet.mergeCells(1, 65, 4, 66);
+	    
 	    // location info - owner carry
 	    Label lblPropAddressOwnerCarry;
 	    lblPropAddressOwnerCarry = new Label(7, 1, "Property Address:", timesBold);
@@ -2273,7 +2291,7 @@ public class FinalResultActivity extends Activity {
 		File file = new File(myDir, strFileName);
 		
 		// create Excel spreadsheet
-		//createSpreadsheet(myDir, strFileNameXls);
+		createSpreadsheet(myDir, strFileNameXls);
 
 		String strMessage = "Rehab Type:" + setS.getRehab() + ":";
 		strMessage += "Finance Type:" + setS.getFinance() + ":";

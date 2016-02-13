@@ -40,6 +40,8 @@ public class SettingsActivity extends Activity {
 	private Button btnHelp;				// help
 	private int nRehab;
 	private int nFinance;
+	private int nRehabCheckedId;
+	private int nFinanceCheckedId;
 
 
 	@Override
@@ -55,8 +57,10 @@ public class SettingsActivity extends Activity {
 		btnHelp = (Button)findViewById(R.id.txtHelp);
 
 		if (setS != null) {
-			int nRehabCheckedId = setS.getRehab();
-			int nFinanceCheckedId = setS.getFinance();
+			nRehabCheckedId = setS.getRehab();
+			nRehab = nRehabCheckedId;
+			nFinanceCheckedId = setS.getFinance();
+			nFinance = nFinanceCheckedId;
 
 			switch (nRehabCheckedId) {
 				case 0:
@@ -179,9 +183,7 @@ public class SettingsActivity extends Activity {
 			Toast.makeText(getApplicationContext(), "Must Enter Finance Model", Toast.LENGTH_SHORT).show();
 		} else {
 			Intent intI = new Intent(this, LocationActivity.class);
-			if (setS == null) {
-				setS = new Settings(nRehab, nFinance);				
-			}
+			setS = new Settings(nRehab, nFinance);				
 			intI.putExtra("Settings", setS);	    
 			if (locL != null) {
 				intI.putExtra("Location", locL);

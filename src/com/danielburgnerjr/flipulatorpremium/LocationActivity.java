@@ -40,7 +40,7 @@ public class LocationActivity extends Activity {
 		Intent intI = getIntent();
 		
 		setS = (Settings) intI.getSerializableExtra("Settings");
-		Toast.makeText(getApplicationContext(), "Rehab Type: " + setS.getRehab(), Toast.LENGTH_SHORT).show();
+
 		etAddress   = (EditText)findViewById(R.id.txtAddress);
 		etCity   = (EditText)findViewById(R.id.txtCity);
 		etState   = (EditText)findViewById(R.id.txtState);

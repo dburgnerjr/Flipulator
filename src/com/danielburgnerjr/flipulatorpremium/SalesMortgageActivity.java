@@ -48,7 +48,7 @@ public class SalesMortgageActivity extends Activity {
 		
 		setS = (Settings) intI.getSerializableExtra("Settings");
 		locL = (Location) intI.getSerializableExtra("Location");
-		Toast.makeText(getApplicationContext(), "Rehab Type: " + setS.getRehab(), Toast.LENGTH_SHORT).show();
+
 		etSalesPrice   = (EditText)findViewById(R.id.txtSalePrice);
 		etPercentDown   = (EditText)findViewById(R.id.txtPercentDown);
 		etOfferBid   = (EditText)findViewById(R.id.txtOfferBid);

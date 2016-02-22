@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -82,11 +87,41 @@ public class OpenFilesActivity extends Activity {
                ClosExpPropMktInfo cemC = null;
                try {
             	   File fPath = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorPremium");
-            	   String strFilePath = fPath.getPath() + "/" + itemValue + ".txt";
-            	   BufferedReader br = new BufferedReader(new FileReader(strFilePath));
+            	   String strFilePathXLS = fPath.getPath() + "/" + itemValue + ".xls";
+            	   String strFilePathTXT = fPath.getPath() + "/" + itemValue + ".txt";
+            	   BufferedReader br = new BufferedReader(new FileReader(strFilePathTXT));
 	        	   String strContents = "";	        	   
 	               try {
-	                   StringBuilder sb = new StringBuilder();
+	            	   Workbook wbExcelFile = Workbook.getWorkbook(new File(strFilePathXLS));
+	            	   Sheet shWorkSheet = wbExcelFile.getSheet(0);
+	            	   
+	            	   // Settings
+	            	   Cell celRehabType = shWorkSheet.getCell(1, 64);
+	            	   Cell celFinanceType = shWorkSheet.getCell(3, 64);
+	            	   
+	            	   String strRehabType = celRehabType.getContents();
+	            	   String strFinanceType = celFinanceType.getContents();
+	            	   setS = new Settings(Integer.parseInt(strRehabType), Integer.parseInt(strFinanceType));
+	            	   
+	            	   // Location
+	            	   Cell celAddress = shWorkSheet.getCell(1, 1);
+	            	   Cell celCity = shWorkSheet.getCell(1, 2);
+	            	   Cell celState = shWorkSheet.getCell(1, 3);
+	            	   Cell celZipCode = shWorkSheet.getCell(1, 4);
+	            	   Cell celSqFootage = shWorkSheet.getCell(3, 2);
+	            	   Cell celBedrooms = shWorkSheet.getCell(3, 3);
+	            	   Cell celBathrooms = shWorkSheet.getCell(3, 4);
+	            	   
+	            	   String strAddress = celAddress.getContents();
+	            	   String strCity = celCity.getContents();
+	            	   String strState = celState.getContents();
+	            	   String strZipCode = celZipCode.getContents();
+	            	   int nSqFootage = Integer.parseInt(celSqFootage.getContents());
+	            	   int nBedrooms = Integer.parseInt(celBedrooms.getContents());
+	            	   double dBathrooms = Double.parseDouble(celBathrooms.getContents());
+	            	   locL = new Location(strAddress, strCity, strState, strZipCode, nSqFootage, nBedrooms, dBathrooms);
+
+	            	   StringBuilder sb = new StringBuilder();
 	                   String strLine = br.readLine();
 	
 	                   while (strLine != null) {
@@ -97,11 +132,13 @@ public class OpenFilesActivity extends Activity {
 	                   strContents = sb.toString();
 	               } catch (FileNotFoundException e) {
 	            	   Toast.makeText(getApplicationContext(), "File Not Found", Toast.LENGTH_SHORT).show();
+				   } catch (BiffException e) {
+					   Toast.makeText(getApplicationContext(), "Biff Exception", Toast.LENGTH_SHORT).show();
 	               } finally {
 	            	   br.close();
 	            	   // split up the contents and store values into objects
 	            	   String[] strValues = strContents.split(":");
-	            	   setS = new Settings(Integer.parseInt(strValues[1]), Integer.parseInt(strValues[3]));
+/*	            	   setS = new Settings(Integer.parseInt(strValues[1]), Integer.parseInt(strValues[3]));
 	            	   locL = new Location(strValues[5], strValues[7], strValues[9], strValues[11],
 	            			   			   Integer.parseInt(strValues[13]), Integer.parseInt(strValues[15]),
 	            			   			   Double.parseDouble(strValues[17]));
@@ -143,7 +180,7 @@ public class OpenFilesActivity extends Activity {
 	            	   cemC = new ClosExpPropMktInfo(Double.parseDouble(strValues[55]), Double.parseDouble(strValues[59]),
 	            			   						 Double.parseDouble(strValues[63]), Double.parseDouble(strValues[69]),
 	            			   						 Double.parseDouble(strValues[71]), Double.parseDouble(strValues[73]));
-	            	   //Toast.makeText(getApplicationContext(), setS.toString(), Toast.LENGTH_SHORT).show();
+*/	            	   //Toast.makeText(getApplicationContext(), setS.toString(), Toast.LENGTH_SHORT).show();
 	            	   //Toast.makeText(getApplicationContext(), locL.toString(), Toast.LENGTH_SHORT).show();
 	            	   //Toast.makeText(getApplicationContext(), smSM.toString(), Toast.LENGTH_SHORT).show();
 	            	   //Toast.makeText(getApplicationContext(), rR.toString(), Toast.LENGTH_SHORT).show();
@@ -156,10 +193,10 @@ public class OpenFilesActivity extends Activity {
             	   newActivity = new Intent(OpenFilesActivity.this, SettingsActivity.class);
             	   newActivity.putExtra("Settings", setS);
             	   newActivity.putExtra("Location", locL);
-            	   newActivity.putExtra("SalesMortgage", smSM);
-            	   newActivity.putExtra("Rehab", rR);
-            	   newActivity.putExtra("Reserves", resR);
-            	   newActivity.putExtra("ClosExpPropMktInfo", cemC);
+            	   //newActivity.putExtra("SalesMortgage", smSM);
+            	   //newActivity.putExtra("Rehab", rR);
+            	   //newActivity.putExtra("Reserves", resR);
+            	   //newActivity.putExtra("ClosExpPropMktInfo", cemC);
             	   startActivity(newActivity);
             	   finish();
                }               

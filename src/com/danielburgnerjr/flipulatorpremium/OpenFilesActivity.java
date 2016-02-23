@@ -121,6 +121,99 @@ public class OpenFilesActivity extends Activity {
 	            	   double dBathrooms = Double.parseDouble(celBathrooms.getContents());
 	            	   locL = new Location(strAddress, strCity, strState, strZipCode, nSqFootage, nBedrooms, dBathrooms);
 
+	            	   // Sales/Mortgage
+	            	   Cell celSalePrice = shWorkSheet.getCell(1, 8);
+	            	   Cell celPercentDown = shWorkSheet.getCell(1, 10);
+	            	   Cell celOfferBid = shWorkSheet.getCell(1, 12);
+	            	   Cell celDownPayment = shWorkSheet.getCell(3, 8);
+	            	   Cell celLoanAmount = shWorkSheet.getCell(3, 10);
+	            	   Cell celInterestRate = shWorkSheet.getCell(3, 12);
+	            	   Cell celTerm = shWorkSheet.getCell(3, 14);
+	            	   Cell celMonthlyPmt = shWorkSheet.getCell(3, 16);
+	            	   
+	            	   double dSalePrice = Double.parseDouble(celSalePrice.getContents());
+	            	   double dPercentDown = Double.parseDouble(celPercentDown.getContents());
+	            	   double dOfferBid = Double.parseDouble(celOfferBid.getContents());
+	            	   double dDownPayment = Double.parseDouble(celDownPayment.getContents());
+	            	   double dLoanAmount = Double.parseDouble(celLoanAmount.getContents());
+	            	   double dInterestRate = Double.parseDouble(celInterestRate.getContents());
+	            	   int nTerm = Integer.parseInt(celTerm.getContents());
+	            	   double dMonthlyPmt = Double.parseDouble(celMonthlyPmt.getContents());
+	            	   
+	            	   smSM = new SalesMortgage(dSalePrice, dPercentDown, dOfferBid, dDownPayment,
+	            			   					dLoanAmount, dInterestRate, nTerm, dMonthlyPmt);
+	            	   
+	            	   // Rehab
+	            	   Cell celRehabBudget = shWorkSheet.getCell(1, 14);
+	            	   Cell celBudgetItems = shWorkSheet.getCell(1, 65);
+	            	   
+	            	   double dRehabBudget = Double.parseDouble(celRehabBudget.getContents());
+	            	   String strBudgetItems = celBudgetItems.getContents();
+	            	   if (setS.getRehab() == 0) {
+	            		   rR = new RehabFlatRate(dRehabBudget, strBudgetItems);
+	            	   }
+	            	   if (setS.getRehab() == 1) {
+		       				int nCostSF = (int)(dRehabBudget/locL.getSquareFootage());
+		       				String strType = "";
+		    	      	  	switch (nCostSF) {
+		    	      	  		case 15:
+		    	      	  					strType = "Low";
+		    	      	  					break;
+		    	      	  		case 20:
+		    	      	  		case 25:
+		    	      	  					strType = "Medium";
+		    		    	  				break;
+		    	      	  		case 30:
+		    	      	  					strType = "High";
+		    		    	  				break;
+		    	      	  		case 40:
+		    	      	  					strType = "Super-High";
+		    		    	  				break;
+		    	      	  		case 125:
+		    	      	  					strType = "Bulldozer";
+		    		    	  				break;
+		    	      	    }
+
+	            		   rR = new RehabType(locL.getSquareFootage(), strType, strBudgetItems);
+	            	   }
+
+	            	   // Reserves
+	            	   Cell celMortgage = shWorkSheet.getCell(2, 20);
+	            	   Cell celInsurance = shWorkSheet.getCell(2, 22);
+	            	   Cell celTaxes = shWorkSheet.getCell(2, 24);
+	            	   Cell celWater = shWorkSheet.getCell(2, 26);
+	            	   Cell celGas = shWorkSheet.getCell(2, 28);
+	            	   Cell celElectric = shWorkSheet.getCell(2, 30);
+	            	   Cell celTotalExpense = shWorkSheet.getCell(2, 32);
+	            	   
+	            	   double dMortgage = Double.parseDouble(celMortgage.getContents());
+	            	   double dInsurance = Double.parseDouble(celInsurance.getContents());
+	            	   double dTaxes = Double.parseDouble(celTaxes.getContents());
+	            	   double dWater = Double.parseDouble(celWater.getContents());
+	            	   double dGas = Double.parseDouble(celGas.getContents());
+	            	   double dElectric = Double.parseDouble(celElectric.getContents());
+	            	   double dTotalExpense = Double.parseDouble(celTotalExpense.getContents());
+	            	   
+	            	   resR = new Reserves(dMortgage, dInsurance, dTaxes, dWater, dGas, dElectric, dTotalExpense);
+
+	            	   // Closing Expenses/Market Info
+	            	   Cell celRealEstComm = shWorkSheet.getCell(1, 8);
+	            	   Cell celBuyClosCost = shWorkSheet.getCell(1, 10);
+	            	   Cell celSellClosCost = shWorkSheet.getCell(1, 12);
+	            	   Cell celFMVARV = shWorkSheet.getCell(3, 8);
+	            	   Cell celComparables = shWorkSheet.getCell(3, 10);
+	            	   Cell celSellingPrice = shWorkSheet.getCell(3, 12);
+	            	   
+	            	   double dRealEstComm = Double.parseDouble(celRealEstComm.getContents());
+	            	   double dBuyClosCost = Double.parseDouble(celBuyClosCost.getContents());
+	            	   double dSellClosCost = Double.parseDouble(celSellClosCost.getContents());
+	            	   double dFMVARV = Double.parseDouble(celFMVARV.getContents());
+	            	   double dComparables = Double.parseDouble(celComparables.getContents());
+	            	   double dSellingPrice = Double.parseDouble(celSellingPrice.getContents());
+	            	   
+	            	   cemC = new ClosExpPropMktInfo(dRealEstComm, dBuyClosCost, dSellClosCost, 
+	            			   						 dFMVARV, dComparables, dSellingPrice);
+
 	            	   StringBuilder sb = new StringBuilder();
 	                   String strLine = br.readLine();
 	
@@ -193,10 +286,10 @@ public class OpenFilesActivity extends Activity {
             	   newActivity = new Intent(OpenFilesActivity.this, SettingsActivity.class);
             	   newActivity.putExtra("Settings", setS);
             	   newActivity.putExtra("Location", locL);
-            	   //newActivity.putExtra("SalesMortgage", smSM);
-            	   //newActivity.putExtra("Rehab", rR);
-            	   //newActivity.putExtra("Reserves", resR);
-            	   //newActivity.putExtra("ClosExpPropMktInfo", cemC);
+            	   newActivity.putExtra("SalesMortgage", smSM);
+            	   newActivity.putExtra("Rehab", rR);
+            	   newActivity.putExtra("Reserves", resR);
+            	   newActivity.putExtra("ClosExpPropMktInfo", cemC);
             	   startActivity(newActivity);
             	   finish();
                }               

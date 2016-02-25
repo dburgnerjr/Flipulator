@@ -40,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="@string/buyerClosCost" />
+            android:text="@string/bccPercentage" />
 
         <EditText
             android:id="@+id/txtBuyerClosCost"
@@ -63,7 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="@string/sellClosCost" />
+            android:text="@string/sccPercentage" />
 
         <EditText
             android:id="@+id/txtSellClosCost"

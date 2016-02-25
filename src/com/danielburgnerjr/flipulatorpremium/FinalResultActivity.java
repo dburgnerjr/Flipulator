@@ -122,9 +122,9 @@ public class FinalResultActivity extends Activity {
 		tvRealEstComm.setText("Real Estate Comm:\t\t\t $" + String.format("%.0f", frF.getRECost()));
 		tvRealEstCommPer.setText("Commission %:\t\t\t\t " + String.format("%.0f", cemC.getRealEstComm()) + "%");
 		tvBuyerClosCost.setText("Buyer Clos Cost:\t\t\t\t $" + String.format("%.0f", frF.getBCCost()));
-		tvBuyerClosCostPer.setText("Closing Cost %:\t\t\t\t " +String.format("%.0f", cemC.getBuyClosCost()) + "%");
+		tvBuyerClosCostPer.setText("Buyer Closing Cost %:\t " + String.format("%.0f", cemC.getBuyClosCost()) + "%");
 	    tvSellerClosCost.setText("Sell Clos Cost:\t\t\t\t\t $" + String.format("%.0f", frF.getSCCost()));
-		tvSellerClosCostPer.setText("Closing Cost %:\t\t\t\t " + String.format("%.0f",  cemC.getSellClosCost()) + "%");
+		tvSellerClosCostPer.setText("Seller Closing Cost %:\t " + String.format("%.0f",  cemC.getSellClosCost()) + "%");
 
 		TextView tvFMVARV = (TextView) findViewById(R.id.txtFMVARV);
 		TextView tvComparables = (TextView) findViewById(R.id.txtComparables);

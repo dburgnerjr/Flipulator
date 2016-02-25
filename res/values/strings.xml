@@ -87,9 +87,9 @@
     <string name="realestcomm">Real Estate Comm:</string>
     <string name="commission">Commission %:</string>
     <string name="buyerClosCost">Buyer Clos Cost:</string>
-    <string name="bccPercentage">Closing Cost %:</string>
+    <string name="bccPercentage">Buyer Closing Cost %:</string>
     <string name="sellClosCost">Sell Clos Cost:</string>
-    <string name="sccPercentage">Closing Cost %:</string>
+    <string name="sccPercentage">Seller Closing Cost %:</string>
     <string name="totalCosts">Total Costs:</string>
     <string name="outOfPocketExp">Out of Pocket Exp:</string>
     

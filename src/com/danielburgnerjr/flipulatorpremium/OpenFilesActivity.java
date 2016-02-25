@@ -8,12 +8,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.text.NumberFormat;
+import java.text.ParseException;
 
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -88,9 +90,6 @@ public class OpenFilesActivity extends Activity {
                try {
             	   File fPath = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorPremium");
             	   String strFilePathXLS = fPath.getPath() + "/" + itemValue + ".xls";
-            	   String strFilePathTXT = fPath.getPath() + "/" + itemValue + ".txt";
-            	   BufferedReader br = new BufferedReader(new FileReader(strFilePathTXT));
-	        	   String strContents = "";	        	   
 	               try {
 	            	   Workbook wbExcelFile = Workbook.getWorkbook(new File(strFilePathXLS));
 	            	   Sheet shWorkSheet = wbExcelFile.getSheet(0);
@@ -131,14 +130,25 @@ public class OpenFilesActivity extends Activity {
 	            	   Cell celTerm = shWorkSheet.getCell(3, 14);
 	            	   Cell celMonthlyPmt = shWorkSheet.getCell(3, 16);
 	            	   
-	            	   double dSalePrice = Double.parseDouble(celSalePrice.getContents());
-	            	   double dPercentDown = Double.parseDouble(celPercentDown.getContents());
-	            	   double dOfferBid = Double.parseDouble(celOfferBid.getContents());
-	            	   double dDownPayment = Double.parseDouble(celDownPayment.getContents());
-	            	   double dLoanAmount = Double.parseDouble(celLoanAmount.getContents());
-	            	   double dInterestRate = Double.parseDouble(celInterestRate.getContents());
+	            	   Locale us = new Locale("en", "US");
+	            	   NumberFormat nbfDollar = NumberFormat.getCurrencyInstance(us);
+	            	   NumberFormat nbfPercent = NumberFormat.getPercentInstance(us);
+	            	   
+	            	   Number numSalePrice = nbfDollar.parse(celSalePrice.getContents());
+	            	   double dSalePrice = numSalePrice.doubleValue();
+	            	   Number numPercentDown = nbfPercent.parse(celPercentDown.getContents());
+	            	   double dPercentDown = (Double)numPercentDown * 100.0;
+	            	   Number numOfferBid = nbfDollar.parse(celOfferBid.getContents());
+	            	   double dOfferBid = numOfferBid.doubleValue();
+	            	   Number numDownPayment = nbfDollar.parse(celDownPayment.getContents());
+	            	   double dDownPayment = numDownPayment.doubleValue();
+	            	   Number numLoanAmount = nbfDollar.parse(celLoanAmount.getContents());
+	            	   double dLoanAmount = numLoanAmount.doubleValue();
+	            	   Number numInterestRate = nbfPercent.parse(celInterestRate.getContents());
+	            	   double dInterestRate = (Double)numInterestRate * 100.0;
 	            	   int nTerm = Integer.parseInt(celTerm.getContents());
-	            	   double dMonthlyPmt = Double.parseDouble(celMonthlyPmt.getContents());
+	            	   Number numMonthlyPmt = nbfDollar.parse(celMonthlyPmt.getContents());
+	            	   double dMonthlyPmt = numMonthlyPmt.doubleValue();
 	            	   
 	            	   smSM = new SalesMortgage(dSalePrice, dPercentDown, dOfferBid, dDownPayment,
 	            			   					dLoanAmount, dInterestRate, nTerm, dMonthlyPmt);
@@ -147,7 +157,8 @@ public class OpenFilesActivity extends Activity {
 	            	   Cell celRehabBudget = shWorkSheet.getCell(1, 14);
 	            	   Cell celBudgetItems = shWorkSheet.getCell(1, 65);
 	            	   
-	            	   double dRehabBudget = Double.parseDouble(celRehabBudget.getContents());
+	            	   Number numRehabBudget = nbfDollar.parse(celRehabBudget.getContents());
+	            	   double dRehabBudget = numRehabBudget.doubleValue();
 	            	   String strBudgetItems = celBudgetItems.getContents();
 	            	   if (setS.getRehab() == 0) {
 	            		   rR = new RehabFlatRate(dRehabBudget, strBudgetItems);
@@ -186,100 +197,54 @@ public class OpenFilesActivity extends Activity {
 	            	   Cell celElectric = shWorkSheet.getCell(2, 30);
 	            	   Cell celTotalExpense = shWorkSheet.getCell(2, 32);
 	            	   
-	            	   double dMortgage = Double.parseDouble(celMortgage.getContents());
-	            	   double dInsurance = Double.parseDouble(celInsurance.getContents());
-	            	   double dTaxes = Double.parseDouble(celTaxes.getContents());
-	            	   double dWater = Double.parseDouble(celWater.getContents());
-	            	   double dGas = Double.parseDouble(celGas.getContents());
-	            	   double dElectric = Double.parseDouble(celElectric.getContents());
-	            	   double dTotalExpense = Double.parseDouble(celTotalExpense.getContents());
+	            	   Number numMortgage = nbfDollar.parse(celMortgage.getContents());
+	            	   double dMortgage = numMortgage.doubleValue();
+	            	   Number numInsurance = nbfDollar.parse(celInsurance.getContents());
+	            	   double dInsurance = numInsurance.doubleValue();
+	            	   Number numTaxes = nbfDollar.parse(celTaxes.getContents());
+	            	   double dTaxes = numTaxes.doubleValue();
+	            	   Number numWater = nbfDollar.parse(celWater.getContents());
+	            	   double dWater = numWater.doubleValue();
+	            	   Number numGas = nbfDollar.parse(celGas.getContents());
+	            	   double dGas = numGas.doubleValue();
+	            	   Number numElectric = nbfDollar.parse(celElectric.getContents());
+	            	   double dElectric = numElectric.doubleValue();
+	            	   Number numTotalExpense = nbfDollar.parse(celTotalExpense.getContents());
+	            	   double dTotalExpense = numTotalExpense.doubleValue();
 	            	   
 	            	   resR = new Reserves(dMortgage, dInsurance, dTaxes, dWater, dGas, dElectric, dTotalExpense);
 
 	            	   // Closing Expenses/Market Info
-	            	   Cell celRealEstComm = shWorkSheet.getCell(1, 8);
-	            	   Cell celBuyClosCost = shWorkSheet.getCell(1, 10);
-	            	   Cell celSellClosCost = shWorkSheet.getCell(1, 12);
-	            	   Cell celFMVARV = shWorkSheet.getCell(3, 8);
-	            	   Cell celComparables = shWorkSheet.getCell(3, 10);
-	            	   Cell celSellingPrice = shWorkSheet.getCell(3, 12);
+	            	   Cell celRealEstComm = shWorkSheet.getCell(3, 36);
+	            	   Cell celBuyClosCost = shWorkSheet.getCell(3, 38);
+	            	   Cell celSellClosCost = shWorkSheet.getCell(3, 39);
+	            	   Cell celFMVARV = shWorkSheet.getCell(2, 47);
+	            	   Cell celComparables = shWorkSheet.getCell(2, 48);
+	            	   Cell celSellingPrice = shWorkSheet.getCell(2, 49);
 	            	   
-	            	   double dRealEstComm = Double.parseDouble(celRealEstComm.getContents());
-	            	   double dBuyClosCost = Double.parseDouble(celBuyClosCost.getContents());
-	            	   double dSellClosCost = Double.parseDouble(celSellClosCost.getContents());
-	            	   double dFMVARV = Double.parseDouble(celFMVARV.getContents());
-	            	   double dComparables = Double.parseDouble(celComparables.getContents());
-	            	   double dSellingPrice = Double.parseDouble(celSellingPrice.getContents());
+	            	   Number numRealEstComm = nbfPercent.parse(celRealEstComm.getContents());
+	            	   double dRealEstComm = (Double)numRealEstComm * 100.0;
+	            	   Number numBuyClosCost = nbfPercent.parse(celBuyClosCost.getContents());
+	            	   double dBuyClosCost = (Double)numBuyClosCost * 100.0;
+	            	   Number numSellClosCost = nbfPercent.parse(celSellClosCost.getContents());
+	            	   double dSellClosCost = (Double)numSellClosCost * 100.0;
+	            	   Number numFMVARV = nbfDollar.parse(celFMVARV.getContents());
+	            	   double dFMVARV = numFMVARV.doubleValue();
+	            	   Number numComparables = nbfDollar.parse(celComparables.getContents());
+	            	   double dComparables = numComparables.doubleValue();
+	            	   Number numSellingPrice = nbfDollar.parse(celSellingPrice.getContents());
+	            	   double dSellingPrice = numSellingPrice.doubleValue();
 	            	   
 	            	   cemC = new ClosExpPropMktInfo(dRealEstComm, dBuyClosCost, dSellClosCost, 
 	            			   						 dFMVARV, dComparables, dSellingPrice);
 
-	            	   StringBuilder sb = new StringBuilder();
-	                   String strLine = br.readLine();
-	
-	                   while (strLine != null) {
-	                       sb.append(strLine);
-	                       sb.append(System.lineSeparator());
-	                       strLine = br.readLine();
-	                   }
-	                   strContents = sb.toString();
 	               } catch (FileNotFoundException e) {
 	            	   Toast.makeText(getApplicationContext(), "File Not Found", Toast.LENGTH_SHORT).show();
 				   } catch (BiffException e) {
 					   Toast.makeText(getApplicationContext(), "Biff Exception", Toast.LENGTH_SHORT).show();
-	               } finally {
-	            	   br.close();
-	            	   // split up the contents and store values into objects
-	            	   String[] strValues = strContents.split(":");
-/*	            	   setS = new Settings(Integer.parseInt(strValues[1]), Integer.parseInt(strValues[3]));
-	            	   locL = new Location(strValues[5], strValues[7], strValues[9], strValues[11],
-	            			   			   Integer.parseInt(strValues[13]), Integer.parseInt(strValues[15]),
-	            			   			   Double.parseDouble(strValues[17]));
-	            	   smSM = new SalesMortgage(Double.parseDouble(strValues[19]), Double.parseDouble(strValues[21]),
-	            			   					Double.parseDouble(strValues[23]), Double.parseDouble(strValues[29]),
-	            			   					Double.parseDouble(strValues[31]), Double.parseDouble(strValues[33]),
-	            			   					Integer.parseInt(strValues[35]), Double.parseDouble(strValues[37]));
-	            	   if (setS.getRehab() == 0) {
-	            		   rR = new RehabFlatRate(Double.parseDouble(strValues[25]), strValues[27]);
-	            	   }
-	            	   if (setS.getRehab() == 1) {
-		       				int nCostSF = (int)(Double.parseDouble(strValues[25])/locL.getSquareFootage());
-		       				String strType = "";
-		    	      	  	switch (nCostSF) {
-		    	      	  		case 15:
-		    	      	  					strType = "Low";
-		    	      	  					break;
-		    	      	  		case 20:
-		    	      	  		case 25:
-		    	      	  					strType = "Medium";
-		    		    	  				break;
-		    	      	  		case 30:
-		    	      	  					strType = "High";
-		    		    	  				break;
-		    	      	  		case 40:
-		    	      	  					strType = "Super-High";
-		    		    	  				break;
-		    	      	  		case 125:
-		    	      	  					strType = "Bulldozer";
-		    		    	  				break;
-		    	      	    }
-
-	            		   rR = new RehabType(locL.getSquareFootage(), strType, strValues[27]);
-	            	   }
-	            	   resR = new Reserves(Double.parseDouble(strValues[39]), Double.parseDouble(strValues[41]),
-			   							   Double.parseDouble(strValues[43]), Double.parseDouble(strValues[45]),
-			   							   Double.parseDouble(strValues[47]), Double.parseDouble(strValues[49]),
-			   							   Double.parseDouble(strValues[51]));
-	            	   cemC = new ClosExpPropMktInfo(Double.parseDouble(strValues[55]), Double.parseDouble(strValues[59]),
-	            			   						 Double.parseDouble(strValues[63]), Double.parseDouble(strValues[69]),
-	            			   						 Double.parseDouble(strValues[71]), Double.parseDouble(strValues[73]));
-*/	            	   //Toast.makeText(getApplicationContext(), setS.toString(), Toast.LENGTH_SHORT).show();
-	            	   //Toast.makeText(getApplicationContext(), locL.toString(), Toast.LENGTH_SHORT).show();
-	            	   //Toast.makeText(getApplicationContext(), smSM.toString(), Toast.LENGTH_SHORT).show();
-	            	   //Toast.makeText(getApplicationContext(), rR.toString(), Toast.LENGTH_SHORT).show();
-	            	   //Toast.makeText(getApplicationContext(), resR.toString(), Toast.LENGTH_SHORT).show();
-	            	   //Toast.makeText(getApplicationContext(), cemC.toString(), Toast.LENGTH_SHORT).show();
-	               }
+	               } catch (ParseException e) {
+	            	   Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+	               } 
                } catch (IOException e) {
             	   Toast.makeText(getApplicationContext(), "IO Exception", Toast.LENGTH_SHORT).show();
                } finally {

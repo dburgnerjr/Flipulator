@@ -55,7 +55,8 @@
         <activity
 			android:name=".SalesMortgageActivity"
 			android:label="Sales/Mortgage Info"
-			android:theme="@style/AppTheme" >
+			android:theme="@style/AppTheme"
+			android:windowSoftInputMode="stateVisible|adjustPan" >
 		</activity>
         <activity
 			android:name=".ReservesActivity"

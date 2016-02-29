@@ -246,7 +246,7 @@ int id action_context_bar 0x7f09001d
 int id action_menu_divider 0x7f090002
 int id action_menu_presenter 0x7f090003
 int id action_mode_close_button 0x7f090024
-int id action_settings 0x7f0900e2
+int id action_settings 0x7f0900e3
 int id activity_chooser_view_content 0x7f090025
 int id always 0x7f09000f
 int id beginning 0x7f090016
@@ -287,6 +287,7 @@ int id llAddress 0x7f0900c3
 int id llBathrooms 0x7f0900cf
 int id llBedrooms 0x7f0900cd
 int id llBudgetItems 0x7f09007a
+int id llBudgetItemsTxt 0x7f0900d6
 int id llBuyerClosCost 0x7f090052
 int id llBuyerClosCostPer 0x7f09009f
 int id llBuyerCosts 0x7f0900ab
@@ -299,7 +300,7 @@ int id llComparables 0x7f090058
 int id llDownPayment 0x7f09007e
 int id llElectric 0x7f090091
 int id llFMVARV 0x7f090056
-int id llFinanceType 0x7f0900dd
+int id llFinanceType 0x7f0900de
 int id llGas 0x7f090093
 int id llGrossProfit 0x7f0900ad
 int id llHelp 0x7f09005c
@@ -329,7 +330,7 @@ int id llRealEstComm 0x7f09009b
 int id llRealEstCommPer 0x7f09009d
 int id llRehabBudget 0x7f090078
 int id llRehabFinance 0x7f090064
-int id llRehabType 0x7f0900d7
+int id llRehabType 0x7f0900d8
 int id llResEmail 0x7f0900be
 int id llReservesFR 0x7f090088
 int id llReturnOnInvestment 0x7f0900b3
@@ -356,13 +357,13 @@ int id normal 0x7f090007
 int id progress_circular 0x7f090004
 int id progress_horizontal 0x7f090005
 int id radio 0x7f09002f
-int id rdoFinance 0x7f0900de
-int id rdoFinanceRehab 0x7f0900e1
-int id rdoOriginal 0x7f0900df
-int id rdoOwnerCarry 0x7f0900e0
-int id rdoRehab 0x7f0900da
-int id rdoRehabNumber 0x7f0900db
-int id rdoRehabType 0x7f0900dc
+int id rdoFinance 0x7f0900df
+int id rdoFinanceRehab 0x7f0900e2
+int id rdoOriginal 0x7f0900e0
+int id rdoOwnerCarry 0x7f0900e1
+int id rdoRehab 0x7f0900db
+int id rdoRehabNumber 0x7f0900dc
+int id rdoRehabType 0x7f0900dd
 int id scvFinalResult 0x7f090061
 int id search_badge 0x7f090032
 int id search_bar 0x7f090031
@@ -380,7 +381,7 @@ int id showHome 0x7f09000c
 int id showTitle 0x7f09000d
 int id split_action_bar 0x7f09001e
 int id spnDonate 0x7f090044
-int id spnRehabType 0x7f0900d9
+int id spnRehabType 0x7f0900da
 int id spnTimeFrame 0x7f09008a
 int id submit_area 0x7f090039
 int id tabMode 0x7f090008
@@ -390,8 +391,8 @@ int id textFlipulator 0x7f09003e
 int id textWhatIsFlipulator 0x7f09003d
 int id title 0x7f09002b
 int id top_action_bar 0x7f090020
-int id tvRehabBudget 0x7f0900d6
-int id tvRehabType 0x7f0900d8
+int id tvRehabBudget 0x7f0900d7
+int id tvRehabType 0x7f0900d9
 int id txtAddress 0x7f0900c4
 int id txtBathrooms 0x7f0900d0
 int id txtBedrooms 0x7f0900ce

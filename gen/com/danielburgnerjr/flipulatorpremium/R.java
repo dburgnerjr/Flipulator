@@ -1005,7 +1005,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090024;
-        public static final int action_settings=0x7f0900e2;
+        public static final int action_settings=0x7f0900e3;
         public static final int activity_chooser_view_content=0x7f090025;
         public static final int always=0x7f09000f;
         public static final int beginning=0x7f090016;
@@ -1046,6 +1046,7 @@ containing a value of this type.
         public static final int llBathrooms=0x7f0900cf;
         public static final int llBedrooms=0x7f0900cd;
         public static final int llBudgetItems=0x7f09007a;
+        public static final int llBudgetItemsTxt=0x7f0900d6;
         public static final int llBuyerClosCost=0x7f090052;
         public static final int llBuyerClosCostPer=0x7f09009f;
         public static final int llBuyerCosts=0x7f0900ab;
@@ -1058,7 +1059,7 @@ containing a value of this type.
         public static final int llDownPayment=0x7f09007e;
         public static final int llElectric=0x7f090091;
         public static final int llFMVARV=0x7f090056;
-        public static final int llFinanceType=0x7f0900dd;
+        public static final int llFinanceType=0x7f0900de;
         public static final int llGas=0x7f090093;
         public static final int llGrossProfit=0x7f0900ad;
         public static final int llHelp=0x7f09005c;
@@ -1088,7 +1089,7 @@ containing a value of this type.
         public static final int llRealEstCommPer=0x7f09009d;
         public static final int llRehabBudget=0x7f090078;
         public static final int llRehabFinance=0x7f090064;
-        public static final int llRehabType=0x7f0900d7;
+        public static final int llRehabType=0x7f0900d8;
         public static final int llResEmail=0x7f0900be;
         public static final int llReservesFR=0x7f090088;
         public static final int llReturnOnInvestment=0x7f0900b3;
@@ -1115,13 +1116,13 @@ containing a value of this type.
         public static final int progress_circular=0x7f090004;
         public static final int progress_horizontal=0x7f090005;
         public static final int radio=0x7f09002f;
-        public static final int rdoFinance=0x7f0900de;
-        public static final int rdoFinanceRehab=0x7f0900e1;
-        public static final int rdoOriginal=0x7f0900df;
-        public static final int rdoOwnerCarry=0x7f0900e0;
-        public static final int rdoRehab=0x7f0900da;
-        public static final int rdoRehabNumber=0x7f0900db;
-        public static final int rdoRehabType=0x7f0900dc;
+        public static final int rdoFinance=0x7f0900df;
+        public static final int rdoFinanceRehab=0x7f0900e2;
+        public static final int rdoOriginal=0x7f0900e0;
+        public static final int rdoOwnerCarry=0x7f0900e1;
+        public static final int rdoRehab=0x7f0900db;
+        public static final int rdoRehabNumber=0x7f0900dc;
+        public static final int rdoRehabType=0x7f0900dd;
         public static final int scvFinalResult=0x7f090061;
         public static final int search_badge=0x7f090032;
         public static final int search_bar=0x7f090031;
@@ -1139,7 +1140,7 @@ containing a value of this type.
         public static final int showTitle=0x7f09000d;
         public static final int split_action_bar=0x7f09001e;
         public static final int spnDonate=0x7f090044;
-        public static final int spnRehabType=0x7f0900d9;
+        public static final int spnRehabType=0x7f0900da;
         public static final int spnTimeFrame=0x7f09008a;
         public static final int submit_area=0x7f090039;
         public static final int tabMode=0x7f090008;
@@ -1149,8 +1150,8 @@ containing a value of this type.
         public static final int textWhatIsFlipulator=0x7f09003d;
         public static final int title=0x7f09002b;
         public static final int top_action_bar=0x7f090020;
-        public static final int tvRehabBudget=0x7f0900d6;
-        public static final int tvRehabType=0x7f0900d8;
+        public static final int tvRehabBudget=0x7f0900d7;
+        public static final int tvRehabType=0x7f0900d9;
         public static final int txtAddress=0x7f0900c4;
         public static final int txtBathrooms=0x7f0900d0;
         public static final int txtBedrooms=0x7f0900ce;

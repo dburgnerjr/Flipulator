@@ -2,8 +2,10 @@ package com.danielburgnerjr.flipulatorpremium;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -271,6 +273,13 @@ public class FinalResultActivity extends Activity {
 	    .setNegativeButton("Excel", new DialogInterface.OnClickListener() {
 	        // do something when the button is clicked
 	        public void onClick(DialogInterface arg0, int arg1) {
+	        	try {
+	        		emailExcelSpreadsheet();
+	        	} catch (IOException e) {
+	        		Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+	        	} catch (WriteException e) {
+	        		Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+	        	}
 	        }
 	    })
 	    .show();
@@ -1043,7 +1052,7 @@ public class FinalResultActivity extends Activity {
 	    excelSheet.addCell(lblBudgetItems);
 	    Label lblBudgetItemsList = new Label(1, 65, rR.getBudgetItems(), timesBold);
 	    excelSheet.addCell(lblBudgetItemsList);
-	    excelSheet.mergeCells(1, 65, 4, 66);
+	    excelSheet.mergeCells(1, 65, 4, 67);
 	    
 	    // location info - owner carry
 	    Label lblPropAddressOwnerCarry;
@@ -2250,6 +2259,25 @@ public class FinalResultActivity extends Activity {
 	    workbook.close();		
 	}
 
+	public void emailExcelSpreadsheet() throws IOException, WriteException {
+		File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorPremium");
+	    myDir.mkdirs();
+	    String strFileNameXls = locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode() + ".xls";
+		File file = new File(myDir, strFileNameXls);
+		
+		if (!file.exists()) {
+			createSpreadsheet(myDir, strFileNameXls);
+		}
+		
+		Intent intEmailActivity = new Intent(Intent.ACTION_SEND);
+		intEmailActivity.putExtra(Intent.EXTRA_EMAIL, new String[]{});
+		intEmailActivity.putExtra(Intent.EXTRA_SUBJECT, "Flipulator results for: " + locL.getAddress() + " " + locL.getCity() + ", " + locL.getState() + " " + locL.getZIPCode());
+		intEmailActivity.putExtra(Intent.EXTRA_STREAM, Uri.parse("file:///"+  file));
+		intEmailActivity.setType("application/excel");
+   		startActivity(intEmailActivity);
+
+	}
+
 	public void emailPlainText() {
 		// email results of calculate to those parties concerned
 		String strMessage = "Address:\t\t\t\t\t\t\t   " + locL.getAddress() + "\n";
@@ -2304,67 +2332,14 @@ public class FinalResultActivity extends Activity {
 		// saves results to text file
 		File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorPremium");
 	    myDir.mkdirs();
-	    String strFileName = locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode() + ".txt";
 	    String strFileNameXls = locL.getAddress() + " " + locL.getCity() + " " + locL.getState() + " " + locL.getZIPCode() + ".xls";
-		File file = new File(myDir, strFileName);
+		File file = new File(myDir, strFileNameXls);
 		
 		// create Excel spreadsheet
 		createSpreadsheet(myDir, strFileNameXls);
-
-		String strMessage = "Rehab Type:" + setS.getRehab() + ":";
-		strMessage += "Finance Type:" + setS.getFinance() + ":";
-	    strMessage += "Address:" + locL.getAddress() + ":";
-		strMessage += "City:" + locL.getCity() + ":";
-		strMessage += "State:" + locL.getState() + ":";
-		strMessage += "ZIP Code:" + locL.getZIPCode() + ":";
-		strMessage += "Square Footage:" + locL.getSquareFootage() + ":";
-		strMessage += "Bedrooms:" + locL.getBedrooms() + ":";
-		strMessage += "Bathrooms:" + locL.getBathrooms() + ":";
-		strMessage += "Sale Price:" + String.format("%.0f", smSM.getSalesPrice()) + ":";
-		strMessage += "Percent Down %:" + String.format("%.0f", smSM.getPercentDown()) + ":";
-		strMessage += "Offer/Bid Price:" + String.format("%.0f", smSM.getOfferBid()) + ":";
-		strMessage += "Rehab Budget:" + String.format("%.0f", rR.getBudget()) + ":";
-		strMessage += "Budget Items:" + rR.getBudgetItems() + ":";
-		strMessage += "Down Payment:" + String.format("%.0f", smSM.getDownPayment()) + ":";
-		strMessage += "Loan Amount:" + String.format("%.0f", smSM.getLoanAmount()) + ":";
-		strMessage += "Interest Rate %:" + String.format("%.0f", smSM.getInterestRate()) + ":";
-		strMessage += "Term (months):" + smSM.getTerm() + ":";
-		strMessage += "Monthly Pmt:" + String.format("%.0f", smSM.getMonthlyPmt()) + ":";
-		strMessage += "Mortgage:" + String.format("%.0f", rsR.getMortgage()) + ":";
-		strMessage += "Property Taxes:" + String.format("%.0f", rsR.getTaxes()) + ":";
-		strMessage += "Insurance:" + String.format("%.0f", rsR.getInsurance()) + ":";
-		strMessage += "Electric:" +String.format("%.0f", rsR.getElectric()) + ":";
-		strMessage += "Water:" + String.format("%.0f", rsR.getWater()) + ":";
-		strMessage += "Gas:" + String.format("%.0f", rsR.getGas()) + ":";
-		strMessage += "Total Reserves:" + String.format("%.0f", rsR.getTotalExpenses()) + ":";
-		strMessage += "Real Estate Comm:" + String.format("%.0f", frF.getRECost()) + ":";
-		strMessage += "Commission %:" + String.format("%.0f", cemC.getRealEstComm()) + ":";
-		strMessage += "Buyer Clos Cost:" + String.format("%.0f", frF.getBCCost()) + ":";
-		strMessage += "Closing Cost %:" +String.format("%.0f", cemC.getBuyClosCost()) + ":";
-		strMessage += "Sell Clos Cost:" + String.format("%.0f", frF.getSCCost()) + ":";
-		strMessage += "Closing Cost %:" + String.format("%.0f",  cemC.getSellClosCost()) + ":";
-		strMessage += "Total Costs:" + String.format("%.0f", frF.getTotalCost()) + ":";
-		strMessage += "Out of Pocket Exp:" + String.format("%.0f", frF.getOOPExp()) + ":";
-		strMessage += "FMV/ARV:" + String.format("%.0f", cemC.getFMVARV()) + ":";
-		strMessage += "Comparables:" + String.format("%.0f", cemC.getComparables()) + ":";
-		strMessage += "Selling Price:" + String.format("%.0f", cemC.getSellingPrice()) + ":";
-		strMessage += "Buy + Costs:" + String.format("%.0f", frF.getTotalCost()) + ":";
-		strMessage += "Gross Profit:" + String.format("%.0f", frF.getGrossProfit()) + ":";
-		strMessage += "Capital Gains:" + String.format("%.0f",  frF.getCapGains()) + ":";
-		strMessage += "Net Profit:" + String.format("%.0f", frF.getNetProfit()) + ":";
-		strMessage += "Money Out:" + String.format("%.0f", frF.getOOPExp()) + ":";
-		strMessage += "Money In:" + String.format("%.0f", frF.getNetProfit()) + ":";
-		strMessage += "% Return:" + String.format("%.1f", frF.getROI()) + ":";
-		strMessage += "Cash on Cash Return:" + String.format("%.1f", frF.getCashOnCash()) + ":";
 		
-		FileOutputStream stream = new FileOutputStream(file);
-		try {
-		    stream.write(strMessage.getBytes());
-		} finally {
-			String strSavedFile = "File saved as: " + strFileName;
-			Toast.makeText(getApplicationContext(), strSavedFile, Toast.LENGTH_SHORT).show();
-			stream.close();
-		}
+		String strSavedFile = "File saved as: " + strFileNameXls;
+		Toast.makeText(getApplicationContext(), strSavedFile, Toast.LENGTH_SHORT).show();
 	}
 
 	public boolean onKeyDown(int nKeyCode, KeyEvent keEvent) {

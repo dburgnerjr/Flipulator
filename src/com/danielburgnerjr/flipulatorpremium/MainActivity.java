@@ -1,7 +1,6 @@
 package com.danielburgnerjr.flipulatorpremium;
 
 import java.io.File;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -26,6 +25,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		File myDir = new File(getApplicationContext().getExternalFilesDir(null) + "/FlipulatorPremium");
 		String strPath = myDir.getPath();
+		RateThisApp.onLaunch(this);
 		//Toast.makeText(getApplicationContext(), strPath, Toast.LENGTH_SHORT).show();
 		        
 		final Button btnAbout = (Button) findViewById(R.id.btnAbout);
